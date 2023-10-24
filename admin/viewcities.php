@@ -1,3 +1,12 @@
+<?php
+include("connection.php");
+$select_city_query = "SELECT * FROM `city`";
+$run_select_city_query = mysqli_query($connection, $select_city_query);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,8 +48,27 @@
 
                 <?php include 'topbar.php';?>
                 <div class="container">
-                    <form>
+                    
                         <h1>Cities</h1>
+                        <div class="container">
+                        <table class="table-bordered w-100 text-center">
+                            <thead>
+                                <th>City Id</th>
+                                <th>City Name</th>
+                                <th>City Status</th>
+                            </thead>
+                            <tbody>
+                                <?php while($row = mysqli_fetch_array($run_select_city_query)){?>
+                              <tr>
+    <td><?php echo $row['city_id']; ?></td>
+    <td><?php echo $row['city_name']; ?></td>
+    <td><?php echo $row['status']; ?></td>
+                              </tr>
+                                <?php } ?>
+                                
+                            </tbody>
+                            </div>
+                        </table>
 
                 </form>
                 </div>

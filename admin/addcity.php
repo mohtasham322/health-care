@@ -1,6 +1,18 @@
 <?php 
 include("connection.php");
-$insert_city_q = "";
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+    if(isset($_POST["btn_add_city"])){
+        $city_name = $_POST["city_name"];
+        $city_status = $_POST["city_status"];
+        $insert_city_q = "INSERT INTO `city`(`city_name`, `status`) VALUES ('$city_name','$city_status')";
+        $run_insert_city_q = mysqli_query($connection, $insert_city_q);
+        if($run_insert_city_q){
+            echo "<script> window.location.href = 'viewcities.php' </script>";
+        };
+    };
+};
+
+
 
 
 ?>
@@ -46,18 +58,21 @@ $insert_city_q = "";
                 
                 <?php include 'topbar.php';?>
                 <div class="container">
-                    <form>
+                    <form method = "POST">
                         <h1>Add City</h1>
                     <div class="mb-3">
                         <label class="form-label">city</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="city_name">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Status</label>
-                        <select name="" id=""></select>
+                        <select class="form-control" name="city_status">
+                            <option value="">0</option>
+                            <option value="">1</option>
+                        </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">add city</button>
+                    <button type="submit" class="btn btn-primary" name="btn_add_city">add city</button>
                 </form>
                 </div>
                 

@@ -1,15 +1,22 @@
-<?php 
+<?php
 include("connection.php");
-if($_SERVER["REQUEST_METHOD"] === "POST"){
-    if(isset($_POST["btn_add_city"])){
+$id = $_GET['id'];
+$select_city_row = "SELECT * FROM `city` WHERE city_id = $id";
+$run_select_city_row = mysqli_query($connection, $select_city_row);
+$fetched_city_row = mysqli_fetch_array($run_select_city_row);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["btn_update_city"])) {
         $city_name = $_POST["city_name"];
-        $insert_city_q = "INSERT INTO `city`(`city_name`) VALUES ('$city_name')";
-        $run_insert_city_q = mysqli_query($connection, $insert_city_q);
-        if($run_insert_city_q){
+        $update_city = "UPDATE `city` SET `city_name`='$city_name' WHERE city_id = $id";
+        $run_update_city = mysqli_query($connection, $update_city);
+        if ($run_update_city) {
             echo "<script> window.location.href = 'viewcities.php' </script>";
-        };
-    };
-};
+        }
+        ;
+    }
+    ;
+}
+;
 
 
 
@@ -47,33 +54,34 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php include 'sidebar.php';?>
+        <?php include 'sidebar.php'; ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
-                
-                <?php include 'topbar.php';?>
-                <div class="container">
-                    <form method = "POST">
-                        <h1>Add City</h1>
-                    <div class="mb-3">
-                        <label class="form-label">city</label>
-                        <input type="text" class="form-control" name="city_name">
-                    </div>
 
-                    <button type="submit" class="btn btn-primary" name="btn_add_city">add city</button>
-                </form>
+                <?php include 'topbar.php'; ?>
+                <div class="container">
+                    <form method="POST">
+                        <h1>Add City</h1>
+                        <div class="mb-3">
+                            <label class="form-label">city</label>
+                            <input type="text" value="<?php echo $fetched_city_row['city_name'] ?>" class="form-control"
+                                name="city_name">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" name="btn_update_city">Update City</button>
+                    </form>
                 </div>
-                
+
 
 
             </div>
             <!-- End of Main Content -->
 
-            <?php include 'footer.php';?>
+            <?php include 'footer.php'; ?>
 
 
         </div>
@@ -110,7 +118,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     <!-- Bootstrap core JavaScript-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

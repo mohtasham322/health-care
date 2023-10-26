@@ -50,27 +50,30 @@ $run_select_city_query = mysqli_query($connection, $select_city_query);
                 <div class="container">
                     
                         <h1>Cities</h1>
-                        <div class="container">
                         <table class="table-bordered w-100 text-center">
                             <thead>
                                 <th>City Id</th>
                                 <th>City Name</th>
                                 <th>City Status</th>
+                                <th>Delete City</th>
+                                <th>Update City</th>
                             </thead>
                             <tbody>
                                 <?php while($row = mysqli_fetch_array($run_select_city_query)){?>
                               <tr>
-    <td><?php echo $row['city_id']; ?></td>
-    <td><?php echo $row['city_name']; ?></td>
-    <td><?php echo $row['status']; ?></td>
+                                        <td><?php echo $row['city_id']; ?></td>
+                                        <td><?php echo $row['city_name']; ?></td>
+                                        <td><?php echo $row['status']; ?></td>
+                                        <td><a href="deletecity.php?id=<?php echo $row['city_id']; ?>" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="updatecity.php?id=<?php echo $row['city_id']; ?>" class="btn btn-primary">Update</a></td>
                               </tr>
                                 <?php } ?>
                                 
                             </tbody>
-                            </div>
+                            
                         </table>
 
-                </form>
+                
                 </div>
 
 
@@ -78,7 +81,7 @@ $run_select_city_query = mysqli_query($connection, $select_city_query);
             </div>
             <!-- End of Main Content -->
 
-            <?php include 'footer.php';?>
+            <?php include 'footer.php' ?>
 
 
         </div>
@@ -113,9 +116,7 @@ $run_select_city_query = mysqli_query($connection, $select_city_query);
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

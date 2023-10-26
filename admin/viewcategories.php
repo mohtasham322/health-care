@@ -1,20 +1,11 @@
-<?php 
+<?php
 include("connection.php");
-if($_SERVER["REQUEST_METHOD"] === "POST"){
-    if(isset($_POST["btn_add_city"])){
-        $city_name = $_POST["city_name"];
-        $insert_city_q = "INSERT INTO `city`(`city_name`) VALUES ('$city_name')";
-        $run_insert_city_q = mysqli_query($connection, $insert_city_q);
-        if($run_insert_city_q){
-            echo "<script> window.location.href = 'viewcities.php' </script>";
-        };
-    };
-};
-
-
+$select_category_query = "SELECT * FROM `category`";
+$run_select_category_query = mysqli_query($connection, $select_category_query);
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,26 +45,43 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
             <!-- Main Content -->
             <div id="content">
-                
+
                 <?php include 'topbar.php';?>
                 <div class="container">
-                    <form method = "POST">
-                        <h1>Add City</h1>
-                    <div class="mb-3">
-                        <label class="form-label">city</label>
-                        <input type="text" class="form-control" name="city_name">
-                    </div>
+                    
+                        <h1>Categories</h1>
+                        <table class="table-bordered w-100 text-center">
+                            <thead>
+                                <th>category Id</th>
+                                <th>category Name</th>
+                                <th>category Status</th>
+                                <th>Delete category</th>
+                                <th>Update category</th>
+                            </thead>
+                            <tbody>
+                                <?php while($row_category = mysqli_fetch_array($run_select_category_query)){?>
+                              <tr>
+                                        <td><?php echo $row_category['category_id']; ?></td>
+                                        <td><?php echo $row_category['category_name']; ?></td>
+                                        <td><?php echo $row_category['status']; ?></td>
+                                        <td><a href="delete_category.php?cat_id=<?php echo $row_category['category_id']; ?>" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="update_category.php?cat_id=<?php echo $row_category['category_id']; ?>" class="btn btn-primary">Update</a></td>
+                              </tr>
+                                <?php } ?>
+                                
+                            </tbody>
+                            
+                        </table>
 
-                    <button type="submit" class="btn btn-primary" name="btn_add_city">add city</button>
-                </form>
-                </div>
                 
+                </div>
+
 
 
             </div>
             <!-- End of Main Content -->
 
-            <?php include 'footer.php';?>
+            <?php include 'footer.php' ?>
 
 
         </div>
@@ -108,9 +116,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

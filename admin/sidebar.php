@@ -80,8 +80,8 @@
                 </a>
                 <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">View categories</a>
-                        <a class="collapse-item" href="register.html">Add categories</a>
+                        <a class="collapse-item" href="viewcategories.php">View categories</a>
+                        <a class="collapse-item" href="add_category.php">Add categories</a>
                     </div>
                 </div>
             </li>

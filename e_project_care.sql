@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2023 at 07:51 AM
+-- Generation Time: Oct 28, 2023 at 08:06 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -59,6 +59,13 @@ CREATE TABLE `category` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_name`, `status`) VALUES
+(1, 'General Physician 1', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +77,15 @@ CREATE TABLE `city` (
   `city_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `city`
+--
+
+INSERT INTO `city` (`city_id`, `city_name`, `status`) VALUES
+(1, 'Karachi', 1),
+(2, 'Islamabad', 1),
+(3, 'Multan', 0);
 
 -- --------------------------------------------------------
 
@@ -112,6 +128,31 @@ CREATE TABLE `patients` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(1001) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `user_password` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `status`) VALUES
+(1, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
+(2, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
+(3, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
+(4, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
+(5, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1);
+
 --
 -- Indexes for dumped tables
 --
@@ -151,6 +192,12 @@ ALTER TABLE `patients`
   ADD PRIMARY KEY (`patient_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -164,13 +211,13 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -183,6 +230,12 @@ ALTER TABLE `doctors`
 --
 ALTER TABLE `patients`
   MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

@@ -7,9 +7,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $userpassword = $_POST['user_password'];
         $insert_users = "INSERT INTO `users`(`user_name`, `user_email`, `user_password`) VALUES ('$username','$useremail','$userpassword')";
         $run_insert_users = mysqli_query($connection, $insert_users);
-        if($run_insert_users){
-            echo "<script>alert('sign up successfully')</script>";
-        };
     };
 }
 

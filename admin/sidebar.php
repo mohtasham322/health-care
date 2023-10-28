@@ -27,8 +27,11 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <!-- <i class="fas fa-fw fa-cog"></i> -->
+
+                    <img src="images/Doctor-Icon.png" alt="" width="25" class="pb-2 me-2">
                     <span>Doctors</span>
+
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -42,8 +45,9 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Users</span>
+                    <!-- <i class="fas fa-fw fa-wrench"></i> -->
+                    <img src="images/patient-icon.png" alt="" width="25" class="pb-2 me-2">
+                    <span>User</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -60,7 +64,8 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <!-- <i class="fas fa-fw fa-folder"></i> -->
+                    <img src="images/city-icon.png" alt="" width="25" class="pb-2 me-2">
                     <span>City</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -75,10 +80,12 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <!-- <i class="fas fa-fw fa-folder"></i> -->
+                    <img src="images/category-icon.png" alt="" width="25" class="pb-2 me-2">
                     <span>Doctor Category</span>
                 </a>
-                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="viewcategories.php">View categories</a>
                         <a class="collapse-item" href="add_category.php">Add categories</a>
@@ -90,10 +97,12 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <!-- <i class="fas fa-fw fa-folder"></i> -->
+                    <img src="images/content-icon.png" alt="" width="25" class="pb-2 me-2">
                     <span>Contents</span>
                 </a>
-                <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages3" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="login.html">Latest Medical News</a>
                         <a class="collapse-item" href="register.html">Medical Inventions</a>

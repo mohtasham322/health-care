@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2023 at 08:06 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Oct 29, 2023 at 08:13 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_username` varchar(200) NOT NULL,
   `admin_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -45,26 +45,7 @@ CREATE TABLE `appointment` (
   `time` time NOT NULL,
   `status` varchar(50) NOT NULL,
   `doctor_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(200) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`category_id`, `category_name`, `status`) VALUES
-(1, 'General Physician 1', 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -76,7 +57,7 @@ CREATE TABLE `city` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `city`
@@ -103,12 +84,29 @@ CREATE TABLE `doctors` (
   `doctor_qualification` varchar(100) NOT NULL,
   `doctor_contact` bigint(20) NOT NULL,
   `doctor_degree_pic` varchar(500) NOT NULL,
+  `doctor_nic_front_pic` varchar(100) NOT NULL,
+  `doctor_nic_back_pic` varchar(100) NOT NULL,
   `doctor_city` int(11) NOT NULL,
   `doctor_whatsapp` bigint(20) NOT NULL,
   `doctor_gender` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
   `doctor_specialization` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_password`, `doctor_pic`, `doctor_exp`, `doctor_qualification`, `doctor_contact`, `doctor_degree_pic`, `doctor_nic_front_pic`, `doctor_nic_back_pic`, `doctor_city`, `doctor_whatsapp`, `doctor_gender`, `status`, `doctor_specialization`) VALUES
+(1, '', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
+(2, '', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
+(3, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
+(4, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
+(5, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
+(6, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
+(7, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
+(8, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
+(9, 'Muhammad Mohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +124,45 @@ CREATE TABLE `patients` (
   `patient_gender` varchar(100) NOT NULL,
   `patient_pic` varchar(200) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qualification`
+--
+
+CREATE TABLE `qualification` (
+  `qualification_id` int(11) NOT NULL,
+  `qualification_name` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `qualification`
+--
+
+INSERT INTO `qualification` (`qualification_id`, `qualification_name`, `status`) VALUES
+(1, 'MBBS', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `specialization`
+--
+
+CREATE TABLE `specialization` (
+  `specialization_id` int(11) NOT NULL,
+  `specialization_name` varchar(200) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `specialization`
+--
+
+INSERT INTO `specialization` (`specialization_id`, `specialization_name`, `status`) VALUES
+(1, 'General Physician 1', 0);
 
 -- --------------------------------------------------------
 
@@ -140,7 +176,7 @@ CREATE TABLE `users` (
   `user_email` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -151,7 +187,16 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `sta
 (2, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
 (3, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
 (4, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(5, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1);
+(5, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
+(6, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
+(7, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
+(8, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
+(9, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
+(10, 'Mohtasham', 'mmohtasham322@gmail.com', '55555', 0),
+(11, 'Mohtasham', 'mmohtasham322@gmail.com', '55555', 0),
+(12, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 0),
+(13, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 0),
+(14, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 0);
 
 --
 -- Indexes for dumped tables
@@ -164,12 +209,6 @@ ALTER TABLE `appointment`
   ADD PRIMARY KEY (`appointment_id`),
   ADD KEY `fk` (`doctor_id`),
   ADD KEY `gk` (`patient_id`);
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `city`
@@ -192,6 +231,18 @@ ALTER TABLE `patients`
   ADD PRIMARY KEY (`patient_id`);
 
 --
+-- Indexes for table `qualification`
+--
+ALTER TABLE `qualification`
+  ADD PRIMARY KEY (`qualification_id`);
+
+--
+-- Indexes for table `specialization`
+--
+ALTER TABLE `specialization`
+  ADD PRIMARY KEY (`specialization_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -208,12 +259,6 @@ ALTER TABLE `appointment`
   MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
@@ -223,7 +268,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `patients`
@@ -232,10 +277,22 @@ ALTER TABLE `patients`
   MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `qualification`
+--
+ALTER TABLE `qualification`
+  MODIFY `qualification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `specialization`
+--
+ALTER TABLE `specialization`
+  MODIFY `specialization_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -252,7 +309,7 @@ ALTER TABLE `appointment`
 -- Constraints for table `doctors`
 --
 ALTER TABLE `doctors`
-  ADD CONSTRAINT `jk` FOREIGN KEY (`doctor_specialization`) REFERENCES `category` (`category_id`);
+  ADD CONSTRAINT `jk` FOREIGN KEY (`doctor_specialization`) REFERENCES `specialization` (`specialization_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

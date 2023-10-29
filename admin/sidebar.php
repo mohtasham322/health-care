@@ -9,8 +9,6 @@
                 <div class="sidebar-brand-text mx-3">Care Admin</div>
             </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
@@ -19,8 +17,7 @@
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+
 
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -36,7 +33,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="buttons.html">View doctors</a>
-                        <a class="collapse-item" href="cards.html">Registration Request</a>
+                        <a class="collapse-item" href="doctor_request.php">Registration Request</a>
                     </div>
                 </div>
             </li>
@@ -57,8 +54,6 @@
                 </div>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -72,6 +67,20 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="viewcities.php">View cities</a>
                         <a class="collapse-item" href="addcity.php">Add city</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages6"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <!-- <i class="fas fa-fw fa-folder"></i> -->
+                    <img src="images/city-icon.png" alt="" width="25" class="pb-2 me-2">
+                    <span>Qualification</span>
+                </a>
+                <div id="collapsePages6" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="view_qualification.php">View qualifications</a>
+                        <a class="collapse-item" href="add_qualification.php">Add qualification</a>
                     </div>
                 </div>
             </li>
@@ -109,9 +118,6 @@
                     </div>
                 </div>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

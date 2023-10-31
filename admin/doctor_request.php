@@ -30,6 +30,11 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        td{
+            padding: 20px;
+        }
+    </style>
 
 </head>
 
@@ -47,10 +52,10 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
             <div id="content">
 
                 <?php include 'topbar.php';?>
-                <div class="container">
+                <div class="container" style="overflow-x: auto;">
                     
                         <h1>Doctor Registration Request </h1>
-                        <table class="table-bordered w-100 text-center w-100">
+                        <table class="table-bordered w-100 text-center w-100" >
                             <thead>
                                 <th>Id</th>
                                 <th>Name</th>
@@ -90,8 +95,8 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
                                         <td><?php echo $row_doctor['doctor_gender']; ?></td>
                                         <td><?php echo $row_doctor['doctor_specialization']; ?></td>
                                         <td><?php echo $row_doctor['status']; ?></td>
-                                        <td><a href="delete_doctor.php?cat_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-danger">Delete</a></td>
-                                        <td><a href="update_doctor.php?cat_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-primary">Update</a></td>
+                                        <td><a href="delete_doctor.php?cat_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-primary">Accept</a></td>
+                                        <td><a href="update_doctor.php?cat_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-danger">Decline</a></td>
                               </tr>
                                 <?php } ?>
                                 

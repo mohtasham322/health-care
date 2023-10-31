@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
-$select_category_query = "SELECT * FROM `category`";
-$run_select_category_query = mysqli_query($connection, $select_category_query);
+$select_specialization_query = "SELECT * FROM `specialization`";
+$run_select_specialization_query = mysqli_query($connection, $select_specialization_query);
 
 
 ?>
@@ -52,20 +52,20 @@ $run_select_category_query = mysqli_query($connection, $select_category_query);
                         <h1>Categories</h1>
                         <table class="table-bordered w-100 text-center">
                             <thead>
-                                <th>category Id</th>
-                                <th>category Name</th>
-                                <th>category Status</th>
-                                <th>Delete category</th>
-                                <th>Update category</th>
+                                <th>specialization Id</th>
+                                <th>specialization Name</th>
+                                <th>specialization Status</th>
+                                <th>Delete specialization</th>
+                                <th>Update specialization</th>
                             </thead>
                             <tbody>
-                                <?php while($row_category = mysqli_fetch_array($run_select_category_query)){?>
+                                <?php while($row_specialization = mysqli_fetch_array($run_select_specialization_query)){?>
                               <tr>
-                                        <td><?php echo $row_category['category_id']; ?></td>
-                                        <td><?php echo $row_category['category_name']; ?></td>
-                                        <td><?php echo $row_category['status']; ?></td>
-                                        <td><a href="delete_category.php?cat_id=<?php echo $row_category['category_id']; ?>" class="btn btn-danger">Delete</a></td>
-                                        <td><a href="update_category.php?cat_id=<?php echo $row_category['category_id']; ?>" class="btn btn-primary">Update</a></td>
+                                        <td><?php echo $row_specialization['specialization_id']; ?></td>
+                                        <td><?php echo $row_specialization['specialization_name']; ?></td>
+                                        <td><?php echo $row_specialization['status']; ?></td>
+                                        <td><a href="delete_specialization.php?cat_id=<?php echo $row_specialization['specialization_id']; ?>" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="update_specialization.php?cat_id=<?php echo $row_specialization['specialization_id']; ?>" class="btn btn-primary">Update</a></td>
                               </tr>
                                 <?php } ?>
                                 

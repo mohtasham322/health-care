@@ -1,11 +1,11 @@
 <?php 
 include("connection.php");
 if($_SERVER["REQUEST_METHOD"] === "POST"){
-    if(isset($_POST["btn_add_category"])){
-        $category_name = $_POST["category_name"];
-        $insert_category_q = "INSERT INTO `category`(`category_name`) VALUES ('$category_name')";
-        $run_insert_category_q = mysqli_query($connection, $insert_category_q);
-        if($run_insert_category_q){
+    if(isset($_POST["btn_add_specialization"])){
+        $specialization_name = $_POST["specialization_name"];
+        $insert_specialization_q = "INSERT INTO `specialization`(`specialization_name`) VALUES ('$specialization_name')";
+        $run_insert_specialization_q = mysqli_query($connection, $insert_specialization_q);
+        if($run_insert_specialization_q){
             echo "<script> window.location.href = 'viewcategories.php' </script>";
         };
     };
@@ -58,13 +58,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                 <?php include 'topbar.php';?>
                 <div class="container">
                     <form method = "POST">
-                        <h1>Add Doctor Category</h1>
+                        <h1>Add Doctor Specialization</h1>
                     <div class="mb-3">
-                        <label class="form-label">Doctor Category</label>
-                        <input type="text" class="form-control" name="category_name">
+                        <label class="form-label">Doctor Specialization</label>
+                        <input type="text" class="form-control" name="specialization_name">
                     </div>
 
-                    <button type="submit" class="btn btn-primary" name="btn_add_category">add category</button>
+                    <button type="submit" class="btn btn-primary" name="btn_add_specialization">add specialization</button>
                 </form>
                 </div>
                 

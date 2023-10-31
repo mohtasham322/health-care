@@ -74,7 +74,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages6"
                     aria-expanded="true" aria-controls="collapsePages">
                     <!-- <i class="fas fa-fw fa-folder"></i> -->
-                    <img src="images/city-icon.png" alt="" width="25" class="pb-2 me-2">
+                    <img src="images/Qualification-icon.png" alt="" width="25" class="pb-2 me-2">
                     <span>Qualification</span>
                 </a>
                 <div id="collapsePages6" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">

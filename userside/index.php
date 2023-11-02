@@ -47,8 +47,15 @@ $run_select_city = mysqli_query($connection, $select_city);
 </head>
 
 <body>
+<<<<<<< HEAD
 <?php include("spinner.php");  ?>
 <?php include("navbar.php");  ?>
+=======
+
+<?php include("spinner.php");  ?>
+<?php include("navbar.php");  ?>
+
+>>>>>>> 06e2c453d7c4b791e3c194b625807e815f5bfcb9
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">

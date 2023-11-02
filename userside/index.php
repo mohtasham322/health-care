@@ -1,8 +1,8 @@
 <?php
 include("../admin/connection.php");
-$select_specialization = "SELECT * FROM `specialization`";
+$select_specialization = "SELECT * FROM `specialization` where status = 0";
 $run_select_specialization = mysqli_query($connection, $select_specialization);
-$select_city = "SELECT * FROM `city`";
+$select_city = "SELECT * FROM `city` where status = 0";
 $run_select_city = mysqli_query($connection, $select_city);
 
 ?>
@@ -43,22 +43,12 @@ $run_select_city = mysqli_query($connection, $select_city);
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style>
-        .logo_img {
-            width: 280px;
-            height: 90px;
-        }
     </style>
 </head>
 
 <body>
-<<<<<<< HEAD
-    <?php include("spinner.php"); ?>
-    <?php include("topbar.php"); ?>
-    <?php include("navbar.php"); ?>
-=======
 <?php include("spinner.php");  ?>
 <?php include("navbar.php");  ?>
->>>>>>> 14d20c5a9c2c09ec3d5a2157b98e578890f377a1
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">

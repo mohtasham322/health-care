@@ -38,7 +38,7 @@ $run_select_specialization_query = mysqli_query($connection, $select_specializat
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <?php include 'sidebar.php';?>
+        <?php include 'sidebar.php'; ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -46,34 +46,42 @@ $run_select_specialization_query = mysqli_query($connection, $select_specializat
             <!-- Main Content -->
             <div id="content">
 
-                <?php include 'topbar.php';?>
+                <?php include 'topbar.php'; ?>
                 <div class="container">
-                    
-                        <h1>Categories</h1>
-                        <table class="table-bordered w-100 text-center">
-                            <thead>
-                                <th>specialization Id</th>
-                                <th>specialization Name</th>
-                                <th>specialization Status</th>
-                                <th>Delete specialization</th>
-                                <th>Update specialization</th>
-                            </thead>
-                            <tbody>
-                                <?php while($row_specialization = mysqli_fetch_array($run_select_specialization_query)){?>
-                              <tr>
-                                        <td><?php echo $row_specialization['specialization_id']; ?></td>
-                                        <td><?php echo $row_specialization['specialization_name']; ?></td>
-                                        <td><?php echo $row_specialization['status']; ?></td>
-                                        <td><a href="delete_specialization.php?cat_id=<?php echo $row_specialization['specialization_id']; ?>" class="btn btn-danger">Delete</a></td>
-                                        <td><a href="update_specialization.php?cat_id=<?php echo $row_specialization['specialization_id']; ?>" class="btn btn-primary">Update</a></td>
-                              </tr>
-                                <?php } ?>
-                                
-                            </tbody>
-                            
-                        </table>
 
-                
+                    <h1>Categories</h1>
+                    <table class="table-bordered w-100 text-center">
+                        <thead>
+                            <th>specialization Id</th>
+                            <th>specialization Name</th>
+                            <th>specialization Status</th>
+                            <th>Delete specialization</th>
+                            <th>Update specialization</th>
+                        </thead>
+                        <tbody>
+                            <?php while ($row_specialization = mysqli_fetch_array($run_select_specialization_query)) { ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $row_specialization['specialization_id']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row_specialization['specialization_name']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row_specialization['status']; ?>
+                                    </td>
+                                    <td><a href="delete_specialization.php?cat_id=<?php echo $row_specialization['specialization_id']; ?>"
+                                            class="btn btn-danger">Delete</a></td>
+                                    <td><a href="update_specialization.php?cat_id=<?php echo $row_specialization['specialization_id']; ?>"
+                                            class="btn btn-primary">Update</a></td>
+                                </tr>
+                            <?php } ?>
+
+                        </tbody>
+
+                    </table>
+
+
                 </div>
 
 
@@ -116,7 +124,9 @@ $run_select_specialization_query = mysqli_query($connection, $select_specializat
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

@@ -1,3 +1,11 @@
+<?php
+include("../admin/connection.php");
+$select_doctors = "SELECT * FROM `doctors` where status = 0";
+$run_select_doctors = mysqli_query($connection, $select_doctors);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,66 +87,16 @@
                     <div class="section-title mb-5">
                     </div>
                     <div class="row g-5">
+                        <?php while ($row_doctors = mysqli_fetch_array($run_select_doctors)){ ?>
                         <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
                             <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-1.jpg" alt="">
+                                <img class="img-fluid" src="<?php echo  $row_doctors['doctor_pic'];  ?>" alt="">
                             </div>
                             <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Cosmetic Dentistry</h5>
-                                <h5 class="m-0">Cosmetic Dentistry</h5>
-                                <h5 class="m-0">Cosmetic Dentistry</h5>
-                                <h5 class="m-0">Cosmetic Dentistry</h5>
-                                <h5 class="m-0">Cosmetic Dentistry</h5>
+                                <h5 class="m-0"><?php echo $row_doctors['doctor_name']; ?></h5>
                             </div>
                         </div>
-                        <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.9s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-2.jpg" alt="">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Dental Implants</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.9s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-2.jpg" alt="">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Dental Implants</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-5 mb-5">
-                <div class="col-lg-12">
-                    <div class="section-title mb-5">
-                    </div>
-                    <div class="row g-5">
-                        <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-1.jpg" alt="">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Cosmetic Dentistry</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.9s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-2.jpg" alt="">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Dental Implants</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.9s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-2.jpg" alt="">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Dental Implants</h5>
-                            </div>
-                        </div>
+                        <?php }; ?>
                     </div>
                 </div>
             </div>

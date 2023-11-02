@@ -1,8 +1,8 @@
 <?php 
 include("../admin/connection.php");
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-require '../PHPMailer-master/autoload.php'; // Path to the Composer autoload file
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
+// require '../PHPMailer-master/autoload.php'; // Path to the Composer autoload file
 $select_qualification = "SELECT * FROM `qualification`";
 $run_select_qualification = mysqli_query($connection, $select_qualification);
 $select_specialization = "SELECT * FROM `specialization`";
@@ -47,23 +47,23 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
     $insert_doctor_query = "INSERT INTO `doctors`(`doctor_name`, `doctor_email`, `doctor_password`, `doctor_pic`, `doctor_exp`, `doctor_qualification`, `doctor_contact`, `doctor_degree_pic`, `doctor_nic_front_pic`, `doctor_nic_back_pic`, `doctor_city`, `doctor_whatsapp`, `doctor_gender`, `doctor_specialization`) VALUES ('$full_name','$email','$password ','$p_image_path','$experience','$qualification','$phone','$deg_image_path','$nic_front_image_path','$nic_back_image_path','$city','$whatsapp','$gender','$specialization')";
     $run_insert_doctor_query = mysqli_query($connection, $insert_doctor_query);
     
-    $subject = "registration request on care website";
-    $txt = "Your registration request has been sent successfully and you will be responded within 24 working hours";
-    $mail = new PHPMailer();
-    $mail-> isSMTP();
-    $mail-> Host = 'SMTP.gmail.com';
-    $mail-> SMTPauth = true;
-    $mail-> Username = 'mmhashmi322@gmail.com';
-    $mail-> Password = '';
-    $mail-> SMTPSecure = 'tls';
-    $mail-> Port = 587;
-    $mail-> setfrom("mmhashmi322@gmail.com");
-    $mail-> addAddress($email);
-    $mail-> subject = $subject;
-    $mail-> body = $txt;
+    // $subject = "registration request on care website";
+    // $txt = "Your registration request has been sent successfully and you will be responded within 24 working hours";
+    // $mail = new PHPMailer();
+    // $mail-> isSMTP();
+    // $mail-> Host = 'SMTP.gmail.com';
+    // $mail-> SMTPauth = true;
+    // $mail-> Username = 'mmhashmi322@gmail.com';
+    // $mail-> Password = '';
+    // $mail-> SMTPSecure = 'tls';
+    // $mail-> Port = 587;
+    // $mail-> setfrom("mmhashmi322@gmail.com");
+    // $mail-> addAddress($email);
+    // $mail-> subject = $subject;
+    // $mail-> body = $txt;
     
 
-    if($run_insert_doctor_query && $mail-> send()){
+    if($run_insert_doctor_query){
       echo "<script>alert('query inserted successfully')</script>";
     }
     else{

@@ -12,7 +12,7 @@
             <a href="about.html" class="nav-item nav-link">About</a>
             <a href="service.html" class="nav-item nav-link">Service</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                <a href="#" class="nav-link" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu m-0">
                     <a href="price.html" class="dropdown-item">Pricing Plan</a>
                     <a href="team.html" class="dropdown-item">Our Dentist</a>
@@ -26,14 +26,18 @@
                 class="fa fa-search"></i></button>
         <!-- <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Login</a> -->
         <div style="position: relative;">
-          <a class="nav-link  btn btn-primary py-2 px-4 ms-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Login
-          </a>
-          <ul  class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="doctor_registration.php">Login as a doctor</a></li>
-            <li><a class="dropdown-item" href="sign_up.php">Login as a patient</a></li>
-          </ul></div>
+            <a class="nav-link  btn btn-primary py-2 px-4 ms-3" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+            <div class="dropdown-menu m-0 mt-3">
         
+              <a class="dropdown-item" href="doctor_registration.php">Login as a Doctor</a>
+                <a class="dropdown-item" href="sign_up.php">Login as a Patient</a>
+            
+            </div>
+        </div>
+
     </div>
 </nav>
 <!-- Navbar End -->

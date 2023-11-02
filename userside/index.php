@@ -40,7 +40,6 @@
 
 <body>
 <?php include("spinner.php");  ?>
-<?php include("topbar.php");  ?>
 <?php include("navbar.php");  ?>
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">

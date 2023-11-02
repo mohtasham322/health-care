@@ -91,13 +91,13 @@
                     aria-expanded="true" aria-controls="collapsePages">
                     <!-- <i class="fas fa-fw fa-folder"></i> -->
                     <img src="images/category-icon.png" alt="" width="25" class="pb-2 me-2">
-                    <span>Doctor Category</span>
+                    <span>Doctor specialization</span>
                 </a>
                 <div id="collapsePages2" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="viewcategories.php">View categories</a>
-                        <a class="collapse-item" href="add_category.php">Add categories</a>
+                        <a class="collapse-item" href="viewspecialization.php">View specialization</a>
+                        <a class="collapse-item" href="add_specialization.php">Add specialization</a>
                     </div>
                 </div>
             </li>

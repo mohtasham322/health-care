@@ -52,6 +52,7 @@
             <a href="index.php" class="nav-item nav-link active">Home</a>
             <a href="about.php" class="nav-item nav-link">About</a>
             <a href="service.php" class="nav-item nav-link">Service</a>
+            <a href="doctors.php" class="nav-item nav-link">Doctors</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu m-0">

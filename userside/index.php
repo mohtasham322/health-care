@@ -47,15 +47,10 @@ $run_select_city = mysqli_query($connection, $select_city);
 </head>
 
 <body>
-<<<<<<< HEAD
-<?php include("spinner.php");  ?>
-<?php include("navbar.php");  ?>
-=======
 
 <?php include("spinner.php");  ?>
 <?php include("navbar.php");  ?>
 
->>>>>>> 06e2c453d7c4b791e3c194b625807e815f5bfcb9
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
@@ -94,7 +89,7 @@ $run_select_city = mysqli_query($connection, $select_city);
                     <img class="w-100" src="img/carousel-1.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your Teeth Healthy</h5>
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Prioritize Your Wellness, Treasure Your Health!</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Health
                                 Treatment</h1>
                             <a href="appointment.html"
@@ -107,7 +102,7 @@ $run_select_city = mysqli_query($connection, $select_city);
                     <img class="w-100" src="img/carousel-2.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your Teeth Healthy</h5>
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Prioritize Your Wellness, Treasure Your Health!</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Your Path to Health and Wellness
                             </h1>
                             <a href="appointment.html"

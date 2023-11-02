@@ -7,7 +7,8 @@ $fetched_city_row = mysqli_fetch_array($run_select_city_row);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["btn_update_city"])) {
         $city_name = $_POST["city_name"];
-        $update_city = "UPDATE `city` SET `city_name`='$city_name' WHERE city_id = $id";
+        $status = $_POST["status"];
+        $update_city = "UPDATE `city` SET `city_name`='$city_name', `status`='$status' WHERE city_id = $id";
         $run_update_city = mysqli_query($connection, $update_city);
         if ($run_update_city) {
             echo "<script> window.location.href = 'viewcities.php' </script>";
@@ -70,6 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <label class="form-label">city</label>
                             <input type="text" value="<?php echo $fetched_city_row['city_name'] ?>" class="form-control"
                                 name="city_name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <input type="text" value="<?php echo $fetched_city_row['status'] ?>" class="form-control"
+                                name="status">
                         </div>
 
                         <button type="submit" class="btn btn-primary" name="btn_update_city">Update City</button>

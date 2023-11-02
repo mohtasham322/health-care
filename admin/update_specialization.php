@@ -1,16 +1,17 @@
 <?php
 include("connection.php");
 $id = $_GET['cat_id'];
-$select_category_row = "SELECT * FROM `category` WHERE category_id = $id";
-$run_select_category_row = mysqli_query($connection, $select_category_row);
-$fetched_category_row = mysqli_fetch_array($run_select_category_row);
+$select_specialization_row = "SELECT * FROM `specialization` WHERE specialization_id = $id";
+$run_select_specialization_row = mysqli_query($connection, $select_specialization_row);
+$fetched_specialization_row = mysqli_fetch_array($run_select_specialization_row);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST["btn_update_category"])) {
-        $category_name = $_POST["category_name"];
-        $update_category = "UPDATE `category` SET `category_name`='$category_name' WHERE category_id = $id";
-        $run_update_category = mysqli_query($connection, $update_category);
-        if ($run_update_category) {
-            echo "<script> window.location.href = 'viewcategories.php' </script>";
+    if (isset($_POST["btn_update_specialization"])) {
+        $specialization_name = $_POST["specialization_name"];
+        $status = $_POST["status"];
+        $update_specialization = "UPDATE `specialization` SET `specialization_name`='$specialization_name', `status`='$status' WHERE specialization_id = $id";
+        $run_update_specialization = mysqli_query($connection, $update_specialization);
+        if ($run_update_specialization) {
+            echo "<script> window.location.href = 'viespecialization.php' </script>";
         }
         ;
     }
@@ -66,14 +67,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php include 'topbar.php'; ?>
                 <div class="container">
                     <form method="POST">
-                        <h1>Update Category</h1>
+                        <h1>Update specialization</h1>
                         <div class="mb-3">
-                            <label class="form-label">city</label>
-                            <input type="text" value="<?php echo $fetched_category_row['category_name'] ?>" class="form-control"
-                                name="category_name">
+                            <label class="form-label">specialization</label>
+                            <input type="text" value="<?php echo $fetched_specialization_row['specialization_name'] ?>" class="form-control"
+                                name="specialization_name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">status</label>
+                            <input type="text" value="<?php echo $fetched_specialization_row['status'] ?>" class="form-control"
+                                name="status">
                         </div>
 
-                        <button type="submit" class="btn btn-primary" name="btn_update_category">Update category</button>
+                        <button type="submit" class="btn btn-primary" name="btn_update_specialization">Update specialization</button>
                     </form>
                 </div>
 

@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 					<input type="text" name="username" placeholder="User name" required="">
 					<input type="email" name="useremail" placeholder="Email" required="">
 					<input type="password" name="user_password" placeholder="Password" required="">
-					<button name="btn_signup">Sign up</button>
+					<button class="btn_login" name="btn_signup" >Sign up</button>
 				</form>
 			</div>
 
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 					<label for="chk" aria-hidden="true">Login</label>
 					<input type="email" name="email" placeholder="Email" required="">
 					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Login</button>
+					<button class="btn_login">Login</button>
 				</form>
 			</div>
 	</div>

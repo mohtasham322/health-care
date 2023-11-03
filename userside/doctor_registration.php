@@ -87,8 +87,11 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="css/doctor_registration.css">
   <title>Document</title>
+
+ 
 </head>
 <body>
+
 <div class="container mt-3">
   <form method="post" enctype="multipart/form-data">
     <div class="row jumbotron box8">

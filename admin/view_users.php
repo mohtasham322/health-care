@@ -1,6 +1,6 @@
 <?php
 include("connection.php");
-$select_users_query = "SELECT * FROM `users`";
+$select_users_query = "SELECT * FROM `users` where status = 0";
 $run_select_users_query = mysqli_query($connection, $select_users_query);
 
 
@@ -54,15 +54,15 @@ $run_select_users_query = mysqli_query($connection, $select_users_query);
                             <thead>
                                 <th>User Id</th>
                                 <th>User Name</th>
-                                <th>User Status</th>
-                                <th>Delete User</th>
+                                <th>User Email</th>
+                                <th>Delete</th>
                             </thead>
                             <tbody>
                                 <?php while($row = mysqli_fetch_array($run_select_users_query)){?>
                               <tr>
                                         <td><?php echo $row['user_id']; ?></td>
                                         <td><?php echo $row['user_name']; ?></td>
-                                        <td><?php echo $row['status']; ?></td>
+                                        <td><?php echo $row['user_email']; ?></td>
                                         <td><a href="deleteuser.php?id=<?php echo $row['user_id']; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
                                 <?php } ?>

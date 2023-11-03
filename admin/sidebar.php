@@ -1,3 +1,9 @@
+        <?php
+        session_start();
+        if(!isset($_SESSION['admin_user'])){
+            header('location:login.php');
+        }
+        ?>
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -50,7 +56,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="viewusers.php">View Users</a>
+                        <a class="collapse-item" href="view_users.php">View Users</a>
                     </div>
                 </div>
             </li>

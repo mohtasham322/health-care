@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
-$select_doctor_query = "SELECT * FROM `doctors` where status = '0' ";
-$run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
+$select_users_query = "SELECT * FROM `users` where status = 0";
+$run_select_users_query = mysqli_query($connection, $select_users_query);
 
 
 ?>
@@ -30,11 +30,6 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <style>
-        td{
-            padding: 20px;
-        }
-    </style>
 
 </head>
 
@@ -52,51 +47,23 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
             <div id="content">
 
                 <?php include 'topbar.php';?>
-                <div class="container" style="overflow-x: auto;">
+                <div class="container">
                     
-                        <h1>Doctor Registration Request </h1>
-                        <table class="table-bordered w-100 text-center w-100" >
+                        <h1>Users</h1>
+                        <table class="table-bordered w-100 text-center">
                             <thead>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th>Profile Pic</th>
-                                <th>Exp</th>
-                                <th>Qualification</th>
-                                <th>Phone</th>
-                                <th>Degree</th>
-                                <th>NIC front</th>
-                                <th>NIC back</th>
-                                <th>City</th>
-                                <th>Whatsapp</th>
-                                <th>Gender</th>
-                                <th>Specialization</th>
-                                <th>Status</th>
-                                <th>Accept</th>
-                                <th>Decline</th>
+                                <th>User Id</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                                <th>Delete</th>
                             </thead>
                             <tbody>
-                                <?php while($row_doctor = mysqli_fetch_array($run_select_doctor_query)){?>
+                                <?php while($row = mysqli_fetch_array($run_select_users_query)){?>
                               <tr>
-                                        <td><?php echo $row_doctor['doctor_id']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_name']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_email']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_password']; ?></td>
-                                        <td><img width="50" src="<?php echo $row_doctor['doctor_pic']; ?>" alt=""></td>
-                                        <td><?php echo $row_doctor['doctor_exp']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_qualification']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_contact']; ?></td>
-                                        <td><img width="50" src="<?php echo $row_doctor['doctor_degree_pic']; ?>" alt=""></td>
-                                        <td><img width="50" src="<?php echo $row_doctor['doctor_nic_front_pic']; ?>" alt=""></td>
-                                        <td><img width="50" src="<?php echo $row_doctor['doctor_nic_back_pic']; ?>" alt=""></td>
-                                        <td><?php echo $row_doctor['doctor_city']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_whatsapp']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_gender']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_specialization']; ?></td>
-                                        <td><?php echo $row_doctor['status']; ?></td>
-                                        <td><a href="accept_request.php?d_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-primary">Accept</a></td>
-                                        <td><a href="decline_request.php?d_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-danger">Decline</a></td>
+                                        <td><?php echo $row['user_id']; ?></td>
+                                        <td><?php echo $row['user_name']; ?></td>
+                                        <td><?php echo $row['user_email']; ?></td>
+                                        <td><a href="deleteuser.php?id=<?php echo $row['user_id']; ?>" class="btn btn-danger">Delete</a></td>
                               </tr>
                                 <?php } ?>
                                 

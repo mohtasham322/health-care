@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2023 at 08:13 PM
+-- Generation Time: Nov 03, 2023 at 08:42 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -31,6 +31,13 @@ CREATE TABLE `admin` (
   `admin_username` varchar(200) NOT NULL,
   `admin_password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_username`, `admin_password`) VALUES
+('admin', 'admin321');
 
 -- --------------------------------------------------------
 
@@ -64,9 +71,13 @@ CREATE TABLE `city` (
 --
 
 INSERT INTO `city` (`city_id`, `city_name`, `status`) VALUES
-(1, 'Karachi', 1),
-(2, 'Islamabad', 1),
-(3, 'Multan', 0);
+(1, 'Karachi', 0),
+(2, 'Islamabad', 0),
+(3, 'Peshawar', 0),
+(4, 'Multan', 0),
+(5, 'Sukkur', 0),
+(6, 'Rawalpindi', 0),
+(7, 'Hyderabad', 0);
 
 -- --------------------------------------------------------
 
@@ -89,24 +100,9 @@ CREATE TABLE `doctors` (
   `doctor_city` int(11) NOT NULL,
   `doctor_whatsapp` bigint(20) NOT NULL,
   `doctor_gender` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
   `doctor_specialization` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `doctors`
---
-
-INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_password`, `doctor_pic`, `doctor_exp`, `doctor_qualification`, `doctor_contact`, `doctor_degree_pic`, `doctor_nic_front_pic`, `doctor_nic_back_pic`, `doctor_city`, `doctor_whatsapp`, `doctor_gender`, `status`, `doctor_specialization`) VALUES
-(1, '', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
-(2, '', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
-(3, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
-(4, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
-(5, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
-(6, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
-(7, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
-(8, 'MuhammadMohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1),
-(9, 'Muhammad Mohtasham', 'mmohtasham@gmail.com', '123789 ', '../doctors_images/our-team-04.jpg', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -143,7 +139,10 @@ CREATE TABLE `qualification` (
 --
 
 INSERT INTO `qualification` (`qualification_id`, `qualification_name`, `status`) VALUES
-(1, 'MBBS', 0);
+(1, 'MBBS', 0),
+(2, 'BMBS', 0),
+(3, 'BmedSci', 0),
+(4, 'DRSH', 0);
 
 -- --------------------------------------------------------
 
@@ -162,7 +161,21 @@ CREATE TABLE `specialization` (
 --
 
 INSERT INTO `specialization` (`specialization_id`, `specialization_name`, `status`) VALUES
-(1, 'General Physician 1', 0);
+(1, 'General Physician 1', 0),
+(2, 'Pathologist', 0),
+(3, 'Psychiatrist', 0),
+(4, 'Orthopaedist', 0),
+(5, 'Neurologist', 1),
+(6, 'Urologist', 0),
+(7, 'Pediatrician', 0),
+(8, 'General surgeon', 0),
+(9, 'Cardiologist', 0),
+(10, 'Dermatologist', 0),
+(11, 'Geriatrics', 0),
+(12, 'Gynaecologist', 0),
+(13, 'Ophthalmologist', 0),
+(14, 'Anesthesiologist', 0),
+(15, 'BMBS', 0);
 
 -- --------------------------------------------------------
 
@@ -188,7 +201,7 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `sta
 (3, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
 (4, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
 (5, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(6, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
+(6, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
 (7, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
 (8, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
 (9, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
@@ -262,13 +275,13 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `city_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `patients`
@@ -280,13 +293,13 @@ ALTER TABLE `patients`
 -- AUTO_INCREMENT for table `qualification`
 --
 ALTER TABLE `qualification`
-  MODIFY `qualification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `qualification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `specialization`
 --
 ALTER TABLE `specialization`
-  MODIFY `specialization_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `specialization_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`

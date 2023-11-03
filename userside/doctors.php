@@ -1,6 +1,6 @@
 <?php
 include("../admin/connection.php");
-$select_doctors = "SELECT * FROM `doctors` where status = 0";
+$select_doctors = "SELECT * FROM `doctors` where status = 'Accepted'";
 $run_select_doctors = mysqli_query($connection, $select_doctors);
 
 ?>
@@ -88,7 +88,7 @@ $run_select_doctors = mysqli_query($connection, $select_doctors);
                     </div>
                     <div class="row g-5">
                         <?php while ($row_doctors = mysqli_fetch_array($run_select_doctors)){ ?>
-                        <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
+                        <div class="col-md-3 service-item wow zoomIn" data-wow-delay="0.6s">
                             <div class="rounded-top overflow-hidden">
                                 <img class="img-fluid" src="<?php echo  $row_doctors['doctor_pic'];  ?>" alt="">
                             </div>

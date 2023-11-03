@@ -1,6 +1,6 @@
 <?php
 include("connection.php");
-$select_doctor_query = "SELECT * FROM `doctors` where status = '0' ";
+$select_doctor_query = "SELECT * FROM `doctors` where status = 'Accepted'";
 $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
 
 
@@ -54,7 +54,7 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
                 <?php include 'topbar.php';?>
                 <div class="container" style="overflow-x: auto;">
                     
-                        <h1>Doctor Registration Request </h1>
+                        <h1>Registered Doctors </h1>
                         <table class="table-bordered w-100 text-center w-100" >
                             <thead>
                                 <th>Id</th>
@@ -73,7 +73,6 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
                                 <th>Gender</th>
                                 <th>Specialization</th>
                                 <th>Status</th>
-                                <th>Accept</th>
                                 <th>Decline</th>
                             </thead>
                             <tbody>
@@ -95,7 +94,6 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
                                         <td><?php echo $row_doctor['doctor_gender']; ?></td>
                                         <td><?php echo $row_doctor['doctor_specialization']; ?></td>
                                         <td><?php echo $row_doctor['status']; ?></td>
-                                        <td><a href="accept_request.php?d_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-primary">Accept</a></td>
                                         <td><a href="decline_request.php?d_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-danger">Decline</a></td>
                               </tr>
                                 <?php } ?>

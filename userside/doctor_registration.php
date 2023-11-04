@@ -184,12 +184,7 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
         <label >NIC (back)</label>
         <input type="file" class="form-control"  name="nic_back_pic"  >
       </div>
-
-      <!-- <div class="col-sm-12">
-        <input type="checkbox" class="form-check d-inline" ><label for="chb" class="form-check-label">&nbsp;I accept all terms and conditions.
-        </label>
-      </div> -->
-
+      
       <div class="col-sm-12 form-group mb-0">
         <button class="btn btn-primary float-right" name="btn_register">Submit</button>
       </div>

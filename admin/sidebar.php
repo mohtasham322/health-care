@@ -38,11 +38,20 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="registered_doctors.php">Registered doctors</a>
+                        <a class="collapse-item" href="index.php">Registered doctors</a>
                         <a class="collapse-item" href="doctor_request.php">Registration Request</a>
                         <a class="collapse-item" href="declined_doctors.php">Declined Request</a>
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <!-- <i class="fas fa-fw fa-cog"></i> -->
+
+                    <img src="images/Doctor-Icon.png" alt="" width="25" class="pb-2 me-2">
+                    <span>Appointments</span>
+
+                </a>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->

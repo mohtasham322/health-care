@@ -1,6 +1,6 @@
 <?php
 include("connection.php");
-$select_doctor_query = "SELECT * FROM `doctors` where status = '0' ";
+$select_doctor_query = "SELECT * FROM `doctors` where status = ' ' ";
 $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
 
 

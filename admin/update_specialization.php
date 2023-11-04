@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $update_specialization = "UPDATE `specialization` SET `specialization_name`='$specialization_name', `status`='$status' WHERE specialization_id = $id";
         $run_update_specialization = mysqli_query($connection, $update_specialization);
         if ($run_update_specialization) {
-            echo "<script> window.location.href = 'viespecialization.php' </script>";
+            echo "<script> window.location.href = 'viewspecialization.php' </script>";
         }
         ;
     }

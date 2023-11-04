@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2023 at 08:42 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Nov 04, 2023 at 06:51 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_username` varchar(200) NOT NULL,
   `admin_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`admin_username`, `admin_password`) VALUES
-('admin', 'admin321');
+('admin', 'admin123');
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ CREATE TABLE `appointment` (
   `time` time NOT NULL,
   `status` varchar(50) NOT NULL,
   `doctor_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE `city` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `city`
@@ -102,7 +102,16 @@ CREATE TABLE `doctors` (
   `doctor_gender` varchar(100) NOT NULL,
   `status` varchar(50) NOT NULL,
   `doctor_specialization` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_password`, `doctor_pic`, `doctor_exp`, `doctor_qualification`, `doctor_contact`, `doctor_degree_pic`, `doctor_nic_front_pic`, `doctor_nic_back_pic`, `doctor_city`, `doctor_whatsapp`, `doctor_gender`, `status`, `doctor_specialization`) VALUES
+(12, 'Johnson ', 'johnson@gmail.com', 'johnson123 ', '../doctors_images/istockphoto-1470505351-170667a.webp', 3, '4', 3226301906, '../degree_images/gettyimages-53289036-612x612.jpg', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 4, 3226301906, 'male', 'Declined', 10),
+(13, 'Aliana ', 'aliana@gmail.com', 'aliana123 ', '../doctors_images/istockphoto-1189304032-612x612.jpg', 6, '3', 3226301906, '../degree_images/doctor-of-divinity-degree.png', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 1, 3226301906, 'female', 'Accepted', 7),
+(14, 'john herry ', 'harry@gmail.com', 'harry123 ', '../doctors_images/depositphotos_80150956-Confident-female-doctor-at-office-desk.jpg', 0, '2', 3226301906, '../degree_images/7783365118_ceac1b72a7_b.jpg', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 7, 3226301906, 'female', '', 6);
 
 -- --------------------------------------------------------
 
@@ -120,7 +129,7 @@ CREATE TABLE `patients` (
   `patient_gender` varchar(100) NOT NULL,
   `patient_pic` varchar(200) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -132,14 +141,14 @@ CREATE TABLE `qualification` (
   `qualification_id` int(11) NOT NULL,
   `qualification_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `qualification`
 --
 
 INSERT INTO `qualification` (`qualification_id`, `qualification_name`, `status`) VALUES
-(1, 'MBBS', 0),
+(1, 'MBBS', 1),
 (2, 'BMBS', 0),
 (3, 'BmedSci', 0),
 (4, 'DRSH', 0);
@@ -154,7 +163,7 @@ CREATE TABLE `specialization` (
   `specialization_id` int(11) NOT NULL,
   `specialization_name` varchar(200) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `specialization`
@@ -165,7 +174,7 @@ INSERT INTO `specialization` (`specialization_id`, `specialization_name`, `statu
 (2, 'Pathologist', 0),
 (3, 'Psychiatrist', 0),
 (4, 'Orthopaedist', 0),
-(5, 'Neurologist', 1),
+(5, 'Neurologist', 0),
 (6, 'Urologist', 0),
 (7, 'Pediatrician', 0),
 (8, 'General surgeon', 0),
@@ -189,7 +198,7 @@ CREATE TABLE `users` (
   `user_email` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -202,14 +211,14 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `sta
 (4, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
 (5, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
 (6, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(7, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
-(8, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
-(9, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 0),
-(10, 'Mohtasham', 'mmohtasham322@gmail.com', '55555', 0),
-(11, 'Mohtasham', 'mmohtasham322@gmail.com', '55555', 0),
-(12, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 0),
-(13, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 0),
-(14, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 0);
+(7, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
+(8, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
+(9, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
+(10, 'Mohtasham', 'mmohtasham322@gmail.com', '55555', 1),
+(11, 'Mohtasham', 'mmohtasham322@gmail.com', '55555', 1),
+(12, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 1),
+(13, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 1),
+(14, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 1);
 
 --
 -- Indexes for dumped tables
@@ -281,7 +290,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `patients`

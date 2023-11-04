@@ -17,33 +17,51 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Slide Navbar</title>
-	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/sign_up.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/sign_up.css">
+   <script src="js/sign_up.js"></script>
 </head>
+
 <body>
-	<div class="main">  	
-		<input type="checkbox" id="chk" aria-hidden="true">
 
-			<div class="signup">
-				<form method="post">
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="username" placeholder="User name" required="">
-					<input type="email" name="useremail" placeholder="Email" required="">
-					<input type="password" name="user_password" placeholder="Password" required="">
-					<button class="btn_login" name="btn_signup" >Sign up</button>
-				</form>
-			</div>
-
-			<div class="login">
-				<form method="post">
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button class="btn_login">Login</button>
-				</form>
-			</div>
-	</div>
+  <body>
+    <section>
+     
+      <div class="container">
+        <div class="user signinBx">
+          <div class="imgBx"><img src="img/Login-img-1.avif" alt="" /></div>
+          <div class="formBx">
+            <form action="" onsubmit="return false;">
+              <h2>Sign In</h2>
+              <input type="text" name="" placeholder="Username" />
+              <input type="password" name="" placeholder="Password" />
+              <input type="submit" name="" value="Login" />
+              <p class="signup">
+                Don't have an account ?
+                <a href="#" onclick="toggleForm();">Sign Up</a>
+              </p>
+            </form>
+          </div>
+        </div>
+        <div class="user signupBx">
+          <div class="formBx">
+            <form action="" onsubmit="return false;">
+              <h2>Create an account</h2>
+              <input type="text" name="username" placeholder="Username" />
+              <input type="email" name="useremail" placeholder="Email Address" />
+              <input type="password" name="user_password" placeholder="Create Password" />
+              <input type="submit" name="" value="Sign Up" />
+              <p class="signup">
+                Already have an account ?
+                <a href="#" onclick="toggleForm();">Sign in</a>
+              </p>
+            </form>
+          </div>
+          <div class="imgBx"><img src="img/Login-img-2.jpg" alt="" /></div>
+        </div>
+      </div>
+    </section>
 </body>
 </html>

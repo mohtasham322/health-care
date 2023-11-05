@@ -4,6 +4,10 @@ $select_specialization = "SELECT * FROM `specialization` where status = 0";
 $run_select_specialization = mysqli_query($connection, $select_specialization);
 $select_city = "SELECT * FROM `city` where status = 0";
 $run_select_city = mysqli_query($connection, $select_city);
+$select_doctors = "SELECT * FROM `doctors` where status = 'Accepted'";
+$run_select_doctors = mysqli_query($connection, $select_doctors);
+
+
 
 ?>
 
@@ -48,8 +52,8 @@ $run_select_city = mysqli_query($connection, $select_city);
 
 <body>
 
-<?php include("spinner.php");  ?>
-<?php include("navbar.php");  ?>
+    <?php include("spinner.php"); ?>
+    <?php include("navbar.php"); ?>
 
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
@@ -89,7 +93,8 @@ $run_select_city = mysqli_query($connection, $select_city);
                     <img class="w-100" src="img/carousel-1.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Prioritize Your Wellness, Treasure Your Health!</h5>
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Prioritize Your Wellness,
+                                Treasure Your Health!</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Health
                                 Treatment</h1>
                             <a href="appointment.html"
@@ -102,7 +107,8 @@ $run_select_city = mysqli_query($connection, $select_city);
                     <img class="w-100" src="img/carousel-2.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Prioritize Your Wellness, Treasure Your Health!</h5>
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Prioritize Your Wellness,
+                                Treasure Your Health!</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Your Path to Health and Wellness
                             </h1>
                             <a href="appointment.html"
@@ -133,7 +139,10 @@ $run_select_city = mysqli_query($connection, $select_city);
                     <div class="bg-dark d-flex flex-column p-5" style="height: 300px;">
                         <h3 class="text-white mb-3">Search A Doctor</h3>
                         <select class="form-select bg-light border-0 mb-3" style="height: 40px;">
-                            <?php while ($specialization_row = mysqli_fetch_array($run_select_specialization)) {
+                            <?php
+                            $rows = array();
+                            while ($specialization_row = mysqli_fetch_array($run_select_specialization)) {
+                                $rows[] = $specialization_row;
                                 ; ?>
                                 <option value="<?php echo $specialization_row['specialization_id']; ?>">
                                     <?php echo $specialization_row['specialization_name'] ?>
@@ -143,7 +152,10 @@ $run_select_city = mysqli_query($connection, $select_city);
                         </select>
 
                         <select class="form-select bg-light border-0 mb-3" style="height: 40px;">
-                            <?php while ($city_row = mysqli_fetch_array($run_select_city)) {
+                            <?php
+                            $rows_city = array();
+                             while ($city_row = mysqli_fetch_array($run_select_city)) {
+                                $rows_city[] = $city_row;
                                 ; ?>
                                 <option value="<?php echo $city_row['city_id']; ?>">
                                     <?php echo $city_row['city_name'] ?>
@@ -221,18 +233,24 @@ $run_select_city = mysqli_query($connection, $select_city);
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option selected>Select A Service</option>
-                                        <option value="1">Service 1</option>
-                                        <option value="2">Service 2</option>
-                                        <option value="3">Service 3</option>
+                                        <?php
+                                        foreach ($rows as $specialization_row) { ?>
+                                            <option value="<?php echo $specialization_row['specialization_id']; ?>">
+                                                <?php echo $specialization_row['specialization_name'] ?>
+                                            </option>
+                                        <?php }
+                                        ; ?>
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option selected>Select Doctor</option>
-                                        <option value="1">Doctor 1</option>
-                                        <option value="2">Doctor 2</option>
-                                        <option value="3">Doctor 3</option>
+                                        <?php while ($doctors_row = mysqli_fetch_array($run_select_doctors)) {
+                                            ; ?>
+                                            <option value="<?php echo $doctors_row['doctor_id']; ?>">
+                                                <?php echo $doctors_row['doctor_name'] ?>
+                                            </option>
+                                        <?php }
+                                        ; ?>
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
@@ -240,8 +258,35 @@ $run_select_city = mysqli_query($connection, $select_city);
                                         style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control bg-light border-0" placeholder="Your Email"
+                                <select class="form-select bg-light border-0" style="height: 55px;">
+                                        <option  value="Male" selected>Male</option>
+                                        <option  value="Female" >Female</option>
+                                        <option  value="Custome" >Custom</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="number" min="15" class="form-control bg-light border-0" placeholder="Your Age"
                                         style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                <select class="form-select bg-light border-0" style="height: 55px;">
+                                        <?php
+                                        foreach($rows_city as $city_row){?>
+                                            <option value="<?php echo $city_row['city_id']; ?>">
+                                    <?php echo $city_row['city_name'] ?>
+                                </option>
+                                      <?php  }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-3 col-sm-3">
+                                    <select class="form-select bg-light border-0" style="height: 55px;">
+                                        <option data-countryCode="PK" value="92" selected>+92</option>
+                                    </select>
+                                </div>
+                                <div class="col-9 col-sm-9">
+                                    <input type="text" class="form-control bg-light border-0"
+                                        placeholder="Your Contact Number" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="date" id="date1" data-target-input="nearest">

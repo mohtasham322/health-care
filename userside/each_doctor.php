@@ -1,6 +1,7 @@
 <?php
 include("../admin/connection.php");
-$select_doctors = "SELECT * FROM `doctors` where status = 'Accepted'";
+$id = $_GET['id'];
+$select_doctors = "SELECT * FROM `doctors` where doctor_id = $id";
 $run_select_doctors = mysqli_query($connection, $select_doctors);
 $select_specialization = "SELECT * FROM `specialization`";
 $run_select_specialization = mysqli_query($connection, $select_specialization);
@@ -44,9 +45,9 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style>
-        .section_heading{
+        .section_heading {
             font-size: 70px;
-            color:#06A3DA; 
+            color: #06A3DA;
         }
     </style>
 </head>
@@ -94,40 +95,66 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
 
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container justify-content-center text-center">
-        <h2 class="section_heading">Qualified Healthcare Professionals</h2>
+        <div class="container justify-content-center">
             <div class="row g-5 mb-5">
                 <div class="col-lg-12">
                     <div class="section-title mb-5">
                     </div>
-                    <div class="row g-5">
+                    <div class="row flex-row g-5">
                         <?php while ($row_doctors = mysqli_fetch_array($run_select_doctors)) { ?>
-                            <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
-                                <a href="each_doctor.php?id=<?php echo $row_doctors['doctor_id']; ?>">
+                            <div class="col-md-5 service-item wow zoomIn" data-wow-delay="0.6s">
                                 <div class="rounded-top overflow-hidden">
                                     <img class="img-fluid" src="<?php echo $row_doctors['doctor_pic']; ?>" alt="">
                                 </div>
-                                <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                    <h5 class="m-0" style="color:#06A3DA;">
-                                        <?php echo $row_doctors['doctor_name']; ?>
-                                    </h5>
-                                    <?php
-                                    $specialization_id = $row_doctors['doctor_specialization'];
-                                    $select_specialization = "SELECT * FROM `specialization` where specialization_id = $specialization_id";
-                                    $run_select_specialization = mysqli_query($connection, $select_specialization);
-                                    $specialization_row = mysqli_fetch_array( $run_select_specialization)
+                            </div>
+                            <div class=" col-md-7  bg-light rounded-bottom text-left  p-4">
+                                <h3 class="m-0" style="color:#06A3DA;">
+                                    <?php echo $row_doctors['doctor_name']; ?>
+                                </h3><br>
+                                <?php
+                                $specialization_id = $row_doctors['doctor_specialization'];
+                                $select_specialization = "SELECT * FROM `specialization` where specialization_id = $specialization_id";
+                                $run_select_specialization = mysqli_query($connection, $select_specialization);
+                                $specialization_row = mysqli_fetch_array($run_select_specialization);
+
+                                $qualification_id = $row_doctors['doctor_qualification'];
+                                $select_qualification = "SELECT * FROM `qualification` where qualification_id = $qualification_id";
+                                $run_select_qualification = mysqli_query($connection, $select_qualification);
+                                $qualification_row = mysqli_fetch_array($run_select_qualification);
+
+                                $city_id = $row_doctors['doctor_city'];
+                                $select_city = "SELECT * FROM `city` where city_id = $city_id";
+                                $run_select_city = mysqli_query($connection, $select_city);
+                                $city_row = mysqli_fetch_array($run_select_city)
                                     ?>
-                                    <h5 class="m-0"><?php echo $specialization_row['specialization_name']; ?></h5>
-                                </div>
-                                </a>
+                                <p class="m-0">
+                                    <?php echo '<span><b>Specialization:</b></span>' .' '. $specialization_row['specialization_name']; ?>
+                                </p>
+                                <p class="m-0">
+                                    <?php echo '<span><b>Experience:</b></span>' .' '. $row_doctors['doctor_exp'].' '. 'years'; ?>
+                                </p>
+                                <p class="m-0">
+                                    <?php echo '<span><b>Qualification:</b></span>' .' '. $qualification_row['qualification_name']; ?>
+                                </p>
+                                <p class="m-0">
+                                    <?php echo '<span><b>City:</b></span>' .' '. $city_row['city_name']; ?>
+                                </p>
+                                <p class="m-0">
+                                    <?php echo '<span><b>Gender:</b></span>' .' '. $row_doctors['doctor_gender']; ?>
+                                </p><br>
+                                <button class="btn btn-dark py-2" width:50px; type="submit">Make Appointment</button>
                             </div>
                         <?php }
                         ; ?>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
+    </div>
+    </div>
+
+    </div>
     </div>
     <!-- Service End -->
 

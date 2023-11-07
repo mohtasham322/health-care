@@ -44,9 +44,9 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style>
-        .section_heading{
+        .section_heading {
             font-size: 70px;
-            color:#06A3DA; 
+            color: #06A3DA;
         }
     </style>
 </head>
@@ -95,7 +95,7 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container justify-content-center text-center">
-        <h2 class="section_heading">Qualified Healthcare Professionals</h2>
+            <h2 class="section_heading">Qualified Healthcare Professionals</h2>
             <div class="row g-5 mb-5">
                 <div class="col-lg-12">
                     <div class="section-title mb-5">
@@ -104,21 +104,23 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
                         <?php while ($row_doctors = mysqli_fetch_array($run_select_doctors)) { ?>
                             <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
                                 <a href="each_doctor.php?id=<?php echo $row_doctors['doctor_id']; ?>">
-                                <div class="rounded-top overflow-hidden">
-                                    <img class="img-fluid" src="<?php echo $row_doctors['doctor_pic']; ?>" alt="">
-                                </div>
-                                <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                    <h5 class="m-0" style="color:#06A3DA;">
-                                        <?php echo $row_doctors['doctor_name']; ?>
-                                    </h5>
-                                    <?php
-                                    $specialization_id = $row_doctors['doctor_specialization'];
-                                    $select_specialization = "SELECT * FROM `specialization` where specialization_id = $specialization_id";
-                                    $run_select_specialization = mysqli_query($connection, $select_specialization);
-                                    $specialization_row = mysqli_fetch_array( $run_select_specialization)
-                                    ?>
-                                    <h5 class="m-0"><?php echo $specialization_row['specialization_name']; ?></h5>
-                                </div>
+                                    <div class="rounded-top overflow-hidden">
+                                        <img class="img-fluid" src="<?php echo $row_doctors['doctor_pic']; ?>" alt="">
+                                    </div>
+                                    <div class="position-relative bg-light rounded-bottom text-center p-4">
+                                        <h5 class="m-0" >
+                                            <?php echo $row_doctors['doctor_name']; ?>
+                                        </h5>
+                                        <?php
+                                        $specialization_id = $row_doctors['doctor_specialization'];
+                                        $select_specialization = "SELECT * FROM `specialization` where specialization_id = $specialization_id";
+                                        $run_select_specialization = mysqli_query($connection, $select_specialization);
+                                        $specialization_row = mysqli_fetch_array($run_select_specialization)
+                                            ?>
+                                        <h5 class="m-0" style="color:#06A3DA;">
+                                            <?php echo $specialization_row['specialization_name']; ?>
+                                        </h5>
+                                    </div>
                                 </a>
                             </div>
                         <?php }

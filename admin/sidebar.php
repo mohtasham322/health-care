@@ -44,15 +44,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <!-- <i class="fas fa-fw fa-cog"></i> -->
-
-                    <img src="images/Doctor-Icon.png" alt="" width="25" class="pb-2 me-2">
-                    <span>Appointments</span>
-
-                </a>
-            </li>
+           
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -117,6 +109,21 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages9"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <!-- <i class="fas fa-fw fa-folder"></i> -->
+                    <img src="images/category-icon.png" alt="" width="25" class="pb-2 me-2">
+                    <span>Services</span>
+                </a>
+                <div id="collapsePages9" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="viewspecialization.php">View Services</a>
+                        <a class="collapse-item" href="add_service.php">Add Service</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -133,6 +140,15 @@
                         <a class="collapse-item" href="register.html">Medical Inventions</a>
                     </div>
                 </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <!-- <i class="fas fa-fw fa-cog"></i> -->
+
+                    <img src="images/Doctor-Icon.png" alt="" width="25" class="pb-2 me-2">
+                    <span>Appointments</span>
+
+                </a>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->

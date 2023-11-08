@@ -1,25 +1,11 @@
-<?php 
+<?php
 include("connection.php");
-if($_SERVER["REQUEST_METHOD"] === "POST"){
-    if(isset($_POST["btn_add_service"])){
-        $service_name = $_POST["service_name"];
-        $service_pic = $_FILES["service_pic"];
-        $service_pic_name = $_FILES["service_pic"]['name'];
-        $service_pic_temp_name = $_FILES["service_pic"]['tmp_name'];
-        $service_pic_path = "../service_image/" . $service_pic_name;
-        move_uploaded_file($service_pic_temp_name, $service_pic_path);
-        $insert_service_q = "INSERT INTO `services`( `service_name`, `image`) VALUES ('$service_name','$service_pic_path')";
-        $run_insert_service_q = mysqli_query($connection, $insert_service_q);
-        if($run_insert_service_q){
-            echo "<script> window.location.href = 'view_services.php' </script>";
-        };
-    };
-};
-
-
+$select_service_query = "SELECT * FROM `services`";
+$run_select_service_query = mysqli_query($connection, $select_service_query);
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,30 +45,45 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
             <!-- Main Content -->
             <div id="content">
-                
+
                 <?php include 'topbar.php';?>
                 <div class="container">
-                    <form method = "POST" enctype="multipart/form-data">
-                        <h1>Add Service</h1>
-                    <div class="mb-3">
-                        <label class="form-label">Service Name</label>
-                        <input type="text" class="form-control" name="service_name">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Service Image</label>
-                        <input type="file" class="form-control" name="service_pic">
-                    </div>
+                    
+                        <h1>Qualification</h1>
+                        <table class="table-bordered w-100 text-center">
+                            <thead>
+                                <th>Service Id</th>
+                                <th>Service Name</th>
+                                <th>Image</th>
+                                <th>Status</th>
+                                <th>Delete Service</th>
+                                <th>Update Service</th>
+                            </thead>
+                            <tbody>
+                                <?php while($row_service = mysqli_fetch_array($run_select_service_query)){?>
+                              <tr>
+                                        <td><?php echo $row_service['service_id']; ?></td>
+                                        <td><?php echo $row_service['service_name']; ?></td>
+                                        <td><img width="50" src="<?php echo $row_service['image']; ?>" alt=""></td>
+                                        <td><?php echo $row_service['status']; ?></td>
+                                        <td><a href="delete_service.php?cat_id=<?php echo $row_service['service_id']; ?>" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="update_service.php?cat_id=<?php echo $row_service['service_id']; ?>" class="btn btn-primary">Update</a></td>
+                              </tr>
+                                <?php } ?>
+                                
+                            </tbody>
+                            
+                        </table>
 
-                    <button type="submit" class="btn btn-primary" name="btn_add_service">add service</button>
-                </form>
-                </div>
                 
+                </div>
+
 
 
             </div>
             <!-- End of Main Content -->
 
-            <?php include 'footer.php';?>
+            <?php include 'footer.php' ?>
 
 
         </div>
@@ -117,9 +118,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

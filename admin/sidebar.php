@@ -119,7 +119,7 @@
                 <div id="collapsePages9" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="viewspecialization.php">View Services</a>
+                        <a class="collapse-item" href="view_services.php">View Services</a>
                         <a class="collapse-item" href="add_service.php">Add Service</a>
                     </div>
                 </div>

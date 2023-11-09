@@ -3,11 +3,11 @@ include("../admin/connection.php");
 // use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\Exception;
 // require '../PHPMailer-master/autoload.php'; // Path to the Composer autoload file
-$select_qualification = "SELECT * FROM `qualification`";
+$select_qualification = "SELECT * FROM `qualification` where status = 0";
 $run_select_qualification = mysqli_query($connection, $select_qualification);
-$select_specialization = "SELECT * FROM `specialization`";
+$select_specialization = "SELECT * FROM `specialization` where status = 0";
 $run_select_specialization = mysqli_query($connection, $select_specialization);  
-$select_city = "SELECT * FROM `city`";
+$select_city = "SELECT * FROM `city` where status = 0";
 $run_select_city = mysqli_query($connection, $select_city);  
 if($_SERVER["REQUEST_METHOD"]=== "POST"){
   if(isset($_POST["btn_register"])){
@@ -65,6 +65,7 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
 
     if($run_insert_doctor_query){
       echo "<script>alert('query inserted successfully')</script>";
+      echo "<script>window.location.href = 'index.php'</script>";
     }
     else{
       echo "<script>alert('something went wrong')</script>";
@@ -86,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="css/doctor_registration.css">
-  <title>Document</title>
+  <title>Care</title>
 
  
 </head>

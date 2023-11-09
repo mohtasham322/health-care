@@ -10,7 +10,7 @@ $run_select_service = mysqli_query($connection, $select_service);
 
 <head>
     <meta charset="utf-8">
-    <title>DentCare - Dental Clinic Website Template</title>
+    <title>Care</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -104,7 +104,8 @@ $run_select_service = mysqli_query($connection, $select_service);
                         ?>
                         <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
                             <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid w-100" src="<?php echo $row_service['image']; ?>" alt="" style="object-fit: cover; height: 240px;">
+                                <img class="img-fluid w-100" src="<?php echo $row_service['image']; ?>" alt=""
+                                    style="object-fit: cover; height: 240px;">
                             </div>
                             <div class="position-relative bg-light rounded-bottom text-center p-4">
                                 <h5 class="m-0">
@@ -119,36 +120,6 @@ $run_select_service = mysqli_query($connection, $select_service);
                 </div>
             </div>
         </div>
-        <!-- <div class="row g-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="col-lg-7">
-                    <div class="row g-5">
-                        <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.3s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-3.jpg" alt="">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Dental Bridges</h5>
-                            </div>
-                        </div>
-                        <div class="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid" src="img/service-4.jpg" alt="">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">Teeth Whitening</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 service-item wow zoomIn" data-wow-delay="0.9s">
-                    <div class="position-relative bg-primary rounded h-100 d-flex flex-column align-items-center justify-content-center text-center p-4">
-                        <h3 class="text-white mb-3">Make Appointment</h3>
-                        <p class="text-white mb-3">Clita ipsum magna kasd rebum at ipsum amet dolor justo dolor est magna stet eirmod</p>
-                        <h2 class="text-white mb-0">+012 345 6789</h2>
-                    </div>
-                </div>
-            </div> -->
-    </div>
     </div>
     <!-- Service End -->
 

@@ -14,7 +14,7 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
 
 <head>
     <meta charset="utf-8">
-    <title>DentCare - Dental Clinic Website Template</title>
+    <title>Care</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -47,6 +47,10 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
         .section_heading {
             font-size: 70px;
             color: #06A3DA;
+        }
+        .doctor_img{
+            height: 230px !important;
+            width: 100%;
         }
     </style>
 </head>
@@ -105,7 +109,7 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
                             <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
                                 <a href="each_doctor.php?id=<?php echo $row_doctors['doctor_id']; ?>">
                                     <div class="rounded-top overflow-hidden">
-                                        <img class="img-fluid" src="<?php echo $row_doctors['doctor_pic']; ?>" alt="">
+                                        <img class="img-fluid doctor_img" src="<?php echo $row_doctors['doctor_pic']; ?>" alt="">
                                     </div>
                                     <div class="position-relative bg-light rounded-bottom text-center p-4">
                                         <h5 class="m-0" >

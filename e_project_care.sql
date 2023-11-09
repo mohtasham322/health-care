@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 08:26 PM
+-- Generation Time: Nov 09, 2023 at 07:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -78,8 +78,8 @@ INSERT INTO `city` (`city_id`, `city_name`, `status`) VALUES
 (2, 'Islamabad', 0),
 (3, 'Peshawar', 0),
 (4, 'Multan', 0),
-(5, 'Sukkur', 0),
-(6, 'Rawalpindi', 0),
+(5, 'Sukkur', 1),
+(6, 'Rawalpindi', 1),
 (7, 'Hyderabad', 0);
 
 -- --------------------------------------------------------
@@ -114,7 +114,15 @@ CREATE TABLE `doctors` (
 INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_password`, `doctor_pic`, `doctor_exp`, `doctor_qualification`, `doctor_contact`, `doctor_degree_pic`, `doctor_nic_front_pic`, `doctor_nic_back_pic`, `doctor_city`, `doctor_whatsapp`, `doctor_gender`, `status`, `doctor_specialization`) VALUES
 (12, 'Johnson ', 'johnson@gmail.com', 'johnson123 ', '../doctors_images/istockphoto-1470505351-170667a.webp', 3, '4', 3226301906, '../degree_images/gettyimages-53289036-612x612.jpg', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 4, 3226301906, 'male', 'Accepted', 10),
 (13, 'Aliana ', 'aliana@gmail.com', 'aliana123 ', '../doctors_images/istockphoto-1189304032-612x612.jpg', 6, '3', 3226301906, '../degree_images/doctor-of-divinity-degree.png', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 1, 3226301906, 'female', 'Accepted', 7),
-(14, 'john herry ', 'harry@gmail.com', 'harry123 ', '../doctors_images/depositphotos_80150956-Confident-female-doctor-at-office-desk.jpg', 0, '2', 3226301906, '../degree_images/7783365118_ceac1b72a7_b.jpg', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 7, 3226301906, 'female', 'Accepted', 6);
+(14, 'john herry ', 'harry@gmail.com', 'harry123 ', '../doctors_images/depositphotos_80150956-Confident-female-doctor-at-office-desk.jpg', 0, '2', 3226301906, '../degree_images/7783365118_ceac1b72a7_b.jpg', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 7, 3226301906, 'female', 'Accepted', 6),
+(15, 'Michael ', 'michael@gmail.com', 'michael123 ', '../doctors_images/clinic-doctor-image.png', 8, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 'Accepted', 5),
+(16, 'Michael ', 'michael@gmail.com', 'michael123 ', '../doctors_images/clinic-doctor-image.png', 8, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 'Declined', 5),
+(17, 'Elizabeth ', 'elizabeth@gmail.com', 'elizabeth123 ', '../doctors_images/360_F_317854905_2idSdvi2ds3yejmk8mhvxYr1OpdVTrSM.jpg', 6, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'female', 'Accepted', 9),
+(18, 'Isabella ', 'isabella@gmail.com', 'isabella123 ', '../doctors_images/360_F_116743793_5vlsF6CKEwIPj0ItS68Kvj458t7NYrMT.jpg', 4, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'female', 'Accepted', 6),
+(19, 'Joseph ', 'joseph@gmail.com', 'joseph123 ', '../doctors_images/360_F_136187711_qeBMOwkPdTg1dCN8e5TR1AmduXDz60Xn.jpg', 8, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 'Accepted', 10),
+(20, 'Anna ', 'anna@gmail.com', 'anna123 ', '../doctors_images/istockphoto-638647058-612x612.jpg', 3, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 4, 3226301906, 'female', 'Accepted', 5),
+(21, 'Sophia ', 'sophia@gmail.com', 'sophia123 ', '../doctors_images/30734.jpg', 0, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 4, 3226301906, 'female', 'Accepted', 6),
+(22, 'William ', 'william@gmail.com', 'william123 ', '../doctors_images/Albin-Abraham-Profile.jpg', 3, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 4, 3226301906, 'male', 'Accepted', 7);
 
 -- --------------------------------------------------------
 
@@ -151,7 +159,7 @@ CREATE TABLE `qualification` (
 --
 
 INSERT INTO `qualification` (`qualification_id`, `qualification_name`, `status`) VALUES
-(1, 'MBBS', 1),
+(1, 'MBBS', 0),
 (2, 'BMBS', 0),
 (3, 'BmedSci', 0),
 (4, 'DRSH', 0);
@@ -174,8 +182,13 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`service_id`, `service_name`, `status`, `image`) VALUES
-(5, 'Pathology', 0, '../service_image/pathology.jpeg'),
-(6, 'psychology', 0, '../service_image/psychology-degree-in-medical-field.jpg');
+(5, 'Pathology', 1, '../service_image/pathology.jpeg'),
+(6, 'psychology', 1, '../service_image/psychology-degree-in-medical-field.jpg'),
+(7, 'Neurology', 0, '../service_image/90437.webp'),
+(8, 'Pediatric', 0, '../service_image/units-474324900-img.jpg'),
+(9, 'Cardiology', 0, '../service_image/Services-Cardiology.jpg'),
+(10, 'Urology', 0, '../service_image/Advanced-Urology-Feb-2021-What-to-expect-in-a-male-urology-exam-min.jpg'),
+(11, 'Dermatology', 0, '../service_image/plym_What-is-Cosmetic-Dermatology.jpg');
 
 -- --------------------------------------------------------
 
@@ -195,15 +208,15 @@ CREATE TABLE `specialization` (
 
 INSERT INTO `specialization` (`specialization_id`, `specialization_name`, `status`) VALUES
 (1, 'General Physician 1', 1),
-(2, 'Pathologist', 0),
-(3, 'Psychiatrist', 0),
+(2, 'Pathologist', 1),
+(3, 'Psychiatrist', 1),
 (4, 'Orthopaedist', 1),
 (5, 'Neurologist', 0),
-(6, 'Urologist', 1),
+(6, 'Urologist', 0),
 (7, 'Pediatrician', 0),
 (8, 'General surgeon', 1),
 (9, 'Cardiologist', 0),
-(10, 'Dermatologist', 1),
+(10, 'Dermatologist', 0),
 (11, 'Geriatrics', 1),
 (12, 'Gynaecologist', 1),
 (13, 'Ophthalmologist', 1),
@@ -320,7 +333,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `patients`
@@ -338,7 +351,7 @@ ALTER TABLE `qualification`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `specialization`

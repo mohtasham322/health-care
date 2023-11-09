@@ -18,7 +18,7 @@ $run_select_service_query = mysqli_query($connection, $select_service_query);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -49,7 +49,7 @@ $run_select_service_query = mysqli_query($connection, $select_service_query);
                 <?php include 'topbar.php';?>
                 <div class="container">
                     
-                        <h1>Qualification</h1>
+                        <h1>Services</h1>
                         <table class="table-bordered w-100 text-center">
                             <thead>
                                 <th>Service Id</th>
@@ -66,8 +66,8 @@ $run_select_service_query = mysqli_query($connection, $select_service_query);
                                         <td><?php echo $row_service['service_name']; ?></td>
                                         <td><img width="50" src="<?php echo $row_service['image']; ?>" alt=""></td>
                                         <td><?php echo $row_service['status']; ?></td>
-                                        <td><a href="delete_service.php?cat_id=<?php echo $row_service['service_id']; ?>" class="btn btn-danger">Delete</a></td>
-                                        <td><a href="update_service.php?cat_id=<?php echo $row_service['service_id']; ?>" class="btn btn-primary">Update</a></td>
+                                        <td><a href="delete_service.php?service_id=<?php echo $row_service['service_id']; ?>" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="update_service.php?service_id=<?php echo $row_service['service_id']; ?>" class="btn btn-primary">Update</a></td>
                               </tr>
                                 <?php } ?>
                                 

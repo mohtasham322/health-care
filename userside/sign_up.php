@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
           <div class="formBx">
             <form action="" onsubmit="return false;">
               <h2>Create an account</h2>
-              <input type="text" name="username" placeholder="Username" />
+              <input type="text" class="form-control" name="username" placeholder="Username" />
               <input type="email" name="useremail" placeholder="Email Address" />
               <input type="password" name="user_password" placeholder="Create Password" />
               <input type="submit" name="" value="Sign Up" />

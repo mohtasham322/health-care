@@ -37,9 +37,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
               <h2>Sign In</h2>
               <input type="text" name="" placeholder="Username" />
               <input type="password" name="" placeholder="Password" />
-              <button type="submit" name="btn_login" value="Login" >Login</button>
+              <!-- <button type="submit" name="btn_login" value="Login" >Login</button> -->
+              <input type="submit" name="" value="Login">
+              
               <p class="signup">
-                Don't have an account ?
+                                Don't have an account ?
                 <a href="#" onclick="toggleForm();">Sign Up</a>
               </p>
             </form>

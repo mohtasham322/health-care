@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2023 at 07:49 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Nov 11, 2023 at 07:01 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_username` varchar(200) NOT NULL,
   `admin_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
@@ -55,7 +55,7 @@ CREATE TABLE `appointment` (
   `status` varchar(50) NOT NULL,
   `doctor_id` int(11) NOT NULL,
   `patient_age` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,7 @@ CREATE TABLE `city` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `city`
@@ -105,7 +105,7 @@ CREATE TABLE `doctors` (
   `doctor_gender` varchar(100) NOT NULL,
   `status` varchar(50) NOT NULL,
   `doctor_specialization` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `doctors`
@@ -133,14 +133,10 @@ INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_passw
 CREATE TABLE `patients` (
   `patient_id` int(11) NOT NULL,
   `patient_name` varchar(100) NOT NULL,
-  `patient_age` int(11) NOT NULL,
-  `patient_contact` bigint(20) NOT NULL,
   `patient_email` varchar(200) NOT NULL,
   `patient_password` varchar(100) NOT NULL,
-  `patient_gender` varchar(100) NOT NULL,
-  `patient_pic` varchar(200) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -152,7 +148,7 @@ CREATE TABLE `qualification` (
   `qualification_id` int(11) NOT NULL,
   `qualification_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `qualification`
@@ -175,7 +171,7 @@ CREATE TABLE `services` (
   `service_name` varchar(200) NOT NULL,
   `status` int(11) NOT NULL,
   `image` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `services`
@@ -200,7 +196,7 @@ CREATE TABLE `specialization` (
   `specialization_id` int(11) NOT NULL,
   `specialization_name` varchar(200) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `specialization`
@@ -235,7 +231,7 @@ CREATE TABLE `users` (
   `user_email` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`

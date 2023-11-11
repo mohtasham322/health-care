@@ -1,13 +1,9 @@
 <?php
 include("../admin/connection.php");
-$select_specialization = "SELECT * FROM `specialization` where status = 0";
-$run_select_specialization = mysqli_query($connection, $select_specialization);
-$select_city = "SELECT * FROM `city` where status = 0";
-$run_select_city = mysqli_query($connection, $select_city);
-$select_doctors = "SELECT * FROM `doctors` where status = 'Accepted'";
-$run_select_doctors = mysqli_query($connection, $select_doctors);
-$select_service = "SELECT * FROM `services` where status = 0";
-$run_select_service = mysqli_query($connection, $select_service);
+$id = $_GET['id'];
+$select_specialization = "SELECT * FROM doctors join specialization on doctors.doctor_specialization=specialization.specialization_id join city on doctors.doctor_city=city.city_id where doctors.doctor_id='$id'";
+$select_doctors = mysqli_query($connection, $select_specialization);
+$select_doctors_data = mysqli_fetch_assoc($select_doctors);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +21,9 @@ $run_select_service = mysqli_query($connection, $select_service);
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -46,8 +44,8 @@ $run_select_service = mysqli_query($connection, $select_service);
 
 <body>
 
-<?php include("spinner.php");  ?>
-<?php include("navbar.php");  ?>
+    <?php include("spinner.php"); ?>
+    <?php include("navbar.php"); ?>
 
 
     <!-- Full Screen Search Start -->
@@ -55,11 +53,13 @@ $run_select_service = mysqli_query($connection, $select_service);
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
                 <div class="modal-header border-0">
-                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex align-items-center justify-content-center">
                     <div class="input-group" style="max-width: 600px;">
-                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <input type="text" class="form-control bg-transparent border-primary p-3"
+                            placeholder="Type search keyword">
                         <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
                     </div>
                 </div>
@@ -91,11 +91,17 @@ $run_select_service = mysqli_query($connection, $select_service);
                     <div class="py-5">
                         <h1 class="display-5 text-white mb-4">Why Choose Care?</h1>
                         <ol class="text-white mb-0">
-                        <li><b>Convenience:</b> We value your time and convenience. Care simplifies the process of finding and booking appointments with healthcare professionals, so you can focus on your health, not paperwork.</li><br>
-                        <li><b>Reliability:</b>  We only list certified and trusted healthcare providers to ensure your peace of mind. Your health is too important to leave to chance, and we're committed to connecting you with the best in the industry.</li><br>
-                        <li><b>Empowerment:</b> Care empowers you to take control of your healthcare journey. With our platform, you can make informed decisions about your health and well-being.</li><br>
-                        <li><b>Accessibility:</b>Our user-friendly website and mobile app ensure that you can access our services anytime, anywhere. We're here to serve you 24/7.</li>
-                    </ol>
+                            <li><b>Convenience:</b> We value your time and convenience. Care simplifies the process of
+                                finding and booking appointments with healthcare professionals, so you can focus on your
+                                health, not paperwork.</li><br>
+                            <li><b>Reliability:</b> We only list certified and trusted healthcare providers to ensure
+                                your peace of mind. Your health is too important to leave to chance, and we're committed
+                                to connecting you with the best in the industry.</li><br>
+                            <li><b>Empowerment:</b> Care empowers you to take control of your healthcare journey. With
+                                our platform, you can make informed decisions about your health and well-being.</li><br>
+                            <li><b>Accessibility:</b>Our user-friendly website and mobile app ensure that you can access
+                                our services anytime, anywhere. We're here to serve you 24/7.</li>
+                        </ol>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -105,30 +111,19 @@ $run_select_service = mysqli_query($connection, $select_service);
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <?php
-                                        while ($specialization_row = mysqli_fetch_array($run_select_specialization)) { ?>
-                                            <option value="<?php echo $specialization_row['specialization_id']; ?>">
-                                                <?php echo $specialization_row['specialization_name'] ?>
-                                            </option>
-                                        <?php }
-                                        ; ?>
-                                    </select>
+                                    <input type="text" class="form-control bg-light border-0" placeholder="Doctor Name"
+                                        style="height: 55px;" readonly
+                                        value="<?php echo $select_doctors_data['specialization_name'] ?>">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <?php while ($doctors_row = mysqli_fetch_array($run_select_doctors)) {
-                                            ; ?>
-                                            <option value="<?php echo $doctors_row['doctor_id']; ?>">
-                                                <?php echo $doctors_row['doctor_name'] ?>
-                                            </option>
-                                        <?php }
-                                        ; ?>
-                                    </select>
+                                <input type="text" class="form-control bg-light border-0" placeholder="Doctor Name"
+                                        style="height: 55px;" readonly
+                                        value="<?php echo $select_doctors_data['doctor_name'] ?>">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Name"
-                                        style="height: 55px;">
+                                <input type="text" class="form-control bg-light border-0" placeholder="Your Name"
+                                        style="height: 55px;" 
+                                        value="">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select bg-light border-0" style="height: 55px;">
@@ -142,15 +137,9 @@ $run_select_service = mysqli_query($connection, $select_service);
                                         placeholder="Your Age" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <?php
-                                        while ($city_row = mysqli_fetch_assoc($run_select_city)) { ?>
-                                            <option value="<?php echo $city_row['city_id']; ?>">
-                                                <?php echo $city_row['city_name'] ?>
-                                            </option>
-                                        <?php }
-                                        ?>
-                                    </select>
+                                <input type="text" class="form-control bg-light border-0" placeholder="Doctor Name"
+                                        style="height: 55px;" readonly
+                                        value="<?php echo $select_doctors_data['city_name'] ?>">
                                 </div>
                                 <div class="col-3 col-sm-3">
                                     <select class="form-select bg-light border-0" style="height: 55px;">
@@ -186,7 +175,7 @@ $run_select_service = mysqli_query($connection, $select_service);
         </div>
     </div>
     <!-- Appointment End -->
-    
+
 
     <!-- Newsletter Start -->
     <div class="container-fluid position-relative pt-5 wow fadeInUp" data-wow-delay="0.1s" style="z-index: 1;">
@@ -202,7 +191,7 @@ $run_select_service = mysqli_query($connection, $select_service);
         </div>
     </div>
     <!-- Newsletter End -->
-    
+
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light py-5 wow fadeInUp" data-wow-delay="0.3s" style="margin-top: -75px;">
@@ -212,9 +201,12 @@ $run_select_service = mysqli_query($connection, $select_service);
                     <h3 class="text-white mb-4">Quick Links</h3>
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
-                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About
+                            Us</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our
+                            Services</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest
+                            Blog</a>
                         <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
                     </div>
                 </div>
@@ -222,9 +214,12 @@ $run_select_service = mysqli_query($connection, $select_service);
                     <h3 class="text-white mb-4">Popular Links</h3>
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
-                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About
+                            Us</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our
+                            Services</a>
+                        <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest
+                            Blog</a>
                         <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
                     </div>
                 </div>
@@ -237,10 +232,14 @@ $run_select_service = mysqli_query($connection, $select_service);
                 <div class="col-lg-3 col-md-6">
                     <h3 class="text-white mb-4">Follow Us</h3>
                     <div class="d-flex">
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i
+                                class="fab fa-twitter fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i
+                                class="fab fa-facebook-f fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#"><i
+                                class="fab fa-linkedin-in fw-normal"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded" href="#"><i
+                                class="fab fa-instagram fw-normal"></i></a>
                     </div>
                 </div>
             </div>
@@ -250,10 +249,12 @@ $run_select_service = mysqli_query($connection, $select_service);
         <div class="container">
             <div class="row g-0">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="#">Your Site Name</a>. All Rights Reserved.</p>
+                    <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="#">Your Site Name</a>. All
+                        Rights Reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0">Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML Codex</a></p>
+                    <p class="mb-0">Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">HTML
+                            Codex</a></p>
                 </div>
             </div>
         </div>

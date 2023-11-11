@@ -142,7 +142,7 @@ $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
                                 <p class="m-0">
                                     <?php echo '<span><b>Gender:</b></span>' .' '. $row_doctors['doctor_gender']; ?>
                                 </p><br>
-                                <button class="btn btn-dark py-2" width:50px; type="submit">Make Appointment</button>
+                                <button class="btn btn-dark py-2" width:50px;  name="btn_separate_appointment"><a href="separate_appointment.php?id=<?php echo $row_doctors['doctor_id'] ?> "> Make Appointment</a></button>
                             </div>
                         <?php }
                         ; ?>

@@ -1,12 +1,22 @@
 <?php
 include("../admin/connection.php");
+if(isset($_POST['btn_search_doctor'])){
+    $s_specialization = $_POST['s_specialization'];
+    $s_city = $_POST['s_city'];
+    $searched_doctors = "SELECT * FROM `doctors` where doctor_specialization = $s_specialization and doctor_city = $s_city";
+    $run_select_doctors = mysqli_query($connection, $searched_doctors);
+}
+else{
 $select_doctors = "SELECT * FROM `doctors` where status = 'Accepted'";
 $run_select_doctors = mysqli_query($connection, $select_doctors);
 $select_specialization = "SELECT * FROM `specialization`";
 $run_select_specialization = mysqli_query($connection, $select_specialization);
 $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
+}
 
 ?>
+
+
 
 
 <!DOCTYPE html>

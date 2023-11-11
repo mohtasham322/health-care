@@ -99,9 +99,9 @@ $run_select_service = mysqli_query($connection, $select_service);
                                 Treasure Your Health!</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Health
                                 Treatment</h1>
-                            <a href="appointment.html"
+                            <a href="appointment.php"
                                 class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                            <a href="contact_us.php" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,8 @@ $run_select_service = mysqli_query($connection, $select_service);
                 <div class="col-lg-8 wow zoomIn" data-wow-delay="0.3s">
                     <div class="bg-dark d-flex flex-column p-5" style="height: 300px;">
                         <h3 class="text-white mb-3">Search A Doctor</h3>
-                        <select class="form-select bg-light border-0 mb-3" style="height: 40px;">
+                        <form method="post" action="doctors.php">
+                        <select class="form-select bg-light border-0 mb-3" style="height: 40px;" name="s_specialization">
                             <?php
                             $rows = array();
                             while ($specialization_row = mysqli_fetch_array($run_select_specialization)) {
@@ -153,7 +154,7 @@ $run_select_service = mysqli_query($connection, $select_service);
                             ; ?>
                         </select>
 
-                        <select class="form-select bg-light border-0 mb-3" style="height: 40px;">
+                        <select class="form-select bg-light border-0 mb-3" style="height: 40px;" name="s_city">
                             <?php
                             $rows_city = array();
                             while ($city_row = mysqli_fetch_array($run_select_city)) {
@@ -165,7 +166,8 @@ $run_select_service = mysqli_query($connection, $select_service);
                             <?php }
                             ; ?>
                         </select>
-                        <a class="btn btn-light" href="">Search Doctor</a>
+                        <button type="submit" name="btn_search_doctor" class="btn btn-primary w-100">Search Doctor</a>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -49,7 +49,7 @@ $run_select_specialization_query = mysqli_query($connection, $select_specializat
                 <?php include 'topbar.php'; ?>
                 <div class="container">
 
-                    <h1>Categories</h1>
+                    <h1>Specialization</h1>
                     <table class="table-bordered w-100 text-center">
                         <thead>
                             <th>specialization Id</th>

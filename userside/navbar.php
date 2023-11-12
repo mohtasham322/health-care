@@ -1,3 +1,41 @@
+<?php
+include("../admin/connection.php");
+session_start();
+if (isset($_SESSION['user_session'])) {
+    $user_data = $_SESSION['user_session'];
+    echo '<style>
+    #login_dropdown{
+        display:none;
+    }
+    #logged_user_dropdown{
+        display:block;
+    }
+    </style>';
+
+} else {
+    echo '<style>
+    #login_dropdown{
+        display:block;
+    }
+    #logged_user_dropdown{
+        display:none;
+    }
+    </style>';
+}
+// if ($_SERVER('REQUEST_METHD') === 'POST') {
+//     if (isset($_POST['user_profile'])) {
+//         $u_profile = $_FILES['user_profile'];
+//         $u_profile_name = $_FILES['user_profile']['name'];
+//         $u_profile_temp_name = $_FILES['user_profile']['tmp_name'];
+//         $u_profile_path = "../patient_images/". $u_profile_name;
+//         move_uploaded_file($u_profile_temp_name, $u_profile_path);
+
+//     }
+// }
+
+
+?>
+
 <!-- Navbar Start -->
 <!DOCTYPE html>
 <html lang="en">
@@ -35,53 +73,71 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <style>
+        .profile_icon {
+            width: 40px;
+        }
     </style>
 </head>
+
 <body>
-    
 
-<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
-    <a href="index.html" class="navbar-brand p-0">
-        <img class="logo_img" src="img/logo.png" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto py-0">
-            <a href="index.php" class="nav-item nav-link active">Home</a>
-            <a href="about.php" class="nav-item nav-link">About</a>
-            <a href="service.php" class="nav-item nav-link">Service</a>
-            <a href="doctors.php" class="nav-item nav-link">Doctors</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link" data-bs-toggle="dropdown">Pages</a>
-                <div class="dropdown-menu m-0">
-                    <a href="price.php" class="dropdown-item">Pricing Plan</a>
-                    <a href="team.php" class="dropdown-item">Our Dentist</a>
-                    <a href="testimonial.php" class="dropdown-item">Testimonial</a>
-                    <a href="appointment.php" class="dropdown-item">Appointment</a>
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <img class="logo_img" src="img/logo.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="index.php" class="nav-item nav-link active">Home</a>
+                <a href="about.php" class="nav-item nav-link">About</a>
+                <a href="service.php" class="nav-item nav-link">Service</a>
+                <a href="doctors.php" class="nav-item nav-link">Doctors</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-bs-toggle="dropdown">Appointment</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="price.php" class="dropdown-item">View appointment</a>
+                        <a href="appointment.php" class="dropdown-item">Make appointment</a>
+                    </div>
                 </div>
+                <a href="contact.php" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="contact.php" class="nav-item nav-link">Contact</a>
-        </div>
-        <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                class="fa fa-search"></i></button>
-        <!-- <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Login</a> -->
-        <div style="position: relative;">
-            <a class="nav-link  btn btn-primary py-2 px-4 ms-3" href="#" id="navbarDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-box-arrow-in-right"></i> Login
-            </a>
-            <div class="dropdown-menu m-0 mt-3">
-        
-              <a class="dropdown-item" href="doctor_registration.php">Login as a Doctor</a>
-                <a class="dropdown-item" href="sign_up.php">Login as a Patient</a>
-            
-            </div>
-        </div>
+            <!-- <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Login</a> -->
+            <form method="post" enctype="multipart/form-data">
+                <div id="login_dropdown" style="position: relative;">
+                    <a class="nav-link  btn btn-primary py-2 px-4 ms-3" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </a>
+                    <div class="dropdown-menu m-0 mt-3">
 
-    </div>
-</nav>
+                        <a class="dropdown-item" href="doctor_login.php">Login as a Doctor</a>
+                        <a class="dropdown-item" href="sign_up.php">Login as a Patient</a>
+
+                    </div>
+                </div>
+                <div id="logged_user_dropdown" style="position: relative;">
+                    <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="profile_icon" src="../images/profile_icon.png" alt="">
+                    </a>
+                    <div class="dropdown-menu m-0 mt-3">
+
+                        <!-- <label for="id_profile" class="dropdown-item">set profile</label>
+                        <input id="id_profile" type="file" name="user_profile" style="display:none;"> -->
+
+                        <p class="dropdown-item"><?php print($user_data); ?></p>
+                        <a class="dropdown-item" href="doctor_login.php">Logout</a>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </nav>
 </body>
+
 </html>
 <!-- Navbar End -->

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2023 at 07:01 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Nov 12, 2023 at 03:18 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_username` varchar(200) NOT NULL,
   `admin_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -55,7 +55,7 @@ CREATE TABLE `appointment` (
   `status` varchar(50) NOT NULL,
   `doctor_id` int(11) NOT NULL,
   `patient_age` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,7 @@ CREATE TABLE `city` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `city`
@@ -75,8 +75,8 @@ CREATE TABLE `city` (
 
 INSERT INTO `city` (`city_id`, `city_name`, `status`) VALUES
 (1, 'Karachi', 0),
-(2, 'Islamabad', 0),
-(3, 'Peshawar', 0),
+(2, 'Islamabad', 1),
+(3, 'Peshawar', 1),
 (4, 'Multan', 0),
 (5, 'Sukkur', 1),
 (6, 'Rawalpindi', 1),
@@ -105,7 +105,7 @@ CREATE TABLE `doctors` (
   `doctor_gender` varchar(100) NOT NULL,
   `status` varchar(50) NOT NULL,
   `doctor_specialization` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `doctors`
@@ -116,13 +116,17 @@ INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_passw
 (13, 'Aliana ', 'aliana@gmail.com', 'aliana123 ', '../doctors_images/istockphoto-1189304032-612x612.jpg', 6, '3', 3226301906, '../degree_images/doctor-of-divinity-degree.png', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 1, 3226301906, 'female', 'Accepted', 7),
 (14, 'john herry ', 'harry@gmail.com', 'harry123 ', '../doctors_images/depositphotos_80150956-Confident-female-doctor-at-office-desk.jpg', 0, '2', 3226301906, '../degree_images/7783365118_ceac1b72a7_b.jpg', '../nic_images/9e6c9b3c155e80d609fcf50bf3c0df9f.jpg', '../nic_images/e8e446b1c9cdf2559ccc1d077b674acc.jpg', 7, 3226301906, 'female', 'Accepted', 6),
 (15, 'Michael ', 'michael@gmail.com', 'michael123 ', '../doctors_images/clinic-doctor-image.png', 8, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 'Accepted', 5),
-(16, 'Michael ', 'michael@gmail.com', 'michael123 ', '../doctors_images/clinic-doctor-image.png', 8, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 'Declined', 5),
 (17, 'Elizabeth ', 'elizabeth@gmail.com', 'elizabeth123 ', '../doctors_images/360_F_317854905_2idSdvi2ds3yejmk8mhvxYr1OpdVTrSM.jpg', 6, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'female', 'Accepted', 9),
 (18, 'Isabella ', 'isabella@gmail.com', 'isabella123 ', '../doctors_images/360_F_116743793_5vlsF6CKEwIPj0ItS68Kvj458t7NYrMT.jpg', 4, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'female', 'Accepted', 6),
 (19, 'Joseph ', 'joseph@gmail.com', 'joseph123 ', '../doctors_images/360_F_136187711_qeBMOwkPdTg1dCN8e5TR1AmduXDz60Xn.jpg', 8, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', 'Accepted', 10),
 (20, 'Anna ', 'anna@gmail.com', 'anna123 ', '../doctors_images/istockphoto-638647058-612x612.jpg', 3, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 4, 3226301906, 'female', 'Accepted', 5),
 (21, 'Sophia ', 'sophia@gmail.com', 'sophia123 ', '../doctors_images/30734.jpg', 0, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 4, 3226301906, 'female', 'Accepted', 6),
-(22, 'William ', 'william@gmail.com', 'william123 ', '../doctors_images/Albin-Abraham-Profile.jpg', 3, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 4, 3226301906, 'male', 'Accepted', 7);
+(22, 'William ', 'william@gmail.com', 'william123 ', '../doctors_images/Albin-Abraham-Profile.jpg', 3, '1', 32263, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 4, 3226301906, 'male', 'Accepted', 7),
+(23, 'Oliver ', 'oliver@gmail.com', 'oliver123 ', '../doctors_images/doctor-standing-with-folder-stethoscope_1291-14.avif', 12, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 4, 3226301906, 'male', 'Accepted', 9),
+(24, 'Andrew ', 'andrew@gmail.com', 'andrew123 ', '../doctors_images/doctor-offering-medical-teleconsultation_23-2149329007.avif', 8, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'male', 'Accepted', 5),
+(25, 'Clara ', 'clara@gmail.com', 'clasra123 ', '../doctors_images/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_1303-29791.avif', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'female', 'Accepted', 7),
+(26, 'Abigail ', 'abigail@gmail.com', 'abigail123 ', '../doctors_images/file-20191203-66986-im7o5.avif', 5, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'female', 'Accepted', 9),
+(27, 'Benjamin ', 'benjamin@gmail.com', 'benjamin123 ', '../doctors_images/young-male-doctor-close-up-happy-looking-camera-56751540.webp', 1, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'male', 'Accepted', 10);
 
 -- --------------------------------------------------------
 
@@ -136,7 +140,7 @@ CREATE TABLE `patients` (
   `patient_email` varchar(200) NOT NULL,
   `patient_password` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -148,7 +152,7 @@ CREATE TABLE `qualification` (
   `qualification_id` int(11) NOT NULL,
   `qualification_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `qualification`
@@ -171,7 +175,7 @@ CREATE TABLE `services` (
   `service_name` varchar(200) NOT NULL,
   `status` int(11) NOT NULL,
   `image` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `services`
@@ -196,7 +200,7 @@ CREATE TABLE `specialization` (
   `specialization_id` int(11) NOT NULL,
   `specialization_name` varchar(200) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `specialization`
@@ -230,28 +234,19 @@ CREATE TABLE `users` (
   `user_name` varchar(1001) NOT NULL,
   `user_email` varchar(100) NOT NULL,
   `user_password` varchar(100) NOT NULL,
+  `user_profile` varchar(500) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `status`) VALUES
-(1, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(2, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(3, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(4, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(5, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(6, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(7, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(8, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(9, 'Mohtasham', 'mmohtasham322@gmail.com', '11111111', 1),
-(10, 'Mohtasham', 'mmohtasham322@gmail.com', '55555', 1),
-(11, 'Mohtasham', 'mmohtasham322@gmail.com', '55555', 1),
-(12, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 1),
-(13, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 1),
-(14, 'Mohtasham', 'mmohtasham322@gmail.com', '11111', 1);
+INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_profile`, `status`) VALUES
+(15, 'mohtasham', 'mohtasham@gmail.com', 'mohtasham123', '', 0),
+(16, 'fahad', 'fahad@gmail.com', 'fahad123', '', 0),
+(17, 'Usman', 'usman@gmail.com', 'usman123', '', 0),
+(18, 'faisal', 'faisal@gmail.com', 'faisal123', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -329,7 +324,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `patients`
@@ -359,7 +354,7 @@ ALTER TABLE `specialization`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables

@@ -136,8 +136,8 @@
                 <div id="collapsePages3" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Latest Medical News</a>
-                        <a class="collapse-item" href="register.html">Medical Inventions</a>
+                        <a class="collapse-item" href="medical_news.php">Latest Medical News</a>
+                        <a class="collapse-item" href="medical_inventions.php">Medical Inventions</a>
                     </div>
                 </div>
             </li>

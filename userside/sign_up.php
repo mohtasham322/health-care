@@ -7,9 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $useremail = $_POST['useremail'];
     $userpassword = $_POST['user_password'];
     $user_array = array(
-      $name => $username,
-      $email => $useremail,
-      $password => $userpassword
+      'name' => $username,
+      'email' => $useremail,
+      'password' => $userpassword
     );
     $insert_users = "INSERT INTO `users`(`user_name`, `user_email`, `user_password`) VALUES ('$username','$useremail','$userpassword')";
     $run_insert_users = mysqli_query($connection, $insert_users);

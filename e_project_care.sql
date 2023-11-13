@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2023 at 03:18 PM
+-- Generation Time: Nov 13, 2023 at 05:32 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -131,6 +131,26 @@ INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_passw
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `medical_news`
+--
+
+CREATE TABLE `medical_news` (
+  `news_id` int(11) NOT NULL,
+  `news_title` varchar(300) NOT NULL,
+  `news_image` varchar(500) NOT NULL,
+  `news_content` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `medical_news`
+--
+
+INSERT INTO `medical_news` (`news_id`, `news_title`, `news_image`, `news_content`) VALUES
+(5, 'Familial hypercholesterolemia affects the way the body processes cholesterol.', '../medical_news_images/30770tn.jpg', 'Overview\r\n\r\nFamilial hypercholesterolemia affects the way the body processes cholesterol. As a result, people with familial hypercholesterolemia have a higher risk of heart disease and a greater risk of early heart attack.\r\n\r\nThe genetic changes that cause familial hypercholesterolemia are inherited. The condition is present from birth, but symptoms may not appear until adulthood.\r\n\r\nPeople who inherit the condition from both parents usually develop symptoms in childhood. If this rare and more severe variety is left untreated, death often occurs before age 20.\r\n\r\nTreatments for both types of familial hypercholesterolemia include a variety of medications and healthy-lifestyle behaviors.\r\n\r\nSymptoms\r\n\r\nAdults and children who have familial hypercholesterolemia have very high levels of low-density lipoprotein (LDL) cholesterol in their blood. low-density lipoprotein (LDL) cholesterol is known as \"bad\" cholesterol because it can build up in the walls of the arteries, making them hard and narrow.\r\n\r\nThis excess cholesterol is sometimes deposited in certain portions of the skin, some tendons and around the iris of the eyes:\r\n\r\nSkin. The most common spots for cholesterol deposits to occur is on the hands, elbows and knees. They also can occur in the skin around the eyes.\r\n\r\nTendons. Cholesterol deposits may thicken the Achilles tendon, along with some tendons in the hands.\r\nEyes. High cholesterol levels can cause corneal arcus, a white or gray ring around the iris of the eye. This happens most commonly in older people, but it can occur in younger people who have familial hypercholesterolemia.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `patients`
 --
 
@@ -246,7 +266,10 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `use
 (15, 'mohtasham', 'mohtasham@gmail.com', 'mohtasham123', '', 0),
 (16, 'fahad', 'fahad@gmail.com', 'fahad123', '', 0),
 (17, 'Usman', 'usman@gmail.com', 'usman123', '', 0),
-(18, 'faisal', 'faisal@gmail.com', 'faisal123', '', 0);
+(18, 'faisal', 'faisal@gmail.com', 'faisal123', '', 0),
+(19, 'Arsalan', 'Arsalan@gmail.com', 'arsalan123', '', 0),
+(20, 'Usman', 'usman@gmail.com', 'usman123', '', 0),
+(21, 'Faisal', 'faisal@gmail.com', 'faisal123', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -273,6 +296,12 @@ ALTER TABLE `doctors`
   ADD PRIMARY KEY (`doctor_id`),
   ADD KEY `hk` (`doctor_city`),
   ADD KEY `jk` (`doctor_specialization`);
+
+--
+-- Indexes for table `medical_news`
+--
+ALTER TABLE `medical_news`
+  ADD PRIMARY KEY (`news_id`);
 
 --
 -- Indexes for table `patients`
@@ -327,6 +356,12 @@ ALTER TABLE `doctors`
   MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
+-- AUTO_INCREMENT for table `medical_news`
+--
+ALTER TABLE `medical_news`
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
@@ -354,7 +389,7 @@ ALTER TABLE `specialization`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables

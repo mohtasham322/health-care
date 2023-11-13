@@ -1,9 +1,20 @@
 <?php
+session_start();
 include("../admin/connection.php");
 $id = $_GET['id'];
 $select_specialization = "SELECT * FROM doctors join specialization on doctors.doctor_specialization=specialization.specialization_id join city on doctors.doctor_city=city.city_id where doctors.doctor_id='$id'";
 $select_doctors = mysqli_query($connection, $select_specialization);
 $select_doctors_data = mysqli_fetch_assoc($select_doctors);
+if (isset($_SESSION['user_session'])) {
+    if (isset($_SERVER["REQUEST_METHOD"]) === "POST") {
+        if (isset($_POST["btn_sep_appointment"])) {
+            $p_id = $_SESSION["user_session"]['user_id'];
+
+        }
+    }
+    ;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,26 +122,27 @@ $select_doctors_data = mysqli_fetch_assoc($select_doctors);
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Doctor Name"
-                                        style="height: 55px;" readonly
+                                    <input type="text" class="form-control bg-light border-0" placeholder="Category"
+                                        style="height: 55px;" readonly name="doctor"
                                         value="<?php echo $select_doctors_data['specialization_name'] ?>">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Doctor Name"
-                                        style="height: 55px;" readonly
+                                    <input type="text" class="form-control bg-light border-0" placeholder="city"
+                                        style="height: 55px;" readonly name="patient_city"
                                         value="<?php echo $select_doctors_data['city_name'] ?>">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <input type="text" class="form-control bg-light border-0" placeholder="Doctor Name"
-                                        style="height: 55px;" readonly
+                                        style="height: 55px;" readonly name="doctor_name"
                                         value="<?php echo $select_doctors_data['doctor_name'] ?>">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <input type="text" class="form-control bg-light border-0" placeholder="Your Name"
-                                        style="height: 55px;" value="">
+                                        style="height: 55px;" name="patient_name" value="">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
+                                    <select class="form-select bg-light border-0" style="height: 55px;"
+                                        name="patient_gender">
                                         <option value="Male" selected>Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Custome">Custom</option>
@@ -138,9 +150,9 @@ $select_doctors_data = mysqli_fetch_assoc($select_doctors);
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <input type="number" min="15" class="form-control bg-light border-0"
-                                        placeholder="Your Age" style="height: 55px;">
+                                        placeholder="Your Age" name="patient_age" style="height: 55px;">
                                 </div>
-                                
+
                                 <div class="col-3 col-sm-3">
                                     <select class="form-select bg-light border-0" style="height: 55px;">
                                         <option data-countryCode="PK" value="92" selected>+92</option>
@@ -148,24 +160,25 @@ $select_doctors_data = mysqli_fetch_assoc($select_doctors);
                                 </div>
                                 <div class="col-9 col-sm-9">
                                     <input type="text" class="form-control bg-light border-0"
-                                        placeholder="Your Contact Number" style="height: 55px;">
+                                        placeholder="Your Contact Number" name="patient_contact" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="date" id="date1" data-target-input="nearest">
                                         <input type="text" class="form-control bg-light border-0 datetimepicker-input"
                                             placeholder="Appointment Date" data-target="#date1"
-                                            data-toggle="datetimepicker" style="height: 55px;">
+                                            data-toggle="datetimepicker" name="appointment_date" style="height: 55px;">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="time" id="time1" data-target-input="nearest">
                                         <input type="text" class="form-control bg-light border-0 datetimepicker-input"
                                             placeholder="Appointment Time" data-target="#time1"
-                                            data-toggle="datetimepicker" style="height: 55px;">
+                                            data-toggle="datetimepicker" name="appointment_time" style="height: 55px;">
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Make Appointment</button>
+                                    <button class="btn btn-dark w-100 py-3" type="submit"
+                                        name="btn_sep_appointment">Make Appointment</button>
                                 </div>
                             </div>
                         </form>

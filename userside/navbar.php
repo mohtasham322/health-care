@@ -2,7 +2,7 @@
 include("../admin/connection.php");
 session_start();
 if (isset($_SESSION['user_session'])) {
-    $user_data = $_SESSION['user_session'];
+    
     echo '<style>
     #login_dropdown{
         display:none;
@@ -98,8 +98,15 @@ if (isset($_SESSION['user_session'])) {
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link" data-bs-toggle="dropdown">Appointment</a>
                     <div class="dropdown-menu m-0">
-                        <a href="price.php" class="dropdown-item">View appointment</a>
+                        <a href="view_appointment.php" class="dropdown-item">View appointment</a>
                         <a href="appointment.php" class="dropdown-item">Make appointment</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link" data-bs-toggle="dropdown">Latest</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="medical_news.php" class="dropdown-item">Medical News</a>
+                        <a href="medical_inventions.php" class="dropdown-item">Medical Inventions</a>
                     </div>
                 </div>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
@@ -128,8 +135,8 @@ if (isset($_SESSION['user_session'])) {
                         <!-- <label for="id_profile" class="dropdown-item">set profile</label>
                         <input id="id_profile" type="file" name="user_profile" style="display:none;"> -->
 
-                        <p class="dropdown-item"><?php print($user_data); ?></p>
-                        <a class="dropdown-item" href="doctor_login.php">Logout</a>
+                        <p class="dropdown-item"><?php echo $_SESSION['user_session']['name']; ?></p>
+                        <a class="dropdown-item" href="user_logout.php">Logout</a>
 
                     </div>
                 </div>

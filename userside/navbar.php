@@ -1,16 +1,8 @@
 <?php
 include("../admin/connection.php");
 session_start();
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-if (isset($_SESSION['user_session'])) {
-
-=======
->>>>>>> Stashed changes
 if (isset($_SESSION['p_id'])) {
-    
->>>>>>> d85adf74aec1a759c10e1e1e6a21e21e740aebe7
+
     echo '<style>
     #login_dropdown{
         display:none;
@@ -145,17 +137,15 @@ if (isset($_SESSION['p_id'])) {
                         <!-- <label for="id_profile" class="dropdown-item">set profile</label>
                         <input id="id_profile" type="file" name="user_profile" style="display:none;"> -->
 
-<<<<<<< Updated upstream
+
                         <p class="dropdown-item"><?php echo $_SESSION['p_name']; ?></p>
-=======
-<<<<<<< HEAD
+
                         <p class="dropdown-item">
                             <?php echo $_SESSION['user_session']['name']; ?>
                         </p>
-=======
+
                         <p class="dropdown-item"><?php echo $_SESSION['p_name']; ?></p>
->>>>>>> d85adf74aec1a759c10e1e1e6a21e21e740aebe7
->>>>>>> Stashed changes
+
                         <a class="dropdown-item" href="user_logout.php">Logout</a>
 
                     </div>

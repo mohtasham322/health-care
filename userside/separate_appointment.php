@@ -8,7 +8,14 @@ $select_doctors_data = mysqli_fetch_assoc($select_doctors);
 if (isset($_SESSION['user_session'])) {
     if (isset($_SERVER["REQUEST_METHOD"]) === "POST") {
         if (isset($_POST["btn_sep_appointment"])) {
-            $p_id = $_SESSION["user_session"]['user_id'];
+            $p_id = $_SESSION["p_id"];
+            $p_gender = $_POST["patient_gender"];
+            $p_city = $_POST["patient_city"];
+            $date = $_POST["appointment_date"];
+            $time = $_POST["appointment_time"];
+            $d_id = $select_doctors_data["doctor_id"];
+            $p_age = $_POST["patient_age"];
+            $p_contact = $_POST["patient_contact"];
 
         }
     }
@@ -128,7 +135,7 @@ if (isset($_SESSION['user_session'])) {
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <input type="text" class="form-control bg-light border-0" placeholder="city"
-                                        style="height: 55px;" readonly name="patient_city"
+                                        style="height: 55px;" readonly name="patient_city" 
                                         value="<?php echo $select_doctors_data['city_name'] ?>">
                                 </div>
                                 <div class="col-12 col-sm-6">

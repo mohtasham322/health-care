@@ -140,11 +140,7 @@ if (isset($_SESSION['p_id'])) {
 
                         <p class="dropdown-item"><?php echo $_SESSION['p_name']; ?></p>
 
-                        <p class="dropdown-item">
-                            <?php echo $_SESSION['user_session']['name']; ?>
-                        </p>
 
-                        <p class="dropdown-item"><?php echo $_SESSION['p_name']; ?></p>
 
                         <a class="dropdown-item" href="user_logout.php">Logout</a>
 

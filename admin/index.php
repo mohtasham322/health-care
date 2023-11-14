@@ -17,6 +17,7 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
@@ -32,6 +33,12 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
     <style>
         td{
             padding: 20px;
+        }
+        .rounded{
+            background-color: #4e73df;
+        }
+        .rounded:hover{
+            background-color: #06a3da;
         }
     </style>
 
@@ -93,7 +100,7 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
                                         <td><?php echo $row_doctor['doctor_gender']; ?></td>
                                         <td><?php echo $row_doctor['doctor_specialization']; ?></td>
                                         <td><?php echo $row_doctor['status']; ?></td>
-                                        <td><a href="decline_request.php?d_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-danger">Decline</a></td>
+                                        <td><a href="decline_request.php?d_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-danger d-flex px-2 py-2"><i class="bi bi-trash3 pe-1"></i> Decline</a></td>
                               </tr>
                                 <?php } ?>
                                 

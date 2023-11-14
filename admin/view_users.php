@@ -17,6 +17,8 @@ $run_select_users_query = mysqli_query($connection, $select_users_query);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 
     <title>Admin Dashboard</title>
 
@@ -63,7 +65,7 @@ $run_select_users_query = mysqli_query($connection, $select_users_query);
                                         <td><?php echo $row['user_id']; ?></td>
                                         <td><?php echo $row['user_name']; ?></td>
                                         <td><?php echo $row['user_email']; ?></td>
-                                        <td><a href="deleteuser.php?id=<?php echo $row['user_id']; ?>" class="btn btn-danger">Delete</a></td>
+                                        <td><a href="deleteuser.php?id=<?php echo $row['user_id']; ?>" class="btn btn-danger px-2 py-2"><i class="bi bi-trash3"></i> Delete</a></td>
                               </tr>
                                 <?php } ?>
                                 

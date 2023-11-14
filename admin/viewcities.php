@@ -27,6 +27,7 @@ $run_select_city_query = mysqli_query($connection, $select_city_query);
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -64,8 +65,8 @@ $run_select_city_query = mysqli_query($connection, $select_city_query);
                                         <td><?php echo $row['city_id']; ?></td>
                                         <td><?php echo $row['city_name']; ?></td>
                                         <td><?php echo $row['status']; ?></td>
-                                        <td><a href="deletecity.php?id=<?php echo $row['city_id']; ?>" class="btn btn-danger">Delete</a></td>
-                                        <td><a href="updatecity.php?id=<?php echo $row['city_id']; ?>" class="btn btn-primary">Update</a></td>
+                                        <td><a href="deletecity.php?id=<?php echo $row['city_id']; ?>" class="btn btn-danger px-2 py-2"><i class="bi bi-trash3"></i> Delete</a></td>
+                                        <td><a href="updatecity.php?id=<?php echo $row['city_id']; ?>" class="btn btn-primary px-2 py-2"><i class="bi bi-pencil-square"></i> Update</a></td>
                               </tr>
                                 <?php } ?>
                                 

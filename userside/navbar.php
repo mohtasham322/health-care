@@ -75,9 +75,15 @@ if (isset($_SESSION['p_id'])) {
     <style>
         .profile_icon {
             width: 40px;
+           
         }
+#login-dropdown{
 
-      
+
+    
+}
+  
+
     </style>
 </head>
 

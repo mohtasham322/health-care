@@ -1,7 +1,7 @@
 <?php
 include("../admin/connection.php");
 session_start();
-if (isset($_SESSION['user_session'])) {
+if (isset($_SESSION['p_id'])) {
     
     echo '<style>
     #login_dropdown{
@@ -135,7 +135,7 @@ if (isset($_SESSION['user_session'])) {
                         <!-- <label for="id_profile" class="dropdown-item">set profile</label>
                         <input id="id_profile" type="file" name="user_profile" style="display:none;"> -->
 
-                        <p class="dropdown-item"><?php echo $_SESSION['user_session']['name']; ?></p>
+                        <p class="dropdown-item"><?php echo $_SESSION['p_name']; ?></p>
                         <a class="dropdown-item" href="user_logout.php">Logout</a>
 
                     </div>

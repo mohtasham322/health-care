@@ -1,11 +1,10 @@
 <?php
-session_start();
 include("../admin/connection.php");
 $id = $_GET['id'];
-$select_specialization = "SELECT * FROM doctors join specialization on doctors.doctor_specialization=specialization.specialization_id join city on doctors.doctor_city=city.city_id where doctors.doctor_id='$id'";
+$select_specialization = "SELECT * FROM doctors join specialization on doctors.doctor_specialization=specialization.specialization_id join city on doctors.doctor_city=city.city_id where doctors.doctor_id= '$id'";
 $select_doctors = mysqli_query($connection, $select_specialization);
 $select_doctors_data = mysqli_fetch_assoc($select_doctors);
-if (isset($_SESSION['user_session'])) {
+if (isset($_SESSION['p_id'])) {
     if (isset($_SERVER["REQUEST_METHOD"]) === "POST") {
         if (isset($_POST["btn_sep_appointment"])) {
             $p_id = $_SESSION["p_id"];
@@ -13,10 +12,17 @@ if (isset($_SESSION['user_session'])) {
             $p_city = $_POST["patient_city"];
             $date = $_POST["appointment_date"];
             $time = $_POST["appointment_time"];
-            $d_id = $select_doctors_data["doctor_id"];
+            $d_id = $id;
             $p_age = $_POST["patient_age"];
             $p_contact = $_POST["patient_contact"];
-
+            $appointment_insert = "INSERT INTO `appointment`( `patient_id`, `patient_gender`, `patient_city`, `date`, `time`, `doctor_id`, `patient_age`, `patient_contact`) VALUES ('$p_id','$p_gender','$p_city','$date','$time','$d_id','$p_age','$p_contact')";
+            $run_appointment_insert = mysqli_query($connection, $appointment_insert);
+            if($run_appointment_insert){
+                echo "<script>alert('success')</script>";
+            }
+            else{
+                echo "<script>alert('failed')</script>";
+            }
         }
     }
     ;
@@ -126,7 +132,7 @@ if (isset($_SESSION['user_session'])) {
                     <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn"
                         data-wow-delay="0.6s">
                         <h1 class="text-white mb-4">Make Appointment</h1>
-                        <form>
+                        <form method="post">
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
                                     <input type="text" class="form-control bg-light border-0" placeholder="Category"

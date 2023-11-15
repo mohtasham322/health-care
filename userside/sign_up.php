@@ -21,32 +21,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "<script>alert('sign Up failed!')</script>";
     }
   } else if (isset($_POST['btn_login'])) {
-    $l_useremail = mysqli_real_escape_string($connection, $_POST['l_useremail']);
-    $l_userpassword = mysqli_real_escape_string($connection, $_POST['l_userpassword']);
+    $l_useremail = $_POST['l_useremail'];
+    $l_userpassword = $_POST['l_userpassword'];
 
-    $select_user = "SELECT * FROM `patients` WHERE patient_email = '$l_useremail' AND patient_password = '$l_userpassword'";
+    $select_user = "SELECT * FROM `patients` WHERE patient_email = '$l_useremail'";
     $run_select_user = mysqli_query($connection, $select_user);
+    $fetched_patient = mysqli_fetch_assoc($run_select_user);
 
-    if ($run_select_user) {
-        $row_count = mysqli_num_rows($run_select_user);
+    if ($l_userpassword == $fetched_patient["patient_password"]) {
+      $_SESSION['p_id'] = $fetched_patient['patient_id'];
+      $_SESSION['p_name'] = $fetched_patient['patient_name'];
+      $_SESSION['p_email'] = $fetched_patient['patient_email'];
 
-        if ($row_count > 0) {
-            $fetched_patient = mysqli_fetch_assoc($run_select_user);
-            $_SESSION['p_id'] = $fetched_patient['patient_id'];
-            $_SESSION['p_name'] = $fetched_patient['patient_name'];
-            $_SESSION['p_email'] = $fetched_patient['patient_email'];
-            // Do NOT store the password in the session
-
-            echo "<script>window.location.href = 'index.php'</script>";
-        } else {
-            echo "<script>alert('Invalid email or password')</script>";
-        }
+      echo "<script>window.location.href = 'index.php'</script>";
     } else {
-        echo "<script>alert('Login failed!')</script>";
+      echo "<script>alert('Invalid email or password')</script>";
     }
+  }
 }
 
-}
+
 
 
 

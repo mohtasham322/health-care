@@ -7,12 +7,32 @@ if (isset($_SESSION['p_id'])) {
     #login_dropdown{
         display:none;
     }
+    #logged_doctor_dropdown{
+        display:none;
+    }
     #logged_user_dropdown{
-        display:block;
+        display:flex;
     }
     </style>';
 
-} else {
+}
+else if (isset($_SESSION['d_id'])) {
+
+    echo '<style>
+    #login_dropdown{
+        display:none;
+    }
+    #logged_user_dropdown{
+        display:flex;
+    }
+    #logged_doctor_dropdown{
+        display:flex;
+    }
+    </style>';
+
+}
+
+else {
     echo '<style>
     #login_dropdown{
         display:block;
@@ -22,16 +42,7 @@ if (isset($_SESSION['p_id'])) {
     }
     </style>';
 }
-// if ($_SERVER('REQUEST_METHD') === 'POST') {
-//     if (isset($_POST['user_profile'])) {
-//         $u_profile = $_FILES['user_profile'];
-//         $u_profile_name = $_FILES['user_profile']['name'];
-//         $u_profile_temp_name = $_FILES['user_profile']['tmp_name'];
-//         $u_profile_path = "../patient_images/". $u_profile_name;
-//         move_uploaded_file($u_profile_temp_name, $u_profile_path);
 
-//     }
-// }
 
 
 ?>
@@ -75,15 +86,10 @@ if (isset($_SESSION['p_id'])) {
     <style>
         .profile_icon {
             width: 40px;
-           
+
         }
-#login-dropdown{
 
-
-    
-}
-  
-
+        #login-dropdown {}
     </style>
 </head>
 
@@ -120,39 +126,45 @@ if (isset($_SESSION['p_id'])) {
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
             </div>
             <!-- <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Login</a> -->
-            <form method="post" enctype="multipart/form-data">
-                <div id="login_dropdown" style="position: relative;">
-                    <a class="nav-link  btn btn-primary py-2 px-4 ms-3" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-box-arrow-in-right"></i> Login
-                    </a>
-                    <div class="dropdown-menu m-0 mt-3">
+            <div id="login_dropdown" style="position: relative;">
+                <a class="nav-link  btn btn-primary py-2 px-4 ms-3" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-box-arrow-in-right"></i> Login
+                </a>
+                <div class="dropdown-menu m-0 mt-3">
 
-                        <a class="dropdown-item" href="doctor_login.php">Login as a Doctor</a>
-                        <a class="dropdown-item" href="sign_up.php">Login as a Patient</a>
+                    <a class="dropdown-item" href="doctor_login.php">Login as a Doctor</a>
+                    <a class="dropdown-item" href="sign_up.php">Login as a Patient</a>
 
-                    </div>
                 </div>
-                <div id="logged_user_dropdown" style="position: relative;">
-                    <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="profile_icon" src="../images/profile_icon.png" alt="">
-                    </a>
-                    <div class="dropdown-menu m-0 mt-3" id="login-dropdown">
+            </div>
+            <div id="logged_user_dropdown" style="position: relative; width:120px;" class=" justify-content-center" >
+                <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img class="profile_icon" src="../images/profile_icon.png" alt="">
+                </a>
+                <div class="dropdown-menu m-0 mt-3" id="login-dropdown" >
+                    <p class="dropdown-item">
+                        <?php echo $_SESSION['p_name']; ?>
+                    </p>
+                    <a class="dropdown-item" href="user_logout.php">Logout</a>
 
-                        <!-- <label for="id_profile" class="dropdown-item">set profile</label>
-                        <input id="id_profile" type="file" name="user_profile" style="display:none;"> -->
-
-
-                        <p class="dropdown-item"><?php echo $_SESSION['p_name']; ?></p>
-
-
-
-                        <a class="dropdown-item" href="user_logout.php">Logout</a>
-
-                    </div>
                 </div>
-            </form>
+            </div>
+            <div id="logged_doctor_dropdown" style="position: relative; width:120px;" class=" justify-content-center" >
+                <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img class="profile_icon" src="../images/profile_icon.png" alt="">
+                </a>
+                <div class="dropdown-menu m-0 mt-3" id="login-dropdown" >
+                    <p class="dropdown-item">
+                        <?php echo $_SESSION['d_name']; ?>
+                    </p>
+                    <a class="dropdown-item" href="../doctor_panel/index.php">Dashboard</a>
+                    <a class="dropdown-item" href="doctor_logout.php">Logout</a>
+
+                </div>
+            </div>
 
         </div>
     </nav>

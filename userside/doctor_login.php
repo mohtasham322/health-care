@@ -1,3 +1,26 @@
+<?php
+include("../admin/connection.php");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['btn_doctor_login'])) {
+        $dl_email = $_POST['email'];
+        $dl_password = $_POST['password'];
+
+        $select_doctor = "SELECT * FROM `doctors` WHERE doctor_email = '$dl_email'";
+        $run_select_doctor = mysqli_query($connection, $select_doctor);
+        $fetched_doctor = mysqli_fetch_assoc($run_select_doctor);
+
+        if ($dl_password== $fetched_doctor["doctor_password"]) {
+            $_SESSION['d_id'] = $fetched_doctor['doctor_id'];
+            $_SESSION['d_name'] = $fetched_doctor['doctor_name'];
+            $_SESSION['d_email'] = $fetched_doctor['doctor_email'];
+            echo "<script>window.location.href = 'index.php'</script>";
+        } else {
+            echo "<script>alert('Invalid email or password')</script>";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,7 +200,7 @@
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
             <div class="col-12 text-center">
-                <h1 class="display-3 text-white animated zoomIn">Doctor Registration</h1>
+                <h1 class="display-3 text-white animated zoomIn">Doctor Login</h1>
             </div>
         </div>
     </div>
@@ -198,7 +221,7 @@
                             <input class="input" type="Password" name="password" placeholder="Enter your password.">
                         </div>
                         <div class="col-sm-8 form-group mb-0">
-                            <button class="btn btn-primary float-right" name="btn_register">Regsiter</button>
+                            <button class="btn btn-primary float-right" name="btn_doctor_login">Login</button>
 
                         </div>
                         <div class="col-sm-8">

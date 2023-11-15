@@ -1,10 +1,4 @@
-<?php
-include("connection.php");
-$select_doctor_query = "SELECT * FROM `doctors` where status = 'Accepted'";
-$run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
 
-
-?>
 
 
 <!DOCTYPE html>

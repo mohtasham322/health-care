@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2023 at 07:02 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Nov 15, 2023 at 07:47 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_username` varchar(200) NOT NULL,
   `admin_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -52,10 +52,17 @@ CREATE TABLE `appointment` (
   `patient_city` varchar(100) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
-  `status` varchar(50) NOT NULL,
+  `appointment_status` varchar(50) NOT NULL DEFAULT 'pending',
   `doctor_id` int(11) NOT NULL,
   `patient_age` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`appointment_id`, `patient_id`, `patient_gender`, `patient_city`, `date`, `time`, `appointment_status`, `doctor_id`, `patient_age`) VALUES
+(1, 1, 'male', 'karachi', '0000-00-00', '12:00:00', 'pending', 12, 19);
 
 -- --------------------------------------------------------
 
@@ -67,7 +74,7 @@ CREATE TABLE `city` (
   `city_id` int(11) NOT NULL,
   `city_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `city`
@@ -105,7 +112,7 @@ CREATE TABLE `doctors` (
   `doctor_gender` varchar(100) NOT NULL,
   `status` varchar(50) NOT NULL,
   `doctor_specialization` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `doctors`
@@ -139,7 +146,7 @@ CREATE TABLE `medical_news` (
   `news_title` varchar(300) NOT NULL,
   `news_image` varchar(500) NOT NULL,
   `news_content` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `medical_news`
@@ -160,7 +167,7 @@ CREATE TABLE `patients` (
   `patient_email` varchar(200) NOT NULL,
   `patient_password` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patients`
@@ -179,7 +186,7 @@ CREATE TABLE `qualification` (
   `qualification_id` int(11) NOT NULL,
   `qualification_name` varchar(100) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `qualification`
@@ -202,7 +209,7 @@ CREATE TABLE `services` (
   `service_name` varchar(200) NOT NULL,
   `status` int(11) NOT NULL,
   `image` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `services`
@@ -227,7 +234,7 @@ CREATE TABLE `specialization` (
   `specialization_id` int(11) NOT NULL,
   `specialization_name` varchar(200) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `specialization`
@@ -263,7 +270,7 @@ CREATE TABLE `users` (
   `user_password` varchar(100) NOT NULL,
   `user_profile` varchar(500) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`

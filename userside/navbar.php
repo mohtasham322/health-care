@@ -1,50 +1,27 @@
 <?php
+// session_name("d_id");
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// Rest of your code
+
 include("../admin/connection.php");
-session_start();
-if (isset($_SESSION['p_id'])) {
-
-    echo '<style>
-    #login_dropdown{
-        display:none;
-    }
-    #logged_doctor_dropdown{
-        display:none;
-    }
-    #logged_user_dropdown{
-        display:flex;
-    }
-    </style>';
-
-}
-else if (isset($_SESSION['d_id'])) {
-
-    echo '<style>
-    #login_dropdown{
-        display:none;
-    }
-    #logged_user_dropdown{
-        display:flex;
-    }
-    #logged_doctor_dropdown{
-        display:flex;
-    }
-    </style>';
-
-}
-
+if (isset($_SESSION['p_id']) ) {
+    $loginDropdownClass = "display-none";
+    $loggedDoctorDropdownClass = "display-none";
+    $loggedUserDropdownClass = "display-flex";
+} 
+elseif (isset($_SESSION['d_id'])) {
+    // echo "session exist";
+    $loginDropdownClass = "display-none";
+    $loggedDoctorDropdownClass = "display-flex";
+    $loggedUserDropdownClass = "display-none";
+} 
 else {
-    echo '<style>
-    #login_dropdown{
-        display:block;
-    }
-    #logged_user_dropdown{
-        display:none;
-    }
-    </style>';
+    $loginDropdownClass = "display-block";
+    $loggedUserDropdownClass = "display-none";
+    $loggedDoctorDropdownClass = "display-none";
 }
-
-
-
 ?>
 
 <!-- Navbar Start -->
@@ -89,7 +66,15 @@ else {
 
         }
 
-        #login-dropdown {}
+        .display-none {
+            display: none;
+        }
+
+        .display-flex {
+            display: flex;
+        }
+    </style>
+
     </style>
 </head>
 
@@ -113,7 +98,7 @@ else {
                     <a href="#" class="nav-link" data-bs-toggle="dropdown">Appointment</a>
                     <div class="dropdown-menu m-0">
                         <a href="view_appointment.php" class="dropdown-item">View appointment</a>
-                        <a href="appointment.php" class="dropdown-item">Make appointment</a>
+                        <a href="search_doctor.php" class="dropdown-item">Make appointment</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
@@ -126,7 +111,7 @@ else {
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
             </div>
             <!-- <a href="appointment.html" class="btn btn-primary py-2 px-4 ms-3">Login</a> -->
-            <div id="login_dropdown" style="position: relative;">
+            <div id="login_dropdown" style="position: relative;" class="<?php echo $loginDropdownClass; ?>">
                 <a class="nav-link  btn btn-primary py-2 px-4 ms-3" href="#" id="navbarDropdown" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-box-arrow-in-right"></i> Login
@@ -138,12 +123,12 @@ else {
 
                 </div>
             </div>
-            <div id="logged_user_dropdown" style="position: relative; width:120px;" class=" justify-content-center" >
-                <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+            <div id="logged_user_dropdown" style="position: relative; width:120px;" class="<?php echo $loggedUserDropdownClass; ?> justify-content-center" >
+                <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown1" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
                     <img class="profile_icon" src="../images/profile_icon.png" alt="">
                 </a>
-                <div class="dropdown-menu m-0 mt-3" id="login-dropdown" >
+                <div class="dropdown-menu m-0 mt-3" id="login-dropdown1">
                     <p class="dropdown-item">
                         <?php echo $_SESSION['p_name']; ?>
                     </p>
@@ -151,17 +136,18 @@ else {
 
                 </div>
             </div>
-            <div id="logged_doctor_dropdown" style="position: relative; width:120px;" class=" justify-content-center" >
-                <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+            <div id="logged_doctor_dropdown" style="position: relative; width:120px;"class="<?php echo $loggedDoctorDropdownClass; ?> justify-content-center">
+                <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown2" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
                     <img class="profile_icon" src="../images/profile_icon.png" alt="">
                 </a>
-                <div class="dropdown-menu m-0 mt-3" id="login-dropdown" >
+                <div class="dropdown-menu m-0 mt-3" id="login-dropdown2">
                     <p class="dropdown-item">
-                        <?php echo $_SESSION['d_name']; ?>
+                    <?php echo $_SESSION['d_name']; ?><hr>
                     </p>
-                    <a class="dropdown-item" href="../doctor_panel/index.php">Dashboard</a>
-                    <a class="dropdown-item" href="doctor_logout.php">Logout</a>
+                    <a class="dropdown-item"
+                        href="../doctor_panel/index.php?doc_id=<?php echo $_SESSION['d_id'] ?>">Dashboard</a>
+                    <a class="dropdown-item" href="user_logout.php">Logout</a>
 
                 </div>
             </div>

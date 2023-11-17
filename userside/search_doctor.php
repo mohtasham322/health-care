@@ -1,8 +1,10 @@
 <?php
 include("../admin/connection.php");
-$select_news = "SELECT * FROM `medical_news`";
-$run_select_news = mysqli_query($connection, $select_news);
 
+$select_specialization = "SELECT * FROM `specialization` where status = 0";
+$run_select_specialization = mysqli_query($connection, $select_specialization);
+$select_city = "SELECT * FROM `city` where status = 0";
+$run_select_city = mysqli_query($connection, $select_city);
 
 ?>
 
@@ -87,12 +89,10 @@ $run_select_news = mysqli_query($connection, $select_news);
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
             <div class="col-12 text-center">
-                <h1 class="display-3 text-white animated zoomIn">Medical News</h1>
+                <h1 class="display-3 text-white animated zoomIn">Search Doctor</h1>
                 <a href="" class="h4 text-white">Home</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">Latest</a>
-                <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">Medical News</a>
+                <a href="" class="h4 text-white">search doctor</a>
             </div>
         </div>
     </div>
@@ -101,34 +101,47 @@ $run_select_news = mysqli_query($connection, $select_news);
 
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container ">
-            <h2 class="section_heading">Latest Medical News</h2>
-            <div class="row g-5 mb-5 justify-content-center text-center">
-                <div class="col-lg-12">
-                    <div class="section-title mb-5">
-                    </div> <a href="">
-                    <div class="row flex-row g-5">
-                       
-                        <?php while ($row_news = mysqli_fetch_array($run_select_news)) { ?>
+        <div class="container justify-content-center text-center">
+            <h2 class="section_heading mb-5">Search Healthcare Professional</h2>
+            <div class="row g-5 justify-content-center align-items-center  mb-5">
+                <div class="col-lg-8 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="bg-dark d-flex flex-column p-5" style="height: 300px;">
+                        <h3 class="text-white mb-3">Search A Doctor</h3>
+                        <form method="post" action="doctors.php">
+                            <select class="form-select bg-light border-0 mb-3" style="height: 40px;"
+                                name="s_specialization">
+                                <?php
+                                $rows = array();
+                                while ($specialization_row = mysqli_fetch_array($run_select_specialization)) {
+                                    $rows[] = $specialization_row;
+                                    ; ?>
+                                    <option value="<?php echo $specialization_row['specialization_id']; ?>">
+                                        <?php echo $specialization_row['specialization_name'] ?>
+                                    </option>
+                                <?php }
+                                ; ?>
+                            </select>
 
-                                <div class="col-md-3 service-item wow zoomIn" data-wow-delay="0.6s">
-                                    <div class="rounded-top overflow-hidden">
-                                        <img style="width:200px;" class="img-fluid"
-                                            src="<?php echo $row_news['news_image']; ?>" alt="">
-                                    </div>
-                                </div>
-                                <div class=" col-md-9  bg-light rounded-bottom text-left  pt-4 ">
-                                    <h5 style="color:#06A3DA;">
-                                        <?php echo $row_news['news_title']; ?>
-                                    </h5>
-                                </div>
-                        <?php }
-                        ; ?>
-                        
-                    </div></a>
+                            <select class="form-select bg-light border-0 mb-3" style="height: 40px;" name="s_city">
+                                <?php
+                                $rows_city = array();
+                                while ($city_row = mysqli_fetch_array($run_select_city)) {
+                                    $rows_city[] = $city_row;
+                                    ; ?>
+                                    <option value="<?php echo $city_row['city_id']; ?>">
+                                        <?php echo $city_row['city_name'] ?>
+                                    </option>
+                                <?php }
+                                ; ?>
+                            </select>
+                            <button type="submit" name="btn_search_doctor" class="btn btn-primary w-100">Search
+                                Doctor</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
     <!-- Service End -->
 

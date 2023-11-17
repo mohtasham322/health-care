@@ -54,6 +54,48 @@ $run_select_appointment = mysqli_query($connection, $select_appointment);
             height: 230px !important;
             width: 100%;
         }
+        * {
+  font-family: sans-serif; /* Change your font family */
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #06A3DA;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 3px solid #06A3DA;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
     </style>
 </head>
 
@@ -102,15 +144,19 @@ $run_select_appointment = mysqli_query($connection, $select_appointment);
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container justify-content-center text-center">
 
-            <table class="table-bordered w-100 text-center">
-                <thead>
+
+
+            <table class="content-table w-100 text-center">
+                <thead >
+                    <tr>
                     <th>Doctor Name</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Status</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row_appointment = mysqli_fetch_array($run_select_appointment)) { ?>
+                <?php while ($row_appointment = mysqli_fetch_array($run_select_appointment)) { ?>
                         <tr>
                             <td>
                                 <?php echo $row_appointment['doctor_name']; ?>
@@ -126,9 +172,7 @@ $run_select_appointment = mysqli_query($connection, $select_appointment);
                             </td>
                         </tr>
                     <?php } ?>
-
                 </tbody>
-
             </table>
 
         </div>

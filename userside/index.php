@@ -99,9 +99,10 @@ $run_select_service = mysqli_query($connection, $select_service);
                                 Treasure Your Health!</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Health
                                 Treatment</h1>
-                            <a href="appointment.php"
+                            <a href="search_doctor.php"
                                 class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="contact.php" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                            <a href="contact.php"
+                                class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +116,8 @@ $run_select_service = mysqli_query($connection, $select_service);
                             </h1>
                             <a href="appointment.html"
                                 class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="contact.php" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                            <a href="contact.php"
+                                class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -141,38 +143,43 @@ $run_select_service = mysqli_query($connection, $select_service);
                     <div class="bg-dark d-flex flex-column p-5" style="height: 300px;">
                         <h3 class="text-white mb-3">Search A Doctor</h3>
                         <form method="post" action="doctors.php">
-                        <select class="form-select bg-light border-0 mb-3" style="height: 40px;" name="s_specialization">
-                            <?php
-                            $rows = array();
-                            while ($specialization_row = mysqli_fetch_array($run_select_specialization)) {
-                                $rows[] = $specialization_row;
+                            <select class="form-select bg-light border-0 mb-3" style="height: 40px;"
+                                name="s_specialization">
+                                <?php
+                                $rows = array();
+                                while ($specialization_row = mysqli_fetch_array($run_select_specialization)) {
+                                    $rows[] = $specialization_row;
+                                    ; ?>
+                                    <option value="<?php echo $specialization_row['specialization_id']; ?>">
+                                        <?php echo $specialization_row['specialization_name'] ?>
+                                    </option>
+                                <?php }
                                 ; ?>
-                                <option value="<?php echo $specialization_row['specialization_id']; ?>">
-                                    <?php echo $specialization_row['specialization_name'] ?>
-                                </option>
-                            <?php }
-                            ; ?>
-                        </select>
+                            </select>
 
-                        <select class="form-select bg-light border-0 mb-3" style="height: 40px;" name="s_city">
-                            <?php
-                            $rows_city = array();
-                            while ($city_row = mysqli_fetch_array($run_select_city)) {
-                                $rows_city[] = $city_row;
+                            <select class="form-select bg-light border-0 mb-3" style="height: 40px;" name="s_city">
+                                <?php
+                                $rows_city = array();
+                                while ($city_row = mysqli_fetch_array($run_select_city)) {
+                                    $rows_city[] = $city_row;
+                                    ; ?>
+                                    <option value="<?php echo $city_row['city_id']; ?>">
+                                        <?php echo $city_row['city_name'] ?>
+                                    </option>
+                                <?php }
                                 ; ?>
-                                <option value="<?php echo $city_row['city_id']; ?>">
-                                    <?php echo $city_row['city_name'] ?>
-                                </option>
-                            <?php }
-                            ; ?>
-                        </select>
-                        <button type="submit" name="btn_search_doctor" class="btn btn-primary w-100">Search Doctor</a>
+                            </select>
+                            <button type="submit" name="btn_search_doctor" class="btn btn-primary w-100">Search
+                                Doctor</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
     <!-- Banner Start -->
 
 
@@ -185,9 +192,12 @@ $run_select_service = mysqli_query($connection, $select_service);
                         <h5 class="position-relative d-inline-block text-primary text-uppercase">About Care</h5>
                         <h1 class="display-5 mb-0">The World's Best Health Care Site That You Can Trust</h1>
                     </div>
-                    <p class="mb-4">Welcome to Care, your trusted companion in finding the right healthcare professional
-                        and managing your appointments, no matter where you are. At Care, we understand that your health
-                        is your most precious asset, and we're here to make it easy for you to access top-notch medical
+                    <p class="mb-4">Welcome to Care, your trusted companion in finding the right healthcare
+                        professional
+                        and managing your appointments, no matter where you are. At Care, we understand that
+                        your health
+                        is your most precious asset, and we're here to make it easy for you to access top-notch
+                        medical
                         expertise in your city.</p>
                 </div>
                 <div class="col-lg-5" style="min-height: 400px;">
@@ -200,108 +210,41 @@ $run_select_service = mysqli_query($connection, $select_service);
 
         </div>
     </div>
-    </div>
+
     <!-- About End -->
 
 
     <!-- Appointment Start -->
     <div class="container-fluid bg-primary bg-appointment my-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
-            <div class="row gx-5">
-                <div class="col-lg-6 py-5">
-                    <div class="py-5">
-                        <h1 class="display-5 text-white mb-4">Why Choose Care?</h1>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-10 py-5">
+                    <div class="">
+                        <h1 class="display-5 mb-5 text-white">Why Choose Care?</h1>
                         <ol class="text-white mb-0">
-                        <li><b>Convenience:</b> We value your time and convenience. Care simplifies the process of finding and booking appointments with healthcare professionals, so you can focus on your health, not paperwork.</li><br>
-                        <li><b>Reliability:</b>  We only list certified and trusted healthcare providers to ensure your peace of mind. Your health is too important to leave to chance, and we're committed to connecting you with the best in the industry.</li><br>
-                        <li><b>Empowerment:</b> Care empowers you to take control of your healthcare journey. With our platform, you can make informed decisions about your health and well-being.</li><br>
-                        <li><b>Accessibility:</b>Our user-friendly website and mobile app ensure that you can access our services anytime, anywhere. We're here to serve you 24/7.</li>
-                    </ol>
+                            <li><b>Convenience:</b> We value your time and convenience. Care simplifies the process
+                                of
+                                finding and booking appointments with healthcare professionals, so you can focus on
+                                your
+                                health, not paperwork.</li><br>
+                            <li><b>Reliability:</b> We only list certified and trusted healthcare providers to
+                                ensure
+                                your peace of mind. Your health is too important to leave to chance, and we're
+                                committed
+                                to connecting you with the best in the industry.</li><br>
+                            <li><b>Empowerment:</b> Care empowers you to take control of your healthcare journey.
+                                With
+                                our platform, you can make informed decisions about your health and well-being.</li>
+                            <br>
+                            <li><b>Accessibility:</b>Our user-friendly website and mobile app ensure that you can
+                                access
+                                our services anytime, anywhere. We're here to serve you 24/7.</li>
+                        </ol>
                     </div>
+
                 </div>
-                <div class="col-lg-6">
-                    <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn"
-                        data-wow-delay="0.6s">
-                        <h1 class="text-white mb-4">Make Appointment</h1>
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <?php
-                                        foreach ($rows as $specialization_row) { ?>
-                                            <option value="<?php echo $specialization_row['specialization_id']; ?>">
-                                                <?php echo $specialization_row['specialization_name'] ?>
-                                            </option>
-                                        <?php }
-                                        ; ?>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <?php while ($doctors_row = mysqli_fetch_array($run_select_doctors)) {
-                                            ; ?>
-                                            <option value="<?php echo $doctors_row['doctor_id']; ?>">
-                                                <?php echo $doctors_row['doctor_name'] ?>
-                                            </option>
-                                        <?php }
-                                        ; ?>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Name"
-                                        style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option value="Male" selected>Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Custome">Custom</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="number" min="15" class="form-control bg-light border-0"
-                                        placeholder="Your Age" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <?php
-                                        foreach ($rows_city as $city_row) { ?>
-                                            <option value="<?php echo $city_row['city_id']; ?>">
-                                                <?php echo $city_row['city_name'] ?>
-                                            </option>
-                                        <?php }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-3 col-sm-3">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option data-countryCode="PK" value="92" selected>+92</option>
-                                    </select>
-                                </div>
-                                <div class="col-9 col-sm-9">
-                                    <input type="text" class="form-control bg-light border-0"
-                                        placeholder="Your Contact Number" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="date" id="date1" data-target-input="nearest">
-                                        <input type="text" class="form-control bg-light border-0 datetimepicker-input"
-                                            placeholder="Appointment Date" data-target="#date1"
-                                            data-toggle="datetimepicker" style="height: 55px;">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="time" id="time1" data-target-input="nearest">
-                                        <input type="text" class="form-control bg-light border-0 datetimepicker-input"
-                                            placeholder="Appointment Time" data-target="#time1"
-                                            data-toggle="datetimepicker" style="height: 55px;">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Make Appointment</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="col-6">
+                    <a href="search_doctor.php" class="btn btn-primary w-100 mb-5 py-3" type="submit">Make Appointment</a>
                 </div>
             </div>
         </div>
@@ -358,10 +301,12 @@ $run_select_service = mysqli_query($connection, $select_service);
                 <div class="col-lg-7 wow zoomIn" data-wow-delay="0.6s">
                     <div class="offer-text text-center rounded p-5">
                         <h1 class="display-5 text-white">Health Unleashed: Your Wellness Hub Online.</h1>
-                        <p class="text-white mb-4">Care was founded with a simple yet powerful mission: to connect individuals with the
-                        best healthcare services available. We believe that everyone deserves convenient access to a
-                        network of skilled doctors and specialists........</p>
-                        <a href="appointment.html" class="btn btn-dark py-3 px-5 me-3">Appointment</a>
+                        <p class="text-white mb-4">Care was founded with a simple yet powerful mission: to connect
+                            individuals with the
+                            best healthcare services available. We believe that everyone deserves convenient access
+                            to a
+                            network of skilled doctors and specialists........</p>
+                        <a href="search_doctor.php" class="btn btn-dark py-3 px-5 me-3">Appointment</a>
                         <a href="about.php" class="btn btn-light py-3 px-5">Read More</a>
                     </div>
                 </div>
@@ -381,14 +326,16 @@ $run_select_service = mysqli_query($connection, $select_service);
                     <div class="owl-carousel testimonial-carousel rounded p-5 wow zoomIn" data-wow-delay="0.6s">
                         <div class="testimonial-item text-center text-white">
                             <img class="img-fluid mx-auto rounded mb-4" src="img/testimonial-1.jpg" alt="">
-                            <p class="fs-5">Dolores sed duo clita justo dolor et stet lorem kasd dolore lorem ipsum. At
+                            <p class="fs-5">Dolores sed duo clita justo dolor et stet lorem kasd dolore lorem ipsum.
+                                At
                                 lorem lorem magna ut et, nonumy labore diam erat. Erat dolor rebum sit ipsum.</p>
                             <hr class="mx-auto w-25">
                             <h4 class="text-white mb-0">Client Name</h4>
                         </div>
                         <div class="testimonial-item text-center text-white">
                             <img class="img-fluid mx-auto rounded mb-4" src="img/testimonial-2.jpg" alt="">
-                            <p class="fs-5">Dolores sed duo clita justo dolor et stet lorem kasd dolore lorem ipsum. At
+                            <p class="fs-5">Dolores sed duo clita justo dolor et stet lorem kasd dolore lorem ipsum.
+                                At
                                 lorem lorem magna ut et, nonumy labore diam erat. Erat dolor rebum sit ipsum.</p>
                             <hr class="mx-auto w-25">
                             <h4 class="text-white mb-0">Client Name</h4>
@@ -404,8 +351,8 @@ $run_select_service = mysqli_query($connection, $select_service);
 
 
     <?php
-include('footer.php');
-?>
+    include('footer.php');
+    ?>
 
 
 

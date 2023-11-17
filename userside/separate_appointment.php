@@ -1,35 +1,36 @@
 <?php
-// session_start();
+session_start();
 include("../admin/connection.php");
 $id = $_GET['id'];
 $select_specialization = "SELECT * FROM doctors join specialization on doctors.doctor_specialization=specialization.specialization_id join city on doctors.doctor_city=city.city_id where doctors.doctor_id= '$id'";
 $select_doctors = mysqli_query($connection, $select_specialization);
 $select_doctors_data = mysqli_fetch_assoc($select_doctors);
-if (!isset($_SESSION['p_id'])) {
-    echo "<script>alert('session does not exist!')</script>";
-    // session_start();
-} else {
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        if (isset($_POST["btn_sep_appointment"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["btn_sep_appointment"])) {
+        if (isset($_SESSION['p_id'])) {
             $p_id = $_SESSION['p_id'];
-            $p_gender = $_POST["patient_gender"];
-            $p_city = $_POST["patient_city"];
-            $date = $_POST["appointment_date"];
-            $time = $_POST["appointment_time"];
+            $p_gender = $_POST['p_gender'];
+            $p_city = $select_doctors_data['city_id'];
+            $date = $_POST['appointment_date'];
+            $time = $_POST['appointment_time'];
             $d_id = $id;
-            $p_age = $_POST["patient_age"];
-            $p_contact = $_POST["patient_contact"];
-            $appointment_insert = "INSERT INTO `appointment`( `patient_id`, `patient_gender`, `patient_city`, `date`, `time`, `doctor_id`, `patient_age`, `patient_contact`) VALUES ('$p_id','$p_gender','$p_city','$date','$time','$d_id','$p_age','$p_contact')";
+            $p_age = $_POST['p_age'];
+            $p_contact = $_POST['p_contact'];
+            $appointment_insert = "INSERT INTO `appointment`(`patient_id`, `patient_gender`, `patient_city`, `date`, `time`, `doctor_id`, `patient_age`) VALUES ('$p_id','$p_gender','$p_city','$date','$time','$d_id','$p_age')";
             $run_appointment_insert = mysqli_query($connection, $appointment_insert);
             if ($run_appointment_insert) {
                 echo "<script>alert('success')</script>";
             } else {
                 echo "<script>alert('failed')</script>";
             }
+        } else {
+            echo "<script>alert('You are not logged in!')</script>";
         }
+
     }
 }
-    
+
+
 
 ?>
 <!DOCTYPE html>
@@ -157,8 +158,7 @@ if (!isset($_SESSION['p_id'])) {
                                         style="height: 55px;" name="patient_name" value="">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;"
-                                        name="patient_gender">
+                                    <select class="form-select bg-light border-0" style="height: 55px;" name="p_gender">
                                         <option value="Male" selected>Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Custome">Custom</option>
@@ -166,7 +166,7 @@ if (!isset($_SESSION['p_id'])) {
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <input type="number" min="15" class="form-control bg-light border-0"
-                                        placeholder="Your Age" name="patient_age" style="height: 55px;">
+                                        placeholder="Your Age" name="p_age" style="height: 55px;">
                                 </div>
 
                                 <div class="col-3 col-sm-3">
@@ -176,13 +176,17 @@ if (!isset($_SESSION['p_id'])) {
                                 </div>
                                 <div class="col-9 col-sm-9">
                                     <input type="text" class="form-control bg-light border-0"
-                                        placeholder="Your Contact Number" name="patient_contact" style="height: 55px;">
+                                        placeholder="Your Contact Number" name="p_contact" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="date" id="date1" data-target-input="nearest">
-                                        <input type="text" class="form-control bg-light border-0 datetimepicker-input"
+                                        <?php
+                                        $minDate = date('d-m-Y', strtotime('+1 day'));
+                                        ?>
+                                        <input type="date" class="form-control bg-light border-0 datetimepicker-input"
                                             placeholder="Appointment Date" data-target="#date1"
-                                            data-toggle="datetimepicker" name="appointment_date" style="height: 55px;">
+                                            data-toggle="datetimepicker" name="appointment_date" min="<?php echo $minDate;
+                                            ?>" style="height: 55px;" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">

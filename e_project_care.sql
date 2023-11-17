@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2023 at 07:47 PM
+-- Generation Time: Nov 17, 2023 at 09:32 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -49,7 +49,7 @@ CREATE TABLE `appointment` (
   `appointment_id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
   `patient_gender` varchar(100) NOT NULL,
-  `patient_city` varchar(100) NOT NULL,
+  `patient_city` int(100) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
   `appointment_status` varchar(50) NOT NULL DEFAULT 'pending',
@@ -62,7 +62,9 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`appointment_id`, `patient_id`, `patient_gender`, `patient_city`, `date`, `time`, `appointment_status`, `doctor_id`, `patient_age`) VALUES
-(1, 1, 'male', 'karachi', '0000-00-00', '12:00:00', 'pending', 12, 19);
+(13, 1, 'Male', 1, '2023-11-10', '00:00:00', 'pending', 15, 0),
+(14, 1, 'Male', 1, '2023-11-22', '00:00:00', 'pending', 15, 0),
+(15, 1, 'Male', 1, '2023-11-22', '00:00:00', 'pending', 15, 0);
 
 -- --------------------------------------------------------
 
@@ -148,13 +150,6 @@ CREATE TABLE `medical_news` (
   `news_content` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `medical_news`
---
-
-INSERT INTO `medical_news` (`news_id`, `news_title`, `news_image`, `news_content`) VALUES
-(5, 'Familial hypercholesterolemia affects the way the body processes cholesterol.', '../medical_news_images/30770tn.jpg', 'Overview\r\n\r\nFamilial hypercholesterolemia affects the way the body processes cholesterol. As a result, people with familial hypercholesterolemia have a higher risk of heart disease and a greater risk of early heart attack.\r\n\r\nThe genetic changes that cause familial hypercholesterolemia are inherited. The condition is present from birth, but symptoms may not appear until adulthood.\r\n\r\nPeople who inherit the condition from both parents usually develop symptoms in childhood. If this rare and more severe variety is left untreated, death often occurs before age 20.\r\n\r\nTreatments for both types of familial hypercholesterolemia include a variety of medications and healthy-lifestyle behaviors.\r\n\r\nSymptoms\r\n\r\nAdults and children who have familial hypercholesterolemia have very high levels of low-density lipoprotein (LDL) cholesterol in their blood. low-density lipoprotein (LDL) cholesterol is known as \"bad\" cholesterol because it can build up in the walls of the arteries, making them hard and narrow.\r\n\r\nThis excess cholesterol is sometimes deposited in certain portions of the skin, some tendons and around the iris of the eyes:\r\n\r\nSkin. The most common spots for cholesterol deposits to occur is on the hands, elbows and knees. They also can occur in the skin around the eyes.\r\n\r\nTendons. Cholesterol deposits may thicken the Achilles tendon, along with some tendons in the hands.\r\nEyes. High cholesterol levels can cause corneal arcus, a white or gray ring around the iris of the eye. This happens most commonly in older people, but it can occur in younger people who have familial hypercholesterolemia.');
-
 -- --------------------------------------------------------
 
 --
@@ -174,7 +169,7 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`patient_id`, `patient_name`, `patient_email`, `patient_password`, `status`) VALUES
-(1, 'Mohtasham', 'mohtasham@gmail', 'MOHTASHAM123', 0);
+(1, 'Mohtasham', 'mohtasham@gmail.com', 'MOHTASHAM123', 0);
 
 -- --------------------------------------------------------
 
@@ -257,34 +252,6 @@ INSERT INTO `specialization` (`specialization_id`, `specialization_name`, `statu
 (14, 'Anesthesiologist', 1),
 (15, 'BMBS', 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
-  `user_name` varchar(1001) NOT NULL,
-  `user_email` varchar(100) NOT NULL,
-  `user_password` varchar(100) NOT NULL,
-  `user_profile` varchar(500) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_profile`, `status`) VALUES
-(15, 'mohtasham', 'mohtasham@gmail.com', 'mohtasham123', '', 0),
-(16, 'fahad', 'fahad@gmail.com', 'fahad123', '', 0),
-(17, 'Usman', 'usman@gmail.com', 'usman123', '', 0),
-(18, 'faisal', 'faisal@gmail.com', 'faisal123', '', 0),
-(19, 'Arsalan', 'Arsalan@gmail.com', 'arsalan123', '', 0),
-(20, 'Usman', 'usman@gmail.com', 'usman123', '', 0),
-(21, 'Faisal', 'faisal@gmail.com', 'faisal123', '', 0);
-
 --
 -- Indexes for dumped tables
 --
@@ -295,7 +262,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `use
 ALTER TABLE `appointment`
   ADD PRIMARY KEY (`appointment_id`),
   ADD KEY `fk` (`doctor_id`),
-  ADD KEY `gk` (`patient_id`);
+  ADD KEY `gk` (`patient_id`),
+  ADD KEY `kl` (`patient_city`);
 
 --
 -- Indexes for table `city`
@@ -342,12 +310,6 @@ ALTER TABLE `specialization`
   ADD PRIMARY KEY (`specialization_id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -355,7 +317,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `city`
@@ -400,12 +362,6 @@ ALTER TABLE `specialization`
   MODIFY `specialization_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
 -- Constraints for dumped tables
 --
 
@@ -414,7 +370,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `appointment`
   ADD CONSTRAINT `fk` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`),
-  ADD CONSTRAINT `gk` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`patient_id`);
+  ADD CONSTRAINT `gk` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`patient_id`),
+  ADD CONSTRAINT `kl` FOREIGN KEY (`patient_city`) REFERENCES `city` (`city_id`);
 
 --
 -- Constraints for table `doctors`

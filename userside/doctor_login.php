@@ -1,4 +1,6 @@
 <?php
+session_start();
+// ob_start();
 include("../admin/connection.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['btn_doctor_login'])) {
@@ -9,12 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $run_select_doctor = mysqli_query($connection, $select_doctor);
         $fetched_doctor = mysqli_fetch_assoc($run_select_doctor);
 
-        if ($dl_password== $fetched_doctor["doctor_password"]) {
+        if ($dl_password == $fetched_doctor["doctor_password"]) {
             $_SESSION['d_id'] = $fetched_doctor['doctor_id'];
             $_SESSION['d_name'] = $fetched_doctor['doctor_name'];
             $_SESSION['d_email'] = $fetched_doctor['doctor_email'];
-            echo "<script>window.location.href = 'index.php'</script>";
-        } else {
+                echo "<script>window.location.href = 'index.php'</script>";
+            } else {
             echo "<script>alert('Invalid email or password')</script>";
         }
     }
@@ -158,11 +160,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             section .container {
                 max-width: 400px;
             }
-
-            section .container .imgBx {
-                display: none;
-            }
-
             section .container .user .formBx {
                 width: 100%;
             }
@@ -210,7 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container  form_div mt-3">
         <div class="user signinBx">
             <div>
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" >
                     <div class="row justify-content-center jumbotron box8 ">
                         <div class="col-sm-8 form-group">
                             <label>Email</label>

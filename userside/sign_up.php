@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
       echo "<script>alert('sign Up failed!')</script>";
     }
-  } else if (isset($_POST['btn_login'])) {
+  }
+  if (isset($_POST['btn_login'])) {
     $l_useremail = $_POST['l_useremail'];
     $l_userpassword = $_POST['l_userpassword'];
 
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $run_select_user = mysqli_query($connection, $select_user);
     $fetched_patient = mysqli_fetch_assoc($run_select_user);
 
-    if ($l_userpassword == $fetched_patient["patient_password"]) {
+    if ($l_userpassword === $fetched_patient["patient_password"]) {
       $_SESSION['p_id'] = $fetched_patient['patient_id'];
       $_SESSION['p_name'] = $fetched_patient['patient_name'];
       $_SESSION['p_email'] = $fetched_patient['patient_email'];

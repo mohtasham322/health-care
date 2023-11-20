@@ -1,34 +1,65 @@
 <?php
 include("../admin/connection.php");
 session_start();
+$username_error = $email_error = $password_error = "";
 $select_patients = "SELECT * FROM `patients`";
 $select_run_patients = mysqli_query($connection, $select_patients);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['btn_signup'])) {
-    $username = $_POST['username'];
+    if (empty($_POST['username'])) {
+      $username_error = "username is required";
+    } else {
+      $username = $_POST['username'];
+    }
     $useremail = $_POST['useremail'];
-    $userpassword = $_POST['user_password'];
-    $email_exists = false;
-    while ($patients_row = mysqli_fetch_assoc($select_run_patients)) {
-      if ($useremail == $patients_row['patient_email']) {
-        $email_exists = true;
-        echo "<script>alert('User already exists. Try to log in')</script>";
-        break;
-      }
+    $email_pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
+    if (!preg_match($email_pattern, $useremail)) {
+      $email_error = "Email is not valid.";
+    } else {
+      $useremail = $_POST['useremail'];
     }
-    if (!$email_exists) {
-      $insert_users = "INSERT INTO `patients`(`patient_name`, `patient_email`, `patient_password`) VALUES ('$username','$useremail','$userpassword')";
-      $run_insert_users = mysqli_query($connection, $insert_users);
-      if ($run_insert_users) {
-        echo "<script>window.location.href = 'index.php'</script>";
-
+    if (empty($_POST['user_password'])) {
+      $password_error = "password is required";
+    } else {
+      $userpassword = $_POST['user_password'];
+      if (strlen($userpassword) < 8) {
+        $password_error = "password must contain atleast 8 characters";
+      }
+      ;
+      if (strlen($userpassword) > 20) {
+        $password_error = "password must contain atmost 20 characters";
+      }
+      ;
+      if (!preg_match("/[0-9]/", $userpassword)) {
+        $password_error = "password must include atleast one number";
+      }
+      if (!preg_match("/[A-Z]/", $userpassword)) {
+        $password_error = "password must include atleast one capital letter";
+      }
+      if (!preg_match("/[!@#$%^&*()\-_=+{};:,<.>?~]/", $userpassword)) {
+        $password_error = "password must include atleast one special character ";
       } else {
-        echo "<script>alert('sign Up failed!')</script>";
+        $email_exists = false;
+        while ($patients_row = mysqli_fetch_assoc($select_run_patients)) {
+          if ($useremail == $patients_row['patient_email']) {
+            $email_exists = true;
+            echo "<script>alert('User already exists. Try to log in')</script>";
+            break;
+          }
+        }
+        if (!$email_exists) {
+          $insert_users = "INSERT INTO `patients`(`patient_name`, `patient_email`, `patient_password`) VALUES ('$username','$useremail','$userpassword')";
+          $run_insert_users = mysqli_query($connection, $insert_users);
+        }
       }
+
     }
+
+
+
   }
 }
-
 
 
 if (isset($_POST['btn_login'])) {
@@ -104,8 +135,23 @@ if (isset($_POST['btn_login'])) {
             <form method="POST">
               <h2>Create an account</h2>
               <input type="text" class="form-control" name="username" placeholder="Username" />
+              <p style="color: red; font-size:15px;">
+                <?php
+                echo $username_error;
+                ?>
+              </p>
               <input type="email" name="useremail" placeholder="Email Address" />
+              <p style="color: red;">
+                <?php
+                echo $email_error;
+                ?>
+              </p>
               <input type="password" name="user_password" placeholder="Create Password" />
+              <p style="color: red;">
+                <?php
+                echo $password_error;
+                ?>
+              </p>
               <input type="submit" name="btn_signup" value="Sign Up">
               <p class="signup">
                 Already have an account ?

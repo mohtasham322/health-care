@@ -224,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="col-sm-8">
                             <p class="signup">
                                 Don't have an account ?
-                                <a href="doctor_registration1.php">Sign Up</a>
+                                <a href="doctor_registration.php">Sign Up</a>
                             </p>
                         </div>
 

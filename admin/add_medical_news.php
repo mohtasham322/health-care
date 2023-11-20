@@ -13,8 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $run_insert_news_q = mysqli_query($connection, $insert_news_q);
         if ($run_insert_news_q) {
             echo "<script> window.location.href = 'medical_news.php' </script>";
-        }
-        else{
+        } else {
             echo "<script>alert('something went wrong')</script>";
         }
         ;
@@ -81,13 +80,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Content</label>
-                            <textarea type="text" class="form-control" name="content"></textarea>
-                    </div>
+                            <textarea type="textarea" class="form-control" name="content"></textarea>
+                        </div>
 
-                    <button type="submit" class="btn btn-primary" name="btn_add_news">add news</button>
-                </form>
+                        <button type="submit" class="btn btn-primary" name="btn_add_news">add news</button>
+                    </form>
                 </div>
-                
+
 
 
             </div>

@@ -1,7 +1,7 @@
 <?php
 include("connection.php");
-$select_doctor_query = "SELECT * FROM `doctors` where status = ' ' ";
-$run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
+$select_appointment_query = "SELECT * FROM `appointment`";
+$run_select_appointment_query = mysqli_query($connection, $select_appointment_query);
 
 
 ?>
@@ -17,6 +17,8 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 
     <title>Admin Dashboard</title>
 
@@ -30,11 +32,6 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <style>
-        td{
-            padding: 20px;
-        }
-    </style>
 
 </head>
 
@@ -52,49 +49,29 @@ $run_select_doctor_query = mysqli_query($connection, $select_doctor_query);
             <div id="content">
 
                 <?php include 'topbar.php';?>
-                <div class="container" style="overflow-x: auto;">
+                <div class="container">
                     
-                        <h1>Doctor Registration Request </h1>
-                        <table class="table-bordered w-100 text-center w-100" >
+                        <h1>Appointments</h1>
+                        <table class="table-bordered w-100 text-center">
                             <thead>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Profile Pic</th>
-                                <th>Exp</th>
-                                <th>Qualification</th>
-                                <th>Phone</th>
-                                <th>Degree</th>
-                                <th>NIC front</th>
-                                <th>NIC back</th>
-                                <th>City</th>
-                                <th>Whatsapp</th>
-                                <th>Gender</th>
-                                <th>Specialization</th>
-                                <th>Status</th>
-                                <th>Accept</th>
-                                <th>Decline</th>
+                                <th>Appointment Id</th>
+                                <th>patient Id</th>
+                                <th>patient city</th>
+                                <th>doctor id</th>
+                                <th>date</th>
+                                <th>time</th>
+                                <th>status</th>
                             </thead>
                             <tbody>
-                                <?php while($row_doctor = mysqli_fetch_array($run_select_doctor_query)){?>
+                                <?php while($row_appointment = mysqli_fetch_array($run_select_appointment_query)){?>
                               <tr>
-                                        <td><?php echo $row_doctor['doctor_id']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_name']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_email']; ?></td>
-                                        <td><img width="50" src="<?php echo $row_doctor['doctor_pic']; ?>" alt=""></td>
-                                        <td><?php echo $row_doctor['doctor_exp']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_qualification']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_contact']; ?></td>
-                                        <td><img width="50" src="<?php echo $row_doctor['doctor_degree_pic']; ?>" alt=""></td>
-                                        <td><img width="50" src="<?php echo $row_doctor['doctor_nic_front_pic']; ?>" alt=""></td>
-                                        <td><img width="50" src="<?php echo $row_doctor['doctor_nic_back_pic']; ?>" alt=""></td>
-                                        <td><?php echo $row_doctor['doctor_city']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_whatsapp']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_gender']; ?></td>
-                                        <td><?php echo $row_doctor['doctor_specialization']; ?></td>
-                                        <td><?php echo $row_doctor['status']; ?></td>
-                                        <td><a href="accept_request.php?d_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-primary">Accept</a></td>
-                                        <td><a href="decline_request.php?d_id=<?php echo $row_doctor['doctor_id']; ?>" class="btn btn-danger">Decline</a></td>
+                                        <td><?php echo $row_appointment['appointment_id']; ?></td>
+                                        <td><?php echo $row_appointment['patient_id']; ?></td>
+                                        <td><?php echo $row_appointment['patient_city']; ?></td>
+                                        <td><?php echo $row_appointment['doctor_id']; ?></td>
+                                        <td><?php echo $row_appointment['date']; ?></td>
+                                        <td><?php echo $row_appointment['time']; ?></td>
+                                        <td><?php echo $row_appointment['appointment_status']; ?></td>
                               </tr>
                                 <?php } ?>
                                 

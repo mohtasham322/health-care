@@ -103,13 +103,14 @@ $run_select_news = mysqli_query($connection, $select_news);
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container ">
             <h2 class="section_heading">Latest Medical News</h2>
-            <div class="row g-5 mb-5 justify-content-center text-center">
-                <div class="col-lg-12">
+            <div class="row g-5 mb-5 justify-content-center">
+                <div class="col-lg-12 ">
                     <div class="section-title mb-5">
-                    </div> <a href="">
-                    <div class="row flex-row g-5">
-                       
                         <?php while ($row_news = mysqli_fetch_array($run_select_news)) { ?>
+                        </div> <a href="each_medical_news.php?mn_id=<?php echo $row_news['news_id']; ?>">
+                            <div class="row flex-row g-5 mb-4">
+
+
 
                                 <div class="col-md-3 service-item wow zoomIn" data-wow-delay="0.6s">
                                     <div class="rounded-top overflow-hidden">
@@ -122,10 +123,11 @@ $run_select_news = mysqli_query($connection, $select_news);
                                         <?php echo $row_news['news_title']; ?>
                                     </h5>
                                 </div>
-                        <?php }
+                            <?php }
                         ; ?>
-                        
-                    </div></a>
+
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

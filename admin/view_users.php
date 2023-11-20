@@ -51,12 +51,12 @@ $run_select_users_query = mysqli_query($connection, $select_users_query);
                 <?php include 'topbar.php';?>
                 <div class="container">
                     
-                        <h1>Users</h1>
+                        <h1>Patients</h1>
                         <table class="table-bordered w-100 text-center">
                             <thead>
-                                <th>User Id</th>
-                                <th>User Name</th>
-                                <th>User Email</th>
+                                <th>Patient Id</th>
+                                <th>Patient Name</th>
+                                <th>Patient Email</th>
                                 <th>Delete</th>
                             </thead>
                             <tbody>

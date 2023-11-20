@@ -1,10 +1,25 @@
 <?php
 include("connection.php");
-$select_m_news_query = "SELECT * FROM `medical_news`";
-$run_select_m_news_query = mysqli_query($connection, $select_m_news_query);
-
-
+$id = $_GET['cat_id'];
+$select_qualification_row = "SELECT * FROM `qualification` WHERE qualification_id = $id";
+$run_select_qualification_row = mysqli_query($connection, $select_qualification_row);
+$fetched_qualification_row = mysqli_fetch_array($run_select_qualification_row);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["btn_update_qualification"])) {
+        $qualification_name = $_POST["qualification_name"];
+        $status = $_POST["status"];
+        $update_qualification = "UPDATE `qualification` SET `qualification_name`='$qualification_name', `status`='$status' WHERE qualification_id = $id";
+        $run_update_qualification = mysqli_query($connection, $update_qualification);
+        if ($run_update_qualification) {
+            echo "<script> window.location.href = 'view_qualification.php' </script>";
+        }
+        ;
+    }
+    ;
+}
+;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,33 +62,23 @@ $run_select_m_news_query = mysqli_query($connection, $select_m_news_query);
 
                 <?php include 'topbar.php'; ?>
                 <div class="container">
-                    <div class="d-flex align-items-center">
-                        <h1>Medical News</h1><a class="ms-4" href="add_medical_news.php">+ add medical news</a>
-                    </div>
-                    <table class="table-bordered w-100 text-center">
-                        <thead>
-                            <th>News Title</th>
-                            <th>News Image</th>
-                            <th>News Content</th>
-                            <th>Delete News</th>
-                            <th>Update News</th>
-                        </thead>
-                        <tbody>
-                                <?php while($row_m_news = mysqli_fetch_array($run_select_m_news_query)){?>
-                              <tr>
-                                        <td><?php echo $row_m_news['news_title']; ?></td>
-                                        <td><img width="50" src="<?php echo $row_m_news['news_image']; ?>" alt=></td>
-                                        <td><?php echo $row_m_news['news_content']; ?></td>
-                                        <td><a href="delete_qualification.php?news_id=<?php echo $row_m_news['news_id']; ?>" class="btn btn-danger px-2 py-2"><i class="bi bi-trash3"></i> Delete</a></td>
-                                        <td><a href="update_qualification.php?news_id=<?php echo $row_m_news['news_id']; ?>" class="btn btn-primary px-2 py-2"><i class="bi bi-pencil-square"></i> Update</a></td>
-                              </tr>
-                                <?php } ?>
-                                
-                            </tbody>
+                    <form method="POST" enctype="multipart/form-data">
+                        <h1>Add Medical News</a></h1>
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Image</label>
+                            <input type="file" class="form-control" name="image">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Content</label>
+                            <textarea type="textarea" class="form-control" name="content"></textarea>
+                        </div>
 
-                    </table>
-
-
+                        <button type="submit" class="btn btn-primary" name="btn_add_news">add news</button>
+                    </form>
                 </div>
 
 
@@ -81,7 +86,7 @@ $run_select_m_news_query = mysqli_query($connection, $select_m_news_query);
             </div>
             <!-- End of Main Content -->
 
-            <?php include 'footer.php' ?>
+            <?php include 'footer.php'; ?>
 
 
         </div>
@@ -117,8 +122,8 @@ $run_select_m_news_query = mysqli_query($connection, $select_m_news_query);
 
     <!-- Bootstrap core JavaScript-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

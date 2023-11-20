@@ -4,15 +4,14 @@ session_start();
 $select_admin_query = "SELECT * FROM `admin`";
 $run_select_admin_query = mysqli_query($connection, $select_admin_query);
 $fetched_data = mysqli_fetch_array($run_select_admin_query);
-if($_SERVER["REQUEST_METHOD"]=== "POST"){
-    if(isset($_POST["btn_login"])){
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["btn_login"])) {
         $admin_username = $_POST["username"];
         $admin_password = $_POST["password"];
-        if($admin_username == $fetched_data['admin_username'] && $admin_password == $fetched_data['admin_password']){
+        if ($admin_username == $fetched_data['admin_username'] && $admin_password == $fetched_data['admin_password']) {
             $_SESSION['admin_user'] = $admin_username;
             echo "<script>window.location.href = 'index.php'</script>";
-        }
-        else{
+        } else {
             echo "<script>alert('login failed')</script>";
         }
 
@@ -74,9 +73,10 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
-                                        <button type="submit" href="index.html" class="btn btn-primary btn-user btn-block" name="btn_login">
+                                        <button type="submit" href="index.html"
+                                            class="btn btn-primary btn-user btn-block" name="btn_login">
                                             Login
-</button>
+                                        </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">

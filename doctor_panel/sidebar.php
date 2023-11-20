@@ -1,7 +1,6 @@
         <?php
-        session_start();
-        if(!isset($_SESSION['admin_user'])){
-            header('location:login.php');
+        if(!isset($_SESSION['d_id'])){
+            header('location:../userside/index.php');
         }
         ?>
         <!-- Sidebar -->
@@ -29,12 +28,17 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <!-- <i class="fas fa-fw fa-cog"></i> -->
-
-                    <img src="images/Doctor-Icon.png" alt="" width="25" class="pb-2 me-2">
+                    <!-- <i class="fas fa-fw fa-folder"></i> -->
+                    <img src="../admin/images/patient-icon.png" alt="" width="25" class="pb-2 me-2">
                     <span>Appointments</span>
-
                 </a>
+                <!-- <div id="collapsePages2" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="accepted_request.php">Accepted appointments</a>
+                        <a class="collapse-item" href="index.php">appointment request</a>
+                    </div>
+                </div> -->
             </li>
 
 

@@ -142,7 +142,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="view_appointments.php">
                     <!-- <i class="fas fa-fw fa-cog"></i> -->
 
                     <img src="images/Doctor-Icon.png" alt="" width="25" class="pb-2 me-2">

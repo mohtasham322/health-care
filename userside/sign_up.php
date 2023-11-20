@@ -1,45 +1,55 @@
 <?php
 include("../admin/connection.php");
 session_start();
+$select_patients = "SELECT * FROM `patients`";
+$select_run_patients = mysqli_query($connection, $select_patients);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['btn_signup'])) {
     $username = $_POST['username'];
     $useremail = $_POST['useremail'];
     $userpassword = $_POST['user_password'];
-    // $user_array = array(
-    //   'name' => $username,
-    //   'email' => $useremail,
-    //   'password' => $userpassword
-    // );
-    $insert_users = "INSERT INTO `patients`(`patient_name`, `patient_email`, `patient_password`) VALUES ('$username','$useremail','$userpassword')";
-    $run_insert_users = mysqli_query($connection, $insert_users);
-    if ($run_insert_users) {
-      // $_SESSION['user_session'] = $user_array;
-      echo "<script>window.location.href = 'index.php'</script>";
-
-    } else {
-      echo "<script>alert('sign Up failed!')</script>";
+    $email_exists = false;
+    while ($patients_row = mysqli_fetch_assoc($select_run_patients)) {
+      if ($useremail == $patients_row['patient_email']) {
+        $email_exists = true;
+        echo "<script>alert('User already exists. Try to log in')</script>";
+        break;
+      }
     }
-  }
-  if (isset($_POST['btn_login'])) {
-    $l_useremail = $_POST['l_useremail'];
-    $l_userpassword = $_POST['l_userpassword'];
+    if (!$email_exists) {
+      $insert_users = "INSERT INTO `patients`(`patient_name`, `patient_email`, `patient_password`) VALUES ('$username','$useremail','$userpassword')";
+      $run_insert_users = mysqli_query($connection, $insert_users);
+      if ($run_insert_users) {
+        echo "<script>window.location.href = 'index.php'</script>";
 
-    $select_user = "SELECT * FROM `patients` WHERE patient_email = '$l_useremail'";
-    $run_select_user = mysqli_query($connection, $select_user);
-    $fetched_patient = mysqli_fetch_assoc($run_select_user);
-
-    if ($l_userpassword === $fetched_patient["patient_password"]) {
-      $_SESSION['p_id'] = $fetched_patient['patient_id'];
-      $_SESSION['p_name'] = $fetched_patient['patient_name'];
-      $_SESSION['p_email'] = $fetched_patient['patient_email'];
-
-      echo "<script>window.location.href = 'index.php'</script>";
-    } else {
-      echo "<script>alert('Invalid email or password')</script>";
+      } else {
+        echo "<script>alert('sign Up failed!')</script>";
+      }
     }
   }
 }
+
+
+
+if (isset($_POST['btn_login'])) {
+  $l_useremail = $_POST['l_useremail'];
+  $l_userpassword = $_POST['l_userpassword'];
+
+  $select_user = "SELECT * FROM `patients` WHERE patient_email = '$l_useremail'";
+  $run_select_user = mysqli_query($connection, $select_user);
+  $fetched_patient = mysqli_fetch_assoc($run_select_user);
+
+  if ($l_userpassword === $fetched_patient["patient_password"]) {
+    $_SESSION['p_id'] = $fetched_patient['patient_id'];
+    $_SESSION['p_name'] = $fetched_patient['patient_name'];
+    $_SESSION['p_email'] = $fetched_patient['patient_email'];
+
+    echo "<script>window.location.href = 'index.php'</script>";
+  } else {
+    echo "<script>alert('Invalid email or password')</script>";
+  }
+}
+
 
 
 

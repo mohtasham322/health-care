@@ -1,4 +1,34 @@
-
+<?php
+include("connection.php");
+if(!isset($_SESSION['d_id'])){
+    session_start();
+}
+$id = $_SESSION['d_id'];
+$select_appointment_query = "SELECT * FROM appointment join patients on appointment.patient_id=patients.patient_id join city on appointment.patient_city = city.city_id where appointment.doctor_id= '$id' and  appointment_status = 'pending'";
+$run_select_appointment_query = mysqli_query($connection, $select_appointment_query);
+if($run_select_appointment_query-> num_rows < 1){
+        echo '<style>
+            #appointment_error{
+                display : block !important;
+            }
+            table{
+                display : none !important;
+            }
+            
+            </style>';
+    }
+    else {
+        echo '<style>
+        #appointment_error{
+            display : none !important;
+        }
+        table{
+            display : block !important;
+        }
+        
+        </style>';
+    }
+?>
 
 
 <!DOCTYPE html>
@@ -12,7 +42,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,6 +76,41 @@
             <div id="content">
 
                 <?php include 'topbar.php';?>
+                <div class="container" style="overflow-x: auto;">
+                    
+                        <h1>Appointment Request </h1><br>
+                        <h6 id="appointment_error" style="display:none; color:gray;">Appointment not found</h6>
+                        <table class="table-bordered w-100 text-center w-100" >
+                            <thead>
+                                <th>Patient Name</th>
+                                <th>Patient Email</th>
+                                <th>Patient Gender</th>
+                                <th>Patient Age</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Accept</th>
+                                <th>Decline</th>
+                            </thead>
+                            <tbody>
+                                <?php while($row_appointment = mysqli_fetch_array($run_select_appointment_query)){?>
+                              <tr>
+                                        <td><?php echo $row_appointment['patient_name']; ?></td>
+                                        <td><?php echo $row_appointment['patient_email']; ?></td>
+                                        <td><?php echo $row_appointment['patient_gender']; ?></td>
+                                        <td><?php echo $row_appointment['patient_age']; ?></td>
+                                        <td><?php echo $row_appointment['date']; ?></td>
+                                        <td><?php echo $row_appointment['time']; ?></td>
+                                        <td><a href="accept_request.php?app_id=<?php echo $row_appointment['appointment_id']; ?>" class="btn btn-primary">Accept</a></td>
+                                        <td><a href="decline_request.php?app_id=<?php echo $row_appointment['appointment_id']; ?>" class="btn btn-danger">Decline</a></td>
+                              </tr>
+                                <?php } ?>
+                                
+                            </tbody>
+                            
+                        </table>
+
+                
+                </div>
 
 
 

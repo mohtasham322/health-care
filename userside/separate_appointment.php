@@ -23,6 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             } else {
                 echo "<script>alert('failed')</script>";
             }
+        }
+        elseif(isset($_SESSION['d_id'])){
+            echo "<script>alert('You are not allowed to make appointment from doctor account!')</script>";
+
         } else {
             echo "<script>alert('You are not logged in!')</script>";
         }

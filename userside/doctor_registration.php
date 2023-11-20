@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"]=== "POST"){
     
 
     if($run_insert_doctor_query){
-      echo "<script>alert('query inserted successfully')</script>";
+      echo "<script>alert('Your registration request has been sent successfully!')</script>";
       echo "<script>window.location.href = 'index.php'</script>";
     }
     else{

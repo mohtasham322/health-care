@@ -73,7 +73,46 @@ else {
         .display-flex {
             display: flex;
         }
-    </style>
+    
+
+             /* Navbar resposive */
+           
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            justify-content: center;
+        }
+
+        .navbar-nav {
+            margin-top: 10px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-bottom: 10px;
+        }
+
+        .navbar-toggler {
+            margin-bottom: 10px;
+        }
+
+        .logo_img {
+            max-width: 140px; 
+        }
+    }
+
+   
+    @media (max-width: 360px) {
+        .navbar {
+            display: flex;
+        }
+
+        .logo_img {
+            width: 80%; 
+        }
+    }
+
+
 
     </style>
 </head>

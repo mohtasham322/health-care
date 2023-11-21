@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 08:04 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Nov 21, 2023 at 06:45 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -138,7 +138,8 @@ INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_passw
 (25, 'Clara ', 'clara@gmail.com', 'clasra123 ', '../doctors_images/woman-doctor-wearing-lab-coat-with-stethoscope-isolated_1303-29791.avif', 2, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'female', 'Accepted', 7),
 (26, 'Abigail ', 'abigail@gmail.com', 'abigail123 ', '../doctors_images/file-20191203-66986-im7o5.avif', 5, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'female', 'Accepted', 9),
 (27, 'Benjamin ', 'benjamin@gmail.com', 'benjamin123 ', '../doctors_images/young-male-doctor-close-up-happy-looking-camera-56751540.webp', 1, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'male', 'Accepted', 10),
-(28, 'Henry ', 'henry@gmail.com', 'henry123 ', '../doctors_images/young-male-doctor-close-up-happy-looking-camera-56751540 (1).webp', 6, '1', 3226301906, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3161267933, 'male', '', 10);
+(28, 'Henry ', 'henry@gmail.com', 'henry123 ', '../doctors_images/young-male-doctor-close-up-happy-looking-camera-56751540 (1).webp', 6, '1', 3226301906, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3161267933, 'male', '', 10),
+(45, 'Fahad  ', 'fahad@gmail.com', 'fahad123 ', '../doctors_images/fb4-removebg-preview.png', 5, '1', 3161267933, '../degree_images/fb4.png', '../nic_images/Untitled.png', '../nic_images/fb4.png', 1, 3161267933, 'male', '', 5);
 
 -- --------------------------------------------------------
 
@@ -353,7 +354,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `medical_news`

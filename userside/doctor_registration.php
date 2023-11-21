@@ -1,7 +1,7 @@
 <?php
 include("../admin/connection.php");
 ob_start();
-$fname_error = $lname_error = $email_error = $password_error = $exp_error = $age_error = $phone_error = $whatsapp_error = "";
+$fname_error = $lname_error = $email_error = $password_error = $p_profile_error = $d_picture_error = $nic_front_error = $nic_back_error = $exp_error = $age_error = $phone_error = $whatsapp_error = "";
 $select_qualification = "SELECT * FROM `qualification` where status = 0";
 $run_select_qualification = mysqli_query($connection, $select_qualification);
 $select_specialization = "SELECT * FROM `specialization` where status = 0";
@@ -50,11 +50,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $password_error = "password must include atleast one special character ";
             }
         }
-        $p_image = $_FILES['p_image'];
-        $p_image_name = $_FILES['p_image']['name'];
-        $p_image_temp_name = $_FILES['p_image']['tmp_name'];
-        $p_image_path = "../doctors_images/" . $p_image_name;
-        move_uploaded_file($p_image_temp_name, $p_image_path);
+        if ($_FILES['p_image']['size'] == 0) {
+            $p_profile_error = "profile image is required";
+        } else {
+            $p_image = $_FILES['p_image'];
+            $p_image_name = $_FILES['p_image']['name'];
+            $p_image_temp_name = $_FILES['p_image']['tmp_name'];
+            $p_image_path = "../doctors_images/" . $p_image_name;
+            move_uploaded_file($p_image_temp_name, $p_image_path);
+        }
+
         $experience = $_POST['experience'];
         if (preg_match("/[A-z]/", $experience)) {
             $exp_error = "experience must be in numbers";
@@ -75,45 +80,68 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         $gender = $_POST['gender'];
-        $phone = $_POST['phone'];
-        if (preg_match("/[A-z]/", $phone)) {
-            $phone_error = "phone number must be in numbers";
-        }
-        if (strlen($phone) > 10) {
-            $phone_error = "phone number must contain 10 numbers";
-        }
-        $whatsapp = $_POST['whatsapp'];
-        if (preg_match("/[A-z]/", $whatsapp)) {
-            $whatsapp_error = "whatasapp number number must be in numbers";
-        }
-        if (strlen($whatsapp) > 10) {
-            $whatsapp_error = "whatsapp number number must contain 10 numbers";
-        }
-        $deg_image = $_FILES['deg_pic'];
-        $deg_image_name = $_FILES['deg_pic']['name'];
-        $deg_image_tmp_name = $_FILES['deg_pic']['tmp_name'];
-        $deg_image_path = "../degree_images/" . $deg_image_name;
-        move_uploaded_file($deg_image_tmp_name, $deg_image_path);
-        $nic_front_image = $_FILES['nic_front_pic'];
-        $nic_front_image_name = $_FILES['nic_front_pic']['name'];
-        $nic_front_image_tmp_name = $_FILES['nic_front_pic']['tmp_name'];
-        $nic_front_image_path = "../nic_images/" . $nic_front_image_name;
-        move_uploaded_file($nic_front_image_tmp_name, $nic_front_image_path);
-        $nic_back_image = $_FILES['nic_back_pic'];
-        $nic_back_image_name = $_FILES['nic_back_pic']['name'];
-        $nic_back_image_tmp_name = $_FILES['nic_back_pic']['tmp_name'];
-        $nic_back_image_path = "../nic_images/" . $nic_back_image_name;
-        move_uploaded_file($nic_back_image_tmp_name, $nic_back_image_path);
-        $insert_doctor_query = "INSERT INTO `doctors`(`doctor_name`, `doctor_email`, `doctor_password`, `doctor_pic`, `doctor_exp`, `doctor_qualification`, `doctor_contact`, `doctor_degree_pic`, `doctor_nic_front_pic`, `doctor_nic_back_pic`, `doctor_city`, `doctor_whatsapp`, `doctor_gender`, `doctor_specialization`) VALUES ('$full_name','$email','$password ','$p_image_path','$experience','$qualification','$phone','$deg_image_path','$nic_front_image_path','$nic_back_image_path','$city','$whatsapp','$gender','$specialization')";
-        $run_insert_doctor_query = mysqli_query($connection, $insert_doctor_query);
-
-        if ($run_insert_doctor_query) {
-            echo "<script>alert('Your Registration Request has been sent successfully!')</script>";
-            // echo "<script>window.location.href = 'index.php'</script>";
+        if (empty($_POST['phone'])) {
+            $phone_error = "phone number is required";
         } else {
-            echo "<script>alert('something went wrong')</script>";
-
+            $phone = $_POST['phone'];
+            if (preg_match("/[A-z]/", $phone)) {
+                $phone_error = "phone number must be in numbers";
+            }
+            if (strlen($phone) > 10) {
+                $phone_error = "phone number must contain 10 numbers";
+            }
         }
+        if (empty($_POST['whatsapp'])) {
+            $whatsapp_error = 'whatsapp is required';
+        } else {
+            $whatsapp = $_POST['whatsapp'];
+            if (preg_match("/[A-z]/", $whatsapp)) {
+                $whatsapp_error = "whatasapp number number must be in numbers";
+            }
+            if (strlen($whatsapp) > 10) {
+                $whatsapp_error = "whatsapp number number must contain 10 numbers";
+            }
+        }
+
+        if (($_FILES['deg_pic']['size'] == 0)) {
+            $d_picture_error = "Degree is required";
+        } else {
+            $deg_image = $_FILES['deg_pic'];
+            $deg_image_name = $_FILES['deg_pic']['name'];
+            $deg_image_tmp_name = $_FILES['deg_pic']['tmp_name'];
+            $deg_image_path = "../degree_images/" . $deg_image_name;
+            move_uploaded_file($deg_image_tmp_name, $deg_image_path);
+        }
+        if (($_FILES['nic_front_pic']['size'] == 0)) {
+            $nic_front_error = "NIC is required";
+        } else {
+            $nic_front_image = $_FILES['nic_front_pic'];
+            $nic_front_image_name = $_FILES['nic_front_pic']['name'];
+            $nic_front_image_tmp_name = $_FILES['nic_front_pic']['tmp_name'];
+            $nic_front_image_path = "../nic_images/" . $nic_front_image_name;
+            move_uploaded_file($nic_front_image_tmp_name, $nic_front_image_path);
+        }
+        if (($_FILES['nic_back_pic']['size'] == 0)) {
+            $nic_back_error = "NIC is required";
+        } else {
+            $nic_back_image = $_FILES['nic_back_pic'];
+            $nic_back_image_name = $_FILES['nic_back_pic']['name'];
+            $nic_back_image_tmp_name = $_FILES['nic_back_pic']['tmp_name'];
+            $nic_back_image_path = "../nic_images/" . $nic_back_image_name;
+            move_uploaded_file($nic_back_image_tmp_name, $nic_back_image_path);
+            $insert_doctor_query = "INSERT INTO `doctors`(`doctor_name`, `doctor_email`, `doctor_password`, `doctor_pic`, `doctor_exp`, `doctor_qualification`, `doctor_contact`, `doctor_degree_pic`, `doctor_nic_front_pic`, `doctor_nic_back_pic`, `doctor_city`, `doctor_whatsapp`, `doctor_gender`, `doctor_specialization`) VALUES ('$full_name','$email','$password ','$p_image_path','$experience','$qualification','$phone','$deg_image_path','$nic_front_image_path','$nic_back_image_path','$city','$whatsapp','$gender','$specialization')";
+            $run_insert_doctor_query = mysqli_query($connection, $insert_doctor_query);
+
+            if ($run_insert_doctor_query) {
+                echo "<script>alert('Your Registration Request has been sent successfully!')</script>";
+                // echo "<script>window.location.href = 'index.php'</script>";
+            } else {
+                echo "<script>alert('something went wrong')</script>";
+
+            }
+        }
+
+
 
 
 
@@ -355,6 +383,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="col-sm-6 form-group">
                             <label>Profile Image</label>
                             <input class="input" type="file" name="p_image">
+                            <p style="color: red; font-size:15px;">
+                                <?php
+                                echo $p_profile_error;
+                                ?>
+                            </p>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>Experience</label>
@@ -442,14 +475,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="col-sm-6 form-group">
                             <label>Degree Image</label>
                             <input class="input" type="file" name="deg_pic">
+                            <p style="color: red; font-size:15px;">
+                                <?php
+                                echo $d_picture_error;
+                                ?>
+                            </p>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>NIC (front)</label>
                             <input class="input" type="file" name="nic_front_pic">
+                            <p style="color: red; font-size:15px;">
+                                <?php
+                                echo $nic_front_error;
+                                ?>
+                            </p>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>NIC (back)</label>
                             <input class="input" type="file" name="nic_back_pic">
+                            <p style="color: red; font-size:15px;">
+                                <?php
+                                echo $nic_back_error;
+                                ?>
+                            </p>
                         </div>
 
                         <div class="col-sm-12 form-group mb-0">

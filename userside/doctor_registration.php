@@ -8,6 +8,8 @@ $select_specialization = "SELECT * FROM `specialization` where status = 0";
 $run_select_specialization = mysqli_query($connection, $select_specialization);
 $select_city = "SELECT * FROM `city` where status = 0";
 $run_select_city = mysqli_query($connection, $select_city);
+$select_doctors = "SELECT * FROM `doctors`";
+$run_select_doctors = mysqli_query($connection, $select_doctors);
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["btn_register"])) {
         if (empty($_POST['f_name'])) {
@@ -21,32 +23,51 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $l_name = $_POST['l_name'];
             $full_name = $f_name . ' ' . $l_name;
         }
-        $email = $_POST['email'];
-        $email_pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
-        if (!preg_match($email_pattern, $email)) {
-            $email_error = "Email is not valid.";
+        if (empty($_POST['email'])) {
+            $email_error = "email is required";
         } else {
-            $email = $_POST['email'];
+            $email_exist = false;
+            while ($row_doctors = mysqli_fetch_assoc($run_select_doctors)) {
+                if ($_POST['email'] == $row_doctors['doctor_email']) {
+                    $email_exist = true;
+                    echo "<script>alert('doctor already exists, try to log in')</script>";
+                    echo "<script>window.location.href = 'doctor_login.php';</script>";
+                    $email_error = "doctor already exist , try to log in!";
+                    break;
+                }
+            }
+            if (!$email_exist) {
+                $email_pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
+                if (!preg_match($email_pattern, $_POST['email'])) {
+                    $email_error = "Email is not valid.";
+                } else {
+                    $email = $_POST['email'];
+                }
+
+
+            }
         }
+
+
         if (empty($_POST['password'])) {
             $password_error = "password is required";
         } else {
             $password = $_POST['password'];
-            if (strlen($userpassword) < 8) {
+            if (strlen($password) < 8) {
                 $password_error = "password must contain atleast 8 characters";
             }
             ;
-            if (strlen($userpassword) > 20) {
+            if (strlen($password) > 20) {
                 $password_error = "password must contain atmost 20 characters";
             }
             ;
-            if (!preg_match("/[0-9]/", $userpassword)) {
+            if (!preg_match("/[0-9]/", $password)) {
                 $password_error = "password must include atleast one number";
             }
-            if (!preg_match("/[A-Z]/", $userpassword)) {
+            if (!preg_match("/[A-Z]/", $password)) {
                 $password_error = "password must include atleast one capital letter";
             }
-            if (!preg_match("/[!@#$%^&*()\-_=+{};:,<.>?~]/", $userpassword)) {
+            if (!preg_match("/[!@#$%^&*()\-_=+{};:,<.>?~]/", $password)) {
                 $password_error = "password must include atleast one special character ";
             }
         }
@@ -59,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $p_image_path = "../doctors_images/" . $p_image_name;
             move_uploaded_file($p_image_temp_name, $p_image_path);
         }
-
         $experience = $_POST['experience'];
         if (preg_match("/[A-z]/", $experience)) {
             $exp_error = "experience must be in numbers";
@@ -71,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $age_error = "age is required";
         } else {
             $age = $_POST['age'];
-            if (preg_match("/[A-z]/", $experience)) {
+            if (!preg_match("/[0-9]/", $age)) {
                 $age_error = "age must be in numbers";
             }
             if ($age < 23) {
@@ -87,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (preg_match("/[A-z]/", $phone)) {
                 $phone_error = "phone number must be in numbers";
             }
-            if (strlen($phone) > 10) {
+            if (strlen($phone) > 10 || strlen($phone) < 10) {
                 $phone_error = "phone number must contain 10 numbers";
             }
         }
@@ -134,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if ($run_insert_doctor_query) {
                 echo "<script>alert('Your Registration Request has been sent successfully!')</script>";
-                // echo "<script>window.location.href = 'index.php'</script>";
+                echo "<script>window.location.href = 'index.php'</script>";
             } else {
                 echo "<script>alert('something went wrong')</script>";
 
@@ -223,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             font-size: 14px;
             letter-spacing: 1px;
             font-weight: 300;
-            margin-bottom: 30px !important;
+            /* margin-bottom: 30px !important; */
         }
 
         select {
@@ -239,7 +259,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             font-size: 14px;
             letter-spacing: 1px;
             font-weight: 300;
-            margin-bottom: 30px !important;
+            /* margin-bottom: 30px !important; */
 
         }
 
@@ -282,6 +302,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             color: #555;
             text-transform: uppercase;
             font-weight: 300;
+        }
+
+        p {
+            margin-bottom: 30px !important;
         }
 
 
@@ -408,6 +432,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <?php }
                                 ; ?>
                             </select>
+                            <p></p>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>Specialization</label>
@@ -419,6 +444,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <?php }
                                 ; ?>
                             </select>
+                            <p></p>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>City</label>
@@ -430,6 +456,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <?php }
                                 ; ?>
                             </select>
+                            <p></p>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label>Age</label>
@@ -447,12 +474,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <option value="female" name="gender">Female</option>
                                 <option value="unspesified" name="gender">Unspecified</option>
                             </select>
+                            <p></p>
                         </div>
                         <div class="col-sm-2 form-group">
                             <label>Country code</label>
                             <select class=" browser-default custom-select">
                                 <option data-countryCode="PK" value="92" selected>Pakistan (+92)</option>
                             </select>
+                            <p></p>
                         </div>
                         <div class="col-sm-4 form-group">
                             <label>Phone</label>

@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="number" min="15" class="form-control bg-light border-0"
+                                    <input type="number" min="15" max="80" class="form-control bg-light border-0"
                                         placeholder="Your Age" name="p_age" style="height: 55px;">
                                 </div>
 

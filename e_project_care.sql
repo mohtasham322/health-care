@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 06:45 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Nov 22, 2023 at 08:16 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,7 +64,7 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`appointment_id`, `patient_id`, `patient_email`, `patient_gender`, `patient_city`, `date`, `time`, `appointment_status`, `doctor_id`, `patient_age`) VALUES
 (13, 1, '', 'Male', 1, '2023-11-10', '00:00:00', 'Accepted', 15, 0),
-(14, 1, '', 'Male', 1, '2023-11-22', '00:00:00', 'pending', 15, 0),
+(14, 1, '', 'Male', 1, '2023-11-22', '00:00:00', 'Accepted', 15, 0),
 (15, 1, '', 'Male', 1, '2023-11-22', '00:00:00', 'pending', 15, 0);
 
 -- --------------------------------------------------------
@@ -139,7 +139,22 @@ INSERT INTO `doctors` (`doctor_id`, `doctor_name`, `doctor_email`, `doctor_passw
 (26, 'Abigail ', 'abigail@gmail.com', 'abigail123 ', '../doctors_images/file-20191203-66986-im7o5.avif', 5, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'female', 'Accepted', 9),
 (27, 'Benjamin ', 'benjamin@gmail.com', 'benjamin123 ', '../doctors_images/young-male-doctor-close-up-happy-looking-camera-56751540.webp', 1, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 7, 3226301906, 'male', 'Accepted', 10),
 (28, 'Henry ', 'henry@gmail.com', 'henry123 ', '../doctors_images/young-male-doctor-close-up-happy-looking-camera-56751540 (1).webp', 6, '1', 3226301906, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3161267933, 'male', '', 10),
-(45, 'Fahad  ', 'fahad@gmail.com', 'fahad123 ', '../doctors_images/fb4-removebg-preview.png', 5, '1', 3161267933, '../degree_images/fb4.png', '../nic_images/Untitled.png', '../nic_images/fb4.png', 1, 3161267933, 'male', '', 5);
+(45, 'Fahad  ', 'fahad@gmail.com', 'fahad123 ', '../doctors_images/fb4-removebg-preview.png', 5, '1', 3161267933, '../degree_images/fb4.png', '../nic_images/Untitled.png', '../nic_images/fb4.png', 1, 3161267933, 'male', '', 5),
+(47, 'Tendra Bavuma', 'tendra@gmail.com', 'Tendra123? ', '../doctors_images/male-doctor_101945-639.avif', 3, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', '', 5),
+(48, 'Tendra Bavuma', '', 'Tendra123? ', '../doctors_images/male-doctor_101945-639.avif', 3, '1', 3161267933, '../degree_images/Juris_Doctor_diploma.jpg', '../nic_images/download.jfif', '../nic_images/download (1).jfif', 1, 3226301906, 'male', '', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_inventions`
+--
+
+CREATE TABLE `medical_inventions` (
+  `inven_id` int(11) NOT NULL,
+  `inven_title` varchar(200) NOT NULL,
+  `inven_image` varchar(5000) NOT NULL,
+  `inven_content` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -305,6 +320,12 @@ ALTER TABLE `doctors`
   ADD KEY `jk` (`doctor_specialization`);
 
 --
+-- Indexes for table `medical_inventions`
+--
+ALTER TABLE `medical_inventions`
+  ADD PRIMARY KEY (`inven_id`);
+
+--
 -- Indexes for table `medical_news`
 --
 ALTER TABLE `medical_news`
@@ -354,7 +375,13 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `medical_inventions`
+--
+ALTER TABLE `medical_inventions`
+  MODIFY `inven_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `medical_news`

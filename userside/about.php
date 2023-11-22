@@ -125,7 +125,7 @@
                         <li><b>Empowerment:</b> Care empowers you to take control of your healthcare journey. With our platform, you can make informed decisions about your health and well-being.</li><br>
                         <li><b>Accessibility:</b>Our user-friendly website and mobile app ensure that you can access our services anytime, anywhere. We're here to serve you 24/7.</li>
                     </ol>
-                    <a href="appointment.html" class="btn btn-primary py-3 px-5 mt-4 wow zoomIn"
+                    <a href="search_doctor.php" class="btn btn-primary py-3 px-5 mt-4 wow zoomIn"
                         data-wow-delay="0.6s">Make Appointment</a>
                 </div>
             </div>

@@ -129,7 +129,7 @@ else {
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="index.php" class="nav-item nav-link active">Home</a>
+                <a href="index.php" class="nav-item nav-link ">Home</a>
                 <a href="about.php" class="nav-item nav-link">About</a>
                 <a href="service.php" class="nav-item nav-link">Service</a>
                 <a href="doctors.php" class="nav-item nav-link">Doctors</a>
@@ -144,7 +144,6 @@ else {
                     <a href="#" class="nav-link" data-bs-toggle="dropdown">Latest</a>
                     <div class="dropdown-menu m-0">
                         <a href="medical_news.php" class="dropdown-item">Medical News</a>
-                        <a href="medical_inventions.php" class="dropdown-item">Medical Inventions</a>
                     </div>
                 </div>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>

@@ -80,7 +80,7 @@ if($run_select_appointment_query-> num_rows < 1){
                     
                         <h1>Appointment Request </h1><br>
                         <h6 id="appointment_error" style="display:none; color:gray;">Appointment not found</h6>
-                        <table class="table-bordered w-100 text-center w-100" >
+                        <table class="table-bordered w-100 text-center " >
                             <thead>
                                 <th>Patient Name</th>
                                 <th>Patient Email</th>

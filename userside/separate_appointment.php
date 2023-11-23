@@ -185,11 +185,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <div class="col-12 col-sm-6">
                                     <div class="date" id="date1" data-target-input="nearest">
                                         <?php
-                                        $minDate = date('d-m-Y', strtotime('+1 day'));
+                                        $minDate = date('Y-m-d');
                                         ?>
                                         <input type="date" class="form-control bg-light border-0 datetimepicker-input"
-                                            placeholder="Appointment Date" data-target="#date1"
-                                            data-toggle="datetimepicker" name="appointment_date" min="<?php echo $minDate;
+                                            placeholder="Appointment Date"  name="appointment_date" min="<?php echo $minDate;
                                             ?>" style="height: 55px;" required>
                                     </div>
                                 </div>

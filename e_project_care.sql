@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2023 at 08:16 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Nov 23, 2023 at 06:18 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,8 +64,9 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`appointment_id`, `patient_id`, `patient_email`, `patient_gender`, `patient_city`, `date`, `time`, `appointment_status`, `doctor_id`, `patient_age`) VALUES
 (13, 1, '', 'Male', 1, '2023-11-10', '00:00:00', 'Accepted', 15, 0),
-(14, 1, '', 'Male', 1, '2023-11-22', '00:00:00', 'Accepted', 15, 0),
-(15, 1, '', 'Male', 1, '2023-11-22', '00:00:00', 'pending', 15, 0);
+(14, 1, '', 'Male', 1, '2023-11-22', '00:00:00', 'declined', 15, 0),
+(15, 1, '', 'Male', 1, '2023-11-22', '00:00:00', 'declined', 15, 0),
+(16, 1, '', 'Male', 4, '2023-11-24', '03:36:00', 'pending', 23, 19);
 
 -- --------------------------------------------------------
 
@@ -363,7 +364,7 @@ ALTER TABLE `specialization`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `city`

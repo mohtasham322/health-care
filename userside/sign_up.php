@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$email_exists) {
           $insert_users = "INSERT INTO `patients`(`patient_name`, `patient_email`, `patient_password`) VALUES ('$username','$useremail','$userpassword')";
           $run_insert_users = mysqli_query($connection, $insert_users);
+          echo "<script>alert('Your account has been created, log in to your account')</script>";
         }
       }
 

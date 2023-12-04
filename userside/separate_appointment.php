@@ -19,9 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $appointment_insert = "INSERT INTO `appointment`(`patient_id`, `patient_gender`, `patient_city`, `date`, `time`, `doctor_id`, `patient_age`) VALUES ('$p_id','$p_gender','$p_city','$date','$time','$d_id','$p_age')";
             $run_appointment_insert = mysqli_query($connection, $appointment_insert);
             if ($run_appointment_insert) {
-                echo "<script>alert('success')</script>";
+                echo "<script>alert('appointment request sent successfully')</script>";
             } else {
-                echo "<script>alert('failed')</script>";
+                echo "<script>alert('appointment request failed!')</script>";
             }
         }
         elseif(isset($_SESSION['d_id'])){

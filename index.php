@@ -54,8 +54,10 @@ $run_select_service = mysqli_query($connection, $select_service);
 
 <body>
 
-    <?php include("userside/spinner.php"); ?>
-    <?php include("userside/navbar.php"); ?>
+    <?php 
+    // include("./userside/spinner.php"); 
+    ?>
+    <?php include("./userside/navbar.php"); ?>
 
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
@@ -99,9 +101,9 @@ $run_select_service = mysqli_query($connection, $select_service);
                                 Treasure Your Health!</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Health
                                 Treatment</h1>
-                            <a href="search_doctor.php"
+                            <a href="userside/search_doctor.php"
                                 class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="contact.php"
+                            <a href="userside/contact.php"
                                 class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
@@ -114,9 +116,9 @@ $run_select_service = mysqli_query($connection, $select_service);
                                 Treasure Your Health!</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Your Path to Health and Wellness
                             </h1>
-                            <a href="appointment.html"
+                            <a href="userside/appointment.html"
                                 class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="contact.php"
+                            <a href="userside/contact.php"
                                 class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
@@ -134,7 +136,7 @@ $run_select_service = mysqli_query($connection, $select_service);
     </div>
     <!-- Carousel End -->
 
-
+    <section>
     <!-- Banner Start -->
     <div class="container-fluid banner mb-5">
         <div class="container ">
@@ -142,7 +144,7 @@ $run_select_service = mysqli_query($connection, $select_service);
                 <div class="col-lg-8 wow zoomIn" data-wow-delay="0.3s">
                     <div class="bg-dark d-flex flex-column p-5" style="height: 300px;">
                         <h3 class="text-white mb-3">Search A Doctor</h3>
-                        <form method="post" action="doctors.php">
+                        <form method="post" action="userside/doctors.php">
                             <select class="form-select bg-light border-0 mb-3" style="height: 40px;"
                                 name="s_specialization">
                                 <?php
@@ -178,7 +180,7 @@ $run_select_service = mysqli_query($connection, $select_service);
         </div>
     </div>
 
-
+    </section>
 
     <!-- Banner Start -->
 
@@ -203,7 +205,7 @@ $run_select_service = mysqli_query($connection, $select_service);
                 <div class="col-lg-5" style="min-height: 400px;">
                     <div class="position-relative h-100">
                         <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
-                            src="img/about.jpg" style="object-fit: cover;">
+                            src="userside/img/about.jpg" style="object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -244,7 +246,7 @@ $run_select_service = mysqli_query($connection, $select_service);
 
                 </div>
                 <div class="col-6">
-                    <a href="search_doctor.php" class="btn btn-primary w-100 mb-5 py-3" type="submit">Make Appointment</a>
+                    <a href="userside/search_doctor.php" class="btn btn-primary w-100 mb-5 py-3" type="submit">Make Appointment</a>
                 </div>
             </div>
         </div>
@@ -306,8 +308,8 @@ $run_select_service = mysqli_query($connection, $select_service);
                             best healthcare services available. We believe that everyone deserves convenient access
                             to a
                             network of skilled doctors and specialists........</p>
-                        <a href="search_doctor.php" class="btn btn-dark py-3 px-5 me-3">Appointment</a>
-                        <a href="about.php" class="btn btn-light py-3 px-5">Read More</a>
+                        <a href="userside/search_doctor.php" class="btn btn-dark py-3 px-5 me-3">Appointment</a>
+                        <a href="userside/about.php" class="btn btn-light py-3 px-5">Read More</a>
                     </div>
                 </div>
             </div>

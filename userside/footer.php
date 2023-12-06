@@ -5,7 +5,7 @@
             <div class="col-lg-3 col-md-6">
                 <h3 class="text-white mb-4">Quick Links</h3>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="index.php"><i
+                    <a class="text-light mb-2" href="../index.php"><i
                             class="bi bi-arrow-right text-primary me-2"></i>Home</a>
                     <a class="text-light mb-2" href="about.php"><i class="bi bi-arrow-right text-primary me-2"></i>About
                         Us</a>
@@ -55,7 +55,7 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-12 text-center">
-                <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="index.php">Care</a>. All
+                <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="../index.php">Care</a>. All
                     Rights Reserved.</p>
             </div>
         </div>

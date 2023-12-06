@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include("../admin/connection.php");
+include("admin/connection.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['btn_doctor_login'])) {
         $ld_email = $_POST['email'];

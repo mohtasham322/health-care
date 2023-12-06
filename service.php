@@ -1,11 +1,9 @@
 <?php
-include("../admin/connection.php");
-$id = $_GET['mi_id'];
-$select_inventions = "SELECT * FROM `medical_inventions where inven_id = $id";
-$run_select_inventions = mysqli_query($connection, $select_inventions);
+include("admin/connection.php");
+$select_service = "SELECT * FROM `services` where status = 0";
+$run_select_service = mysqli_query($connection, $select_service);
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,18 +39,6 @@ $run_select_inventions = mysqli_query($connection, $select_inventions);
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        .section_heading {
-            font-size: 70px;
-            color: #06A3DA;
-        }
-        p{
-            line-height: 30px;
-        }
-        h2{
-            font-size: 60px !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -86,10 +72,10 @@ $run_select_inventions = mysqli_query($connection, $select_inventions);
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
             <div class="col-12 text-center">
-                <h1 class="display-3 text-white animated zoomIn">Medical Inventions</h1>
+                <h1 class="display-3 text-white animated zoomIn">Services</h1>
                 <a href="" class="h4 text-white">Home</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">Medical Inventions</a>
+                <a href="" class="h4 text-white">Services</a>
             </div>
         </div>
     </div>
@@ -98,43 +84,50 @@ $run_select_inventions = mysqli_query($connection, $select_inventions);
 
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container justify-content-center">
+        <div class="container">
             <div class="row g-5 mb-5">
-                <div class="col-lg-12">
-                    <div class="section-title mb-5">
-                    </div>
-                    <div class="row flex-row g-5">
-                        <?php while ($row_inven = mysqli_fetch_array($run_select_inventions)) { ?>
-                            <div class="col-md-10 service-item">
-                                    <h2><?php echo $row_inven['inven_title']; ?>
-                                    </h2>
-                            </div>
-                            <div class="col-md-7 service-item wow zoomIn" data-wow-delay="0.6s">
-                                    <img class="img-fluid" src="<?php echo $row_inven['inven_image']; ?>" alt="">
-                            </div>
-                            <div class=" col-md-8  bg-light rounded-bottom text-left  p-4">
-                                <p class="m-0 ">
-                                    <?php echo $row_inven['inven_content']; ?>
-                                </p>                                
-                            </div>
-                        <?php }
-                        ; ?>
+                <div class="col-lg-5 wow zoomIn" data-wow-delay="0.3s" style="min-height: 400px;">
+                    <div class=" position-relative h-100">
+                        <img class=" w-100 h-100"
+                            src="https://img.freepik.com/free-photo/attractive-female-doctor-standing-with-documents-hospital_1303-20688.jpg"
+                            style="object-fit: cover;">
                     </div>
                 </div>
+                <div class="col-lg-7 justify-content-center align-self-center">
+                    <div class="section-title mb-5 ">
+                        <h5 class="position-relative d-inline-block text-primary text-uppercase">Our Services</h5>
+                        <h1 class="display-5 mb-0">We Offer The Best Quality Health Services</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5 justify-content-center align-items-center">
+                <?php while ($row_service = mysqli_fetch_array($run_select_service)) {
+                    ?>
+                    <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
+                        <div class="rounded-top overflow-hidden">
+                            <img class="img-fluid w-100" src="<?php echo $row_service['image']; ?>" alt=""
+                                style="object-fit: cover; height: 240px;">
+                        </div>
+                        <div class="position-relative bg-light rounded-bottom text-center p-4">
+                            <h5 class="m-0">
+                                <?php echo $row_service['service_name']; ?>
+                            </h5>
+                        </div>
+                    </div>
+
+                <?php }
+                ; ?>
 
             </div>
         </div>
     </div>
-    </div>
-
-    </div>
-    </div>
     <!-- Service End -->
 
 
+
     <?php
-include('footer.php');
-?>
+    include('footer.php');
+    ?>
 
 
     <!-- Back to Top -->

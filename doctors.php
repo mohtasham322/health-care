@@ -1,9 +1,22 @@
 <?php
-include("../admin/connection.php");
-$select_service = "SELECT * FROM `services` where status = 0";
-$run_select_service = mysqli_query($connection, $select_service);
+include("admin/connection.php");
+if (isset($_POST['btn_search_doctor'])) {
+    $s_specialization = $_POST['s_specialization'];
+    $s_city = $_POST['s_city'];
+    $searched_doctors = "SELECT * FROM `doctors` where doctor_specialization = $s_specialization and doctor_city = $s_city and status = 'Accepted'";
+    $run_select_doctors = mysqli_query($connection, $searched_doctors);
+} else {
+    $select_doctors = "SELECT * FROM `doctors` where status = 'Accepted'";
+    $run_select_doctors = mysqli_query($connection, $select_doctors);
+    $select_specialization = "SELECT * FROM `specialization`";
+    $run_select_specialization = mysqli_query($connection, $select_specialization);
+    $fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
+}
 
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +52,27 @@ $run_select_service = mysqli_query($connection, $select_service);
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .section_heading {
+            font-size: 70px;
+            color: #06A3DA;
+        }
+
+        .doctor_img {
+            height: 230px !important;
+            width: 100%;
+        }
+
+        @media (max-width: 991px) {}
+
+        @media (max-width: 425px) {}
+
+        @media (max-width: 375px) {
+            .s_head {
+                font-size: 35px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -72,10 +106,10 @@ $run_select_service = mysqli_query($connection, $select_service);
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
             <div class="col-12 text-center">
-                <h1 class="display-3 text-white animated zoomIn">Services</h1>
+                <h1 class="display-3 text-white animated zoomIn">Doctors</h1>
                 <a href="" class="h4 text-white">Home</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">Services</a>
+                <a href="" class="h4 text-white">Doctors</a>
             </div>
         </div>
     </div>
@@ -84,50 +118,50 @@ $run_select_service = mysqli_query($connection, $select_service);
 
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
+        <div class="container justify-content-center text-center">
+            <h2 class="section_heading s_head">Qualified Healthcare Professionals</h2>
             <div class="row g-5 mb-5">
-                <div class="col-lg-5 wow zoomIn" data-wow-delay="0.3s" style="min-height: 400px;">
-                    <div class=" position-relative h-100">
-                        <img class=" w-100 h-100"
-                            src="https://img.freepik.com/free-photo/attractive-female-doctor-standing-with-documents-hospital_1303-20688.jpg"
-                            style="object-fit: cover;">
+                <div class="col-lg-12">
+                    <div class="section-title mb-5">
                     </div>
-                </div>
-                <div class="col-lg-7 justify-content-center align-self-center">
-                    <div class="section-title mb-5 ">
-                        <h5 class="position-relative d-inline-block text-primary text-uppercase">Our Services</h5>
-                        <h1 class="display-5 mb-0">We Offer The Best Quality Health Services</h1>
+                    <div class="row g-5">
+                        <?php while ($row_doctors = mysqli_fetch_array($run_select_doctors)) { ?>
+                            <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
+                                <a href="each_doctor.php?id=<?php echo $row_doctors['doctor_id']; ?>">
+                                    <div class="rounded-top overflow-hidden">
+                                        <img class="img-fluid doctor_img" src="<?php echo $row_doctors['doctor_pic']; ?>"
+                                            alt="">
+                                    </div>
+                                    <div class="position-relative bg-light rounded-bottom text-center p-4">
+                                        <h5 class="m-0">
+                                            <?php echo $row_doctors['doctor_name']; ?>
+                                        </h5>
+                                        <?php
+                                        $specialization_id = $row_doctors['doctor_specialization'];
+                                        $select_specialization = "SELECT * FROM `specialization` where specialization_id = $specialization_id";
+                                        $run_select_specialization = mysqli_query($connection, $select_specialization);
+                                        $specialization_row = mysqli_fetch_array($run_select_specialization)
+                                            ?>
+                                        <h5 class="m-0" style="color:#06A3DA;">
+                                            <?php echo $specialization_row['specialization_name']; ?>
+                                        </h5>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php }
+                        ; ?>
                     </div>
-                </div>
-                <div class="row g-5">
-                    <?php while ($row_service = mysqli_fetch_array($run_select_service)) {
-                        ?>
-                        <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
-                            <div class="rounded-top overflow-hidden">
-                                <img class="img-fluid w-100" src="<?php echo $row_service['image']; ?>" alt=""
-                                    style="object-fit: cover; height: 240px;">
-                            </div>
-                            <div class="position-relative bg-light rounded-bottom text-center p-4">
-                                <h5 class="m-0">
-                                    <?php echo $row_service['service_name']; ?>
-                                </h5>
-                            </div>
-                        </div>
-
-                    <?php }
-                    ; ?>
-
                 </div>
             </div>
+
         </div>
     </div>
     <!-- Service End -->
 
 
-
     <?php
-include('footer.php');
-?>
+    include('footer.php');
+    ?>
 
 
     <!-- Back to Top -->

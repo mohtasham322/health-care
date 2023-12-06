@@ -1,14 +1,13 @@
 <?php
-include("../admin/connection.php");
-
-$select_specialization = "SELECT * FROM `specialization` where status = 0";
+include("admin/connection.php");
+$id = $_GET['id'];
+$select_doctors = "SELECT * FROM `doctors` where doctor_id = $id";
+$run_select_doctors = mysqli_query($connection, $select_doctors);
+$select_specialization = "SELECT * FROM `specialization`";
 $run_select_specialization = mysqli_query($connection, $select_specialization);
-$select_city = "SELECT * FROM `city` where status = 0";
-$run_select_city = mysqli_query($connection, $select_city);
+$fetched_specialization = mysqli_fetch_assoc($run_select_specialization);
 
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -50,10 +49,8 @@ $run_select_city = mysqli_query($connection, $select_city);
             font-size: 70px;
             color: #06A3DA;
         }
-
-        .doctor_img {
-            height: 230px !important;
-            width: 100%;
+        p{
+            line-height: 30px;
         }
     </style>
 </head>
@@ -89,10 +86,10 @@ $run_select_city = mysqli_query($connection, $select_city);
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
             <div class="col-12 text-center">
-                <h1 class="display-3 text-white animated zoomIn">Search Doctor</h1>
+                <h1 class="display-3 text-white animated zoomIn">Doctors</h1>
                 <a href="" class="h4 text-white">Home</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">search doctor</a>
+                <a href="" class="h4 text-white">Doctors</a>
             </div>
         </div>
     </div>
@@ -101,54 +98,74 @@ $run_select_city = mysqli_query($connection, $select_city);
 
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container justify-content-center text-center">
-            <h2 class="section_heading mb-5">Search Healthcare Professional</h2>
-            <div class="row g-5 justify-content-center align-items-center  mb-5">
-                <div class="col-lg-8 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="bg-dark d-flex flex-column p-5" style="height: 300px;">
-                        <h3 class="text-white mb-3">Search A Doctor</h3>
-                        <form method="post" action="doctors.php">
-                            <select class="form-select bg-light border-0 mb-3" style="height: 40px;"
-                                name="s_specialization">
+        <div class="container justify-content-center">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-12">
+                    <div class="section-title mb-5">
+                    </div>
+                    <div class="row flex-row g-5">
+                        <?php while ($row_doctors = mysqli_fetch_array($run_select_doctors)) { ?>
+                            <div class="col-md-5 service-item wow zoomIn" data-wow-delay="0.6s">
+                                <div class="rounded-top overflow-hidden">
+                                    <img class="img-fluid" src="<?php echo $row_doctors['doctor_pic']; ?>" alt="">
+                                </div>
+                            </div>
+                            <div class=" col-md-7  bg-light rounded-bottom text-left  p-4">
+                                <h3 style="color:#06A3DA;">
+                                    <?php echo $row_doctors['doctor_name']; ?>
+                                </h3>
                                 <?php
-                                $rows = array();
-                                while ($specialization_row = mysqli_fetch_array($run_select_specialization)) {
-                                    $rows[] = $specialization_row;
-                                    ; ?>
-                                    <option value="<?php echo $specialization_row['specialization_id']; ?>">
-                                        <?php echo $specialization_row['specialization_name'] ?>
-                                    </option>
-                                <?php }
-                                ; ?>
-                            </select>
+                                $specialization_id = $row_doctors['doctor_specialization'];
+                                $select_specialization = "SELECT * FROM `specialization` where specialization_id = $specialization_id";
+                                $run_select_specialization = mysqli_query($connection, $select_specialization);
+                                $specialization_row = mysqli_fetch_array($run_select_specialization);
 
-                            <select class="form-select bg-light border-0 mb-3" style="height: 40px;" name="s_city">
-                                <?php
-                                $rows_city = array();
-                                while ($city_row = mysqli_fetch_array($run_select_city)) {
-                                    $rows_city[] = $city_row;
-                                    ; ?>
-                                    <option value="<?php echo $city_row['city_id']; ?>">
-                                        <?php echo $city_row['city_name'] ?>
-                                    </option>
-                                <?php }
-                                ; ?>
-                            </select>
-                            <button type="submit" name="btn_search_doctor" class="btn btn-primary w-100">Search
-                                Doctor</a>
-                        </form>
+                                $qualification_id = $row_doctors['doctor_qualification'];
+                                $select_qualification = "SELECT * FROM `qualification` where qualification_id = $qualification_id";
+                                $run_select_qualification = mysqli_query($connection, $select_qualification);
+                                $qualification_row = mysqli_fetch_array($run_select_qualification);
+
+                                $city_id = $row_doctors['doctor_city'];
+                                $select_city = "SELECT * FROM `city` where city_id = $city_id";
+                                $run_select_city = mysqli_query($connection, $select_city);
+                                $city_row = mysqli_fetch_array($run_select_city)
+                                    ?>
+                                <p class="m-0">
+                                    <?php echo '<span><b>Specialization:</b></span>' .' '. $specialization_row['specialization_name']; ?>
+                                </p>
+                                <p class="m-0">
+                                    <?php echo '<span><b>Experience:</b></span>' .' '. $row_doctors['doctor_exp'].' '. 'years'; ?>
+                                </p>
+                                <p class="m-0">
+                                    <?php echo '<span><b>Qualification:</b></span>' .' '. $qualification_row['qualification_name']; ?>
+                                </p>
+                                <p class="m-0">
+                                    <?php echo '<span><b>City:</b></span>' .' '. $city_row['city_name']; ?>
+                                </p>
+                                <p class="m-0 ">
+                                    <?php echo '<span><b>Gender:</b></span>' .' '. $row_doctors['doctor_gender']; ?>
+                                </p>
+                                <button class="btn btn-dark py-2 text-right mt-2" width:50px;  name="btn_separate_appointment"><a href="separate_appointment.php?id=<?php echo $row_doctors['doctor_id'] ?> "> Make Appointment</a></button>
+                                
+                            </div>
+                        <?php }
+                        ; ?>
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
+    </div>
 
+    </div>
     </div>
     <!-- Service End -->
 
 
     <?php
-    include('footer.php');
-    ?>
+include('footer.php');
+?>
 
 
     <!-- Back to Top -->

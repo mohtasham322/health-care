@@ -1,12 +1,10 @@
 <?php
-include("../admin/connection.php");
-$select_inventions = "SELECT * FROM `medical_inventions`";
-$run_select_inventions = mysqli_query($connection, $select_inventions);
-
+include("admin/connection.php");
+$id = $_GET['mn_id'];
+$select_news = "SELECT * FROM `medical_news` where news_id = $id";
+$run_select_news = mysqli_query($connection, $select_news);
 
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -48,10 +46,11 @@ $run_select_inventions = mysqli_query($connection, $select_inventions);
             font-size: 70px;
             color: #06A3DA;
         }
-
-        .doctor_img {
-            height: 230px !important;
-            width: 100%;
+        p{
+            line-height: 30px;
+        }
+        h2{
+            font-size: 60px !important;
         }
     </style>
 </head>
@@ -87,12 +86,10 @@ $run_select_inventions = mysqli_query($connection, $select_inventions);
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
             <div class="col-12 text-center">
-                <h1 class="display-3 text-white animated zoomIn">Medical Inventions</h1>
+                <h1 class="display-3 text-white animated zoomIn">Medical News</h1>
                 <a href="" class="h4 text-white">Home</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">Latest</a>
-                <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">Medical Inventions</a>
+                <a href="" class="h4 text-white">Medical News</a>
             </div>
         </div>
     </div>
@@ -101,43 +98,43 @@ $run_select_inventions = mysqli_query($connection, $select_inventions);
 
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container ">
-            <h2 class="section_heading">Latest Medical Inventions</h2>
-            <div class="row g-5 mb-5 justify-content-center">
-                <div class="col-lg-12 ">
+        <div class="container justify-content-center">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-12">
                     <div class="section-title mb-5">
-                        <?php while ($row_inven = mysqli_fetch_array($run_select_inventions)) { ?>
-                        </div> <a href="each_medical_invention.php?mi_id=<?php echo $row_inven['inven_id']; ?>">
-                            <div class="row flex-row g-5 mb-4">
-
-
-
-                                <div class="col-md-3 service-item wow zoomIn" data-wow-delay="0.6s">
-                                    <div class="rounded-top overflow-hidden">
-                                        <img style="width:200px;" class="img-fluid"
-                                            src="<?php echo $row_inven['inven_image']; ?>" alt="">
-                                    </div>
-                                </div>
-                                <div class=" col-md-9  bg-light rounded-bottom text-left  pt-4 ">
-                                    <h5 style="color:#06A3DA;">
-                                        <?php echo $row_inven['inven_title']; ?>
-                                    </h5>
-                                </div>
-                            <?php }
+                    </div>
+                    <div class="row flex-row g-5">
+                        <?php while ($row_news = mysqli_fetch_array($run_select_news)) { ?>
+                            <div class="col-md-10 service-item">
+                                    <h2><?php echo $row_news['news_title']; ?>
+                                    </h2>
+                            </div>
+                            <div class="col-md-7 service-item wow zoomIn" data-wow-delay="0.6s">
+                                    <img class="img-fluid" src="<?php echo $row_news['news_image']; ?>" alt="">
+                            </div>
+                            <div class=" col-md-8  bg-light rounded-bottom text-left  p-4">
+                                <p class="m-0 ">
+                                    <?php echo $row_news['news_content']; ?>
+                                </p>                                
+                            </div>
+                        <?php }
                         ; ?>
-
-                        </div>
-                    </a>
+                    </div>
                 </div>
+
             </div>
         </div>
+    </div>
+    </div>
+
+    </div>
     </div>
     <!-- Service End -->
 
 
     <?php
-    include('footer.php');
-    ?>
+include('footer.php');
+?>
 
 
     <!-- Back to Top -->

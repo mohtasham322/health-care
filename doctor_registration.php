@@ -1,5 +1,5 @@
 <?php
-include("../admin/connection.php");
+include("admin/connection.php");
 ob_start();
 $fname_error = $lname_error = $email_error = $password_error = $p_profile_error = $d_picture_error = $nic_front_error = $nic_back_error = $exp_error = $age_error = $phone_error = $whatsapp_error = "";
 $select_qualification = "SELECT * FROM `qualification` where status = 0";
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $p_image = $_FILES['p_image'];
             $p_image_name = $_FILES['p_image']['name'];
             $p_image_temp_name = $_FILES['p_image']['tmp_name'];
-            $p_image_path = "../doctors_images/" . $p_image_name;
+            $p_image_path = "doctors_images/" . $p_image_name;
             move_uploaded_file($p_image_temp_name, $p_image_path);
         }
         $experience = $_POST['experience'];
@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $deg_image = $_FILES['deg_pic'];
             $deg_image_name = $_FILES['deg_pic']['name'];
             $deg_image_tmp_name = $_FILES['deg_pic']['tmp_name'];
-            $deg_image_path = "../degree_images/" . $deg_image_name;
+            $deg_image_path = "degree_images/" . $deg_image_name;
             move_uploaded_file($deg_image_tmp_name, $deg_image_path);
         }
         if (($_FILES['nic_front_pic']['size'] == 0)) {
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $nic_front_image = $_FILES['nic_front_pic'];
             $nic_front_image_name = $_FILES['nic_front_pic']['name'];
             $nic_front_image_tmp_name = $_FILES['nic_front_pic']['tmp_name'];
-            $nic_front_image_path = "../nic_images/" . $nic_front_image_name;
+            $nic_front_image_path = "nic_images/" . $nic_front_image_name;
             move_uploaded_file($nic_front_image_tmp_name, $nic_front_image_path);
         }
         if (($_FILES['nic_back_pic']['size'] == 0)) {
@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $nic_back_image = $_FILES['nic_back_pic'];
             $nic_back_image_name = $_FILES['nic_back_pic']['name'];
             $nic_back_image_tmp_name = $_FILES['nic_back_pic']['tmp_name'];
-            $nic_back_image_path = "../nic_images/" . $nic_back_image_name;
+            $nic_back_image_path = "nic_images/" . $nic_back_image_name;
             move_uploaded_file($nic_back_image_tmp_name, $nic_back_image_path);
             $insert_doctor_query = "INSERT INTO `doctors`(`doctor_name`, `doctor_email`, `doctor_password`, `doctor_pic`, `doctor_exp`, `doctor_qualification`, `doctor_contact`, `doctor_degree_pic`, `doctor_nic_front_pic`, `doctor_nic_back_pic`, `doctor_city`, `doctor_whatsapp`, `doctor_gender`, `doctor_specialization`) VALUES ('$full_name','$email','$password ','$p_image_path','$experience','$qualification','$phone','$deg_image_path','$nic_front_image_path','$nic_back_image_path','$city','$whatsapp','$gender','$specialization')";
             $run_insert_doctor_query = mysqli_query($connection, $insert_doctor_query);

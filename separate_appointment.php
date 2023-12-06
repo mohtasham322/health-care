@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../admin/connection.php");
+include("admin/connection.php");
 $id = $_GET['id'];
 $select_specialization = "SELECT * FROM doctors join specialization on doctors.doctor_specialization=specialization.specialization_id join city on doctors.doctor_city=city.city_id where doctors.doctor_id= '$id'";
 $select_doctors = mysqli_query($connection, $select_specialization);

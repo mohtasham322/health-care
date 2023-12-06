@@ -1,7 +1,7 @@
 <?php
-include("../admin/connection.php");
-$select_news = "SELECT * FROM `medical_news`";
-$run_select_news = mysqli_query($connection, $select_news);
+include("admin/connection.php");
+$select_inventions = "SELECT * FROM `medical_inventions`";
+$run_select_inventions = mysqli_query($connection, $select_inventions);
 
 
 ?>
@@ -87,12 +87,12 @@ $run_select_news = mysqli_query($connection, $select_news);
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
             <div class="col-12 text-center">
-                <h1 class="display-3 text-white animated zoomIn">Medical News</h1>
+                <h1 class="display-3 text-white animated zoomIn">Medical Inventions</h1>
                 <a href="" class="h4 text-white">Home</a>
                 <i class="far fa-circle text-white px-2"></i>
                 <a href="" class="h4 text-white">Latest</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white">Medical News</a>
+                <a href="" class="h4 text-white">Medical Inventions</a>
             </div>
         </div>
     </div>
@@ -102,12 +102,12 @@ $run_select_news = mysqli_query($connection, $select_news);
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container ">
-            <h2 class="section_heading">Latest Medical News</h2>
+            <h2 class="section_heading">Latest Medical Inventions</h2>
             <div class="row g-5 mb-5 justify-content-center">
                 <div class="col-lg-12 ">
                     <div class="section-title mb-5">
-                        <?php while ($row_news = mysqli_fetch_array($run_select_news)) { ?>
-                        </div> <a href="each_medical_news.php?mn_id=<?php echo $row_news['news_id']; ?>">
+                        <?php while ($row_inven = mysqli_fetch_array($run_select_inventions)) { ?>
+                        </div> <a href="each_medical_invention.php?mi_id=<?php echo $row_inven['inven_id']; ?>">
                             <div class="row flex-row g-5 mb-4">
 
 
@@ -115,12 +115,12 @@ $run_select_news = mysqli_query($connection, $select_news);
                                 <div class="col-md-3 service-item wow zoomIn" data-wow-delay="0.6s">
                                     <div class="rounded-top overflow-hidden">
                                         <img style="width:200px;" class="img-fluid"
-                                            src="<?php echo $row_news['news_image']; ?>" alt="">
+                                            src="<?php echo $row_inven['inven_image']; ?>" alt="">
                                     </div>
                                 </div>
                                 <div class=" col-md-9  bg-light rounded-bottom text-left  pt-4 ">
                                     <h5 style="color:#06A3DA;">
-                                        <?php echo $row_news['news_title']; ?>
+                                        <?php echo $row_inven['inven_title']; ?>
                                     </h5>
                                 </div>
                             <?php }

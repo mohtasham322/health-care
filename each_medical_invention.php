@@ -1,49 +1,10 @@
 <?php
-session_start();
-include("../admin/connection.php");
-if (isset($_SESSION["p_id"])) {
-$p_id = $_SESSION["p_id"];
-$select_appointment = "SELECT * FROM appointment join patients on appointment.patient_id = patients.patient_id join doctors on appointment.doctor_id=doctors.doctor_id where appointment.patient_id= $p_id";
-$run_select_appointment = mysqli_query($connection, $select_appointment);
-if ($run_select_appointment->num_rows < 1) {
-    echo '<style>
-        #appointment_error{
-            display : block !important;
-        }
-        table{
-            display : none !important;
-        }
-        
-        </style>';
-}
-} 
-// elseif (isset($_SESSION["d_id"])) {
-//     echo '<style>
-//     #appointment_error{
-//         display : block !important;
-//     }
-//     table{
-//         display : none !important;
-//     }
-
-//     </style>';
-// }
-else {
-    echo '<style>
-    #appointment_error{
-        display : block !important;
-    }
-    table{
-        display : none !important;
-    }
-    
-    </style>';
-}
+include("admin/connection.php");
+$id = $_GET['mi_id'];
+$select_inventions = "SELECT * FROM `medical_inventions where inven_id = $id";
+$run_select_inventions = mysqli_query($connection, $select_inventions);
 
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -85,53 +46,11 @@ else {
             font-size: 70px;
             color: #06A3DA;
         }
-
-        .doctor_img {
-            height: 230px !important;
-            width: 100%;
+        p{
+            line-height: 30px;
         }
-
-        * {
-            font-family: sans-serif;
-            /* Change your font family */
-        }
-
-        .content-table {
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.9em;
-            min-width: 400px;
-            border-radius: 5px 5px 0 0;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .content-table thead tr {
-            background-color: #06A3DA;
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        .content-table th,
-        .content-table td {
-            padding: 12px 15px;
-        }
-
-        .content-table tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
-
-        .content-table tbody tr:nth-of-type(even) {
-            background-color: #f3f3f3;
-        }
-
-        .content-table tbody tr:last-of-type {
-            border-bottom: 3px solid #06A3DA;
-        }
-
-        .content-table tbody tr.active-row {
-            font-weight: bold;
-            color: #009879;
+        h2{
+            font-size: 60px !important;
         }
     </style>
 </head>
@@ -167,10 +86,10 @@ else {
     <div class="container-fluid bg-primary py-5 hero-header mb-5">
         <div class="row py-3">
             <div class="col-12 text-center">
-                <h1 class="display-3 text-white animated zoomIn">Your Appointments</h1>
+                <h1 class="display-3 text-white animated zoomIn">Medical Inventions</h1>
                 <a href="" class="h4 text-white">Home</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h4 text-white"> Appointment</a>
+                <a href="" class="h4 text-white">Medical Inventions</a>
             </div>
         </div>
     </div>
@@ -179,48 +98,43 @@ else {
 
     <!-- Service Start -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container justify-content-center text-center">
-            <h4 id="appointment_error" style="display:none; color:gray;">Appointment not found</h4>
+        <div class="container justify-content-center">
+            <div class="row g-5 mb-5">
+                <div class="col-lg-12">
+                    <div class="section-title mb-5">
+                    </div>
+                    <div class="row flex-row g-5">
+                        <?php while ($row_inven = mysqli_fetch_array($run_select_inventions)) { ?>
+                            <div class="col-md-10 service-item">
+                                    <h2><?php echo $row_inven['inven_title']; ?>
+                                    </h2>
+                            </div>
+                            <div class="col-md-7 service-item wow zoomIn" data-wow-delay="0.6s">
+                                    <img class="img-fluid" src="<?php echo $row_inven['inven_image']; ?>" alt="">
+                            </div>
+                            <div class=" col-md-8  bg-light rounded-bottom text-left  p-4">
+                                <p class="m-0 ">
+                                    <?php echo $row_inven['inven_content']; ?>
+                                </p>                                
+                            </div>
+                        <?php }
+                        ; ?>
+                    </div>
+                </div>
 
-
-
-            <table id="table" class="content-table w-100 text-center">
-                <thead>
-                    <tr>
-                        <th>Doctor Name</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if(isset($_SESSION["p_id"])){ while ($row_appointment = mysqli_fetch_array($run_select_appointment)) { ?>
-                        <tr>
-                            <td>
-                                <?php echo $row_appointment['doctor_name']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row_appointment['date']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row_appointment['time']; ?>
-                            </td>
-                            <td>
-                                <?php echo $row_appointment['appointment_status']; ?>
-                            </td>
-                        </tr>
-                    <?php }} ?>
-                </tbody>
-            </table>
-
+            </div>
         </div>
+    </div>
+    </div>
+
+    </div>
     </div>
     <!-- Service End -->
 
 
     <?php
-    include('footer.php');
-    ?>
+include('footer.php');
+?>
 
 
     <!-- Back to Top -->

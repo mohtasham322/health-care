@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 // Rest of your code
 
-include("../admin/connection.php");
+include("admin/connection.php");
 if (isset($_SESSION['p_id']) ) {
     $loginDropdownClass = "display-none";
     $loggedDoctorDropdownClass = "display-none";
@@ -98,6 +98,7 @@ else {
 
         .logo_img {
             max-width: 140px; 
+            max-height: 50px;
         }
     }
 
@@ -121,7 +122,7 @@ else {
 
 
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
-        <a href="../index.html" class="navbar-brand p-0">
+        <a href=" class="navbar-brand p-0">
             <img class="logo_img" src="img/logo.png" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -129,7 +130,7 @@ else {
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="../index.php" class="nav-item nav-link ">Home</a>
+                <a href="index.php" class="nav-item nav-link ">Home</a>
                 <a href="about.php" class="nav-item nav-link">About</a>
                 <a href="service.php" class="nav-item nav-link">Service</a>
                 <a href="doctors.php" class="nav-item nav-link">Doctors</a>
@@ -164,7 +165,7 @@ else {
             <div id="logged_user_dropdown" style="position: relative; width:120px;" class="<?php echo $loggedUserDropdownClass; ?> justify-content-center" >
                 <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown1" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="profile_icon" src="../images/profile_icon.png" alt="">
+                    <img class="profile_icon" src="images/profile_icon.png" alt="">
                 </a>
                 <div class="dropdown-menu m-0 mt-3" id="login-dropdown1">
                     <p class="dropdown-item">
@@ -177,14 +178,14 @@ else {
             <div id="logged_doctor_dropdown" style="position: relative; width:120px;"class="<?php echo $loggedDoctorDropdownClass; ?> justify-content-center">
                 <a class="nav-link  py-2 px-3 ms-3" href="#" id="navbarDropdown2" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="profile_icon" src="../images/profile_icon.png" alt="">
+                    <img class="profile_icon" src="images/profile_icon.png" alt="">
                 </a>
                 <div class="dropdown-menu m-0 mt-3" id="login-dropdown2">
                     <p class="dropdown-item">
                     <?php echo $_SESSION['d_name']; ?><hr>
                     </p>
                     <a class="dropdown-item"
-                        href="../doctor_panel/index.php?doc_id=<?php echo $_SESSION['d_id'] ?>">Dashboard</a>
+                        href="doctor_panel/index.php?doc_id=<?php echo $_SESSION['d_id'] ?>">Dashboard</a>
                     <a class="dropdown-item" href="user_logout.php">Logout</a>
 
                 </div>

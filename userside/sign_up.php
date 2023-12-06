@@ -76,7 +76,7 @@ if (isset($_POST['btn_login'])) {
     $_SESSION['p_name'] = $fetched_patient['patient_name'];
     $_SESSION['p_email'] = $fetched_patient['patient_email'];
 
-    echo "<script>window.location.href = 'index.php'</script>";
+    echo "<script>window.location.href = '../index.php'</script>";
   } else {
     echo "<script>alert('Invalid email or password')</script>";
   }

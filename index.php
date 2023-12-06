@@ -1,5 +1,5 @@
 <?php
-include("../admin/connection.php");
+include("admin/connection.php");
 $select_specialization = "SELECT * FROM `specialization` where status = 0";
 $run_select_specialization = mysqli_query($connection, $select_specialization);
 $select_city = "SELECT * FROM `city` where status = 0";
@@ -44,18 +44,18 @@ $run_select_service = mysqli_query($connection, $select_service);
     <link href="lib/twentytwenty/twentytwenty.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="userside/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="userside/css/style.css" rel="stylesheet">
     <style>
     </style>
 </head>
 
 <body>
 
-    <?php include("spinner.php"); ?>
-    <?php include("navbar.php"); ?>
+    <?php include("userside/spinner.php"); ?>
+    <?php include("userside/navbar.php"); ?>
 
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
@@ -351,7 +351,7 @@ $run_select_service = mysqli_query($connection, $select_service);
 
 
     <?php
-    include('footer.php');
+    include('userside/footer.php');
     ?>
 
 
@@ -376,7 +376,7 @@ $run_select_service = mysqli_query($connection, $select_service);
     <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="userside/js/main.js"></script>
 </body>
 
 </html>

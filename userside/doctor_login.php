@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['d_id'] = $fetched_doctor['doctor_id'];
             $_SESSION['d_name'] = $fetched_doctor['doctor_name'];
             $_SESSION['d_email'] = $fetched_doctor['doctor_email'];
-                echo "<script>window.location.href = 'index.php'</script>";
+                echo "<script>window.location.href = '../index.php'</script>";
             } else {
             echo "<script>alert('Invalid email or password')</script>";
         }
